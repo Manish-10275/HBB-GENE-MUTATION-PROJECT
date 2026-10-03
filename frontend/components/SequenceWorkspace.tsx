@@ -165,27 +165,32 @@ export const SequenceWorkspace: React.FC<SequenceWorkspaceProps> = ({
               </span>
             )}
 
-            <button
-              onClick={onAnalyze}
-              disabled={isLoading || stats.length === 0 || stats.hasInvalidChars}
-              className={`inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold rounded shadow-sm transition-all ${
-                isLoading || stats.length === 0 || stats.hasInvalidChars
-                  ? "bg-stone-200 text-stone-400 cursor-not-allowed"
-                  : "bg-stone-900 hover:bg-stone-800 text-white active:scale-[0.98]"
-              }`}
-            >
-              {isLoading ? (
-                <>
-                  <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                  Aligning & Computing...
-                </>
-              ) : (
-                <>
-                  <Play className="w-3.5 h-3.5 fill-current" />
-                  Run Deterministic Analysis
-                </>
-              )}
-            </button>
+            <div className="flex items-center gap-2.5">
+              <span className="text-[10px] uppercase font-mono text-stone-500 hidden sm:inline select-none" title="Deterministic pairwise alignment & codon translation">
+                Deterministic Engine
+              </span>
+              <button
+                onClick={onAnalyze}
+                disabled={isLoading || stats.length === 0 || stats.hasInvalidChars}
+                className={`inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold rounded shadow-sm transition-all ${
+                  isLoading || stats.length === 0 || stats.hasInvalidChars
+                    ? "bg-stone-200 text-stone-400 cursor-not-allowed"
+                    : "bg-stone-900 hover:bg-stone-800 text-white active:scale-[0.98]"
+                }`}
+              >
+                {isLoading ? (
+                  <>
+                    <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                    Aligning & Computing...
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    Analyze Sequence
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
 

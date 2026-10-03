@@ -64,22 +64,36 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
       {/* 1. ClinVar Section (Collapsible with Summary) */}
       <div className="bg-white border border-stone-200 rounded-lg overflow-hidden">
         <div className="p-4 bg-stone-50/70 border-b border-stone-200 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <Database className="w-4 h-4 text-blue-600 shrink-0" />
+          <div className="flex items-start gap-2.5">
+            <Database className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h4 className="font-serif text-sm font-semibold text-stone-900">
                   NCBI ClinVar Annotations
                 </h4>
-                <span className="text-xs font-mono font-medium text-stone-500">
-                  ({clinvarRecords.length} {clinvarRecords.length === 1 ? "record" : "records"})
+                <span className="text-xs font-mono text-stone-500">
+                  ({clinvarRecords.length} {clinvarRecords.length === 1 ? "record" : "records"} retrieved)
                 </span>
+                {clinvarRecords.length > 0 && (
+                  <span
+                    className={`text-[10px] font-mono px-2 py-0.5 rounded font-semibold border ${
+                      clinvarRecords[0].source.toLowerCase().includes("fixture")
+                        ? "bg-amber-100 text-amber-900 border-amber-300"
+                        : "bg-emerald-100 text-emerald-900 border-emerald-300"
+                    }`}
+                  >
+                    {clinvarRecords[0].source.toLowerCase().includes("fixture")
+                      ? "Development Fixture"
+                      : "Live NCBI Evidence"}
+                  </span>
+                )}
               </div>
               {/* Useful summary strip when collapsed or expanded */}
-              {clinvarRecords.length > 0 && (
-                <div className="flex flex-wrap items-center gap-2 mt-1 text-xs">
+              {clinvarRecords.length > 0 ? (
+                <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs">
+                  <span className="text-stone-500 font-sans">Reported Clinical Significance:</span>
                   <span
-                    className={`text-[11px] font-bold px-2 py-0.2 rounded border ${
+                    className={`text-[11px] font-bold px-2 py-0.5 rounded border ${
                       primaryClinvarSig.toLowerCase().includes("pathogenic")
                         ? "bg-rose-50 text-rose-800 border-rose-200"
                         : "bg-amber-50 text-amber-800 border-amber-200"
@@ -89,10 +103,14 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                   </span>
                   {clinvarConditions.length > 0 && (
                     <span className="text-stone-600 text-[11px] font-sans">
-                      Conditions: {clinvarConditions.join(", ")}
+                      &bull; Conditions: {clinvarConditions.join(", ")}
                     </span>
                   )}
                 </div>
+              ) : (
+                <p className="text-xs text-stone-500 italic mt-0.5">
+                  No matching ClinVar records retrieved for this query.
+                </p>
               )}
             </div>
           </div>
@@ -194,27 +212,44 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
       {/* 2. PubMed Section (Collapsible with Summary) */}
       <div className="bg-white border border-stone-200 rounded-lg overflow-hidden">
         <div className="p-4 bg-stone-50/70 border-b border-stone-200 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-emerald-600 shrink-0" />
+          <div className="flex items-start gap-2.5">
+            <BookOpen className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h4 className="font-serif text-sm font-semibold text-stone-900">
                   NCBI PubMed Literature
                 </h4>
                 <span className="text-xs font-mono font-medium text-stone-500">
-                  ({pubmedRecords.length} {pubmedRecords.length === 1 ? "publication" : "publications"})
+                  ({pubmedRecords.length} {pubmedRecords.length === 1 ? "publication" : "publications"} retrieved)
                 </span>
+                {pubmedRecords.length > 0 && (
+                  <span
+                    className={`text-[10px] font-mono px-2 py-0.5 rounded font-semibold border ${
+                      pubmedRecords[0].source.toLowerCase().includes("fixture")
+                        ? "bg-amber-100 text-amber-900 border-amber-300"
+                        : "bg-emerald-100 text-emerald-900 border-emerald-300"
+                    }`}
+                  >
+                    {pubmedRecords[0].source.toLowerCase().includes("fixture")
+                      ? "Development Fixture"
+                      : "Live NCBI Evidence"}
+                  </span>
+                )}
               </div>
               {/* Useful summary strip when collapsed or expanded */}
-              {pubmedRecords.length > 0 && (
-                <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-stone-600 font-sans">
-                  <span>Primary peer-reviewed citations</span>
+              {pubmedRecords.length > 0 ? (
+                <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-stone-600 font-sans">
+                  <span>Primary peer-reviewed citations matching variant</span>
                   {pubmedJournals.length > 0 && (
                     <span className="text-stone-500 text-[11px] font-mono">
                       &bull; Journals: {pubmedJournals.join(", ")}
                     </span>
                   )}
                 </div>
+              ) : (
+                <p className="text-xs text-stone-500 italic mt-0.5">
+                  No matching PubMed literature retrieved for this query.
+                </p>
               )}
             </div>
           </div>

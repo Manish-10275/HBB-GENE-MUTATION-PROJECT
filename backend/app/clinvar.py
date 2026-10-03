@@ -116,7 +116,7 @@ async def fetch_clinvar_records(
                             conditions=conditions[:8],
                             last_evaluated=germline.get("last_evaluated"),
                             variation_id=vid,
-                            source="NCBI ClinVar",
+                            source="Live NCBI ClinVar",
                             url=f"https://www.ncbi.nlm.nih.gov/clinvar/variation/{vid}/"
                         )
                     )
@@ -133,5 +133,10 @@ def _check_fixture_fallback(term: str) -> List[ClinVarRecord]:
     for key, items in fixtures.items():
         if key in term or term in key:
             logger.info(f"Using verified development fixture for ClinVar query: {term}")
-            return [ClinVarRecord(**item) for item in items]
+            res: List[ClinVarRecord] = []
+            for item in items:
+                rec = ClinVarRecord(**item)
+                rec.source = "Development Fixture (NCBI ClinVar)"
+                res.append(rec)
+            return res
     return []

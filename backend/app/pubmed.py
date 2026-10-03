@@ -108,7 +108,7 @@ async def fetch_pubmed_records(
                             authors=authors[:6],
                             url=f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
                             abstract_snippet=None,
-                            source="NCBI PubMed"
+                            source="Live NCBI PubMed"
                         )
                     )
             return records
@@ -124,5 +124,10 @@ def _check_fixture_fallback(term: str) -> List[PubMedRecord]:
     for key, items in fixtures.items():
         if key in term or term in key:
             logger.info(f"Using verified development fixture for PubMed query: {term}")
-            return [PubMedRecord(**item) for item in items]
+            res: List[PubMedRecord] = []
+            for item in items:
+                rec = PubMedRecord(**item)
+                rec.source = "Development Fixture (NCBI PubMed)"
+                res.append(rec)
+            return res
     return []

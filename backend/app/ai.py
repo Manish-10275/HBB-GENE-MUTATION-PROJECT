@@ -18,8 +18,8 @@ STRICT OPERATIONAL DIRECTIVES:
    - COMPUTED RESULT (from deterministic bioinformatics engine: nucleotide position, codon change, amino acid consequence, HGVS).
    - DATABASE EVIDENCE (from NCBI ClinVar and PubMed: assertions, submitters, accession numbers, PMIDs).
    - AI SYNTHESIS (your structured explanation connecting the computed consequence to the retrieved literature).
-5. DO NOT provide medical diagnoses or treatment recommendations.
-6. DO NOT claim that a variant is pathogenic unless that classification is explicitly present in the supplied ClinVar evidence and clearly attributed to NCBI ClinVar.
+5. DO NOT provide medical diagnoses or treatment recommendations. Never use phrases such as "AI diagnosed...", "AI determined the variant is pathogenic...", or "AI clinically interpreted the variant...".
+6. DO NOT claim that a variant is pathogenic unless that classification is explicitly present in the supplied ClinVar evidence and clearly attributed to NCBI ClinVar. Prefer wording such as "Based on the retrieved sequence analysis and NCBI evidence..." or "The retrieved ClinVar records report...".
 7. Always maintain a calm, precise, scientific editorial tone. Keep answers structured and informative.
 """
 
@@ -58,17 +58,17 @@ def _generate_offline_synthesis(packet: EvidencePacket, question: str) -> Copilo
             pubmed_summaries.append(f"• PMID {p.pmid}: \"{p.title}\" ({p.journal}, {p.pub_date})")
 
     answer_parts = [
-        "### Deterministic Evidence Summary *(AI API Key Not Configured)*\n",
-        "> **Note:** To enable live natural-language synthesis with the AI Research Copilot, set `OPENAI_API_KEY` in your `.env` file. "
-        "Below is the exact, unhallucinated scientific evidence packet assembled from deterministic bioinformatics and NCBI databases.\n\n",
-        "#### Computed Variants:",
-        "\n".join(var_descriptions) if var_descriptions else "No variants detected (100% identity to NM_000518.5 reference).",
+        "### Deterministic Evidence Summary *(Deterministic Fallback Mode)*\n",
+        "> **Mode: Deterministic Fallback.** Live natural-language synthesis requires setting `OPENAI_API_KEY` in your `.env` file. "
+        "Below is the exact, unhallucinated scientific evidence packet assembled from deterministic bioinformatics and retrieved database records.\n\n",
+        "#### Computed Sequence Analysis:",
+        "\n".join(var_descriptions) if var_descriptions else "No sequence variants detected (100% identity to NM_000518.5 reference).",
         "\n\n#### Database Evidence (ClinVar):",
-        "\n".join(clinvar_summaries) if clinvar_summaries else "No ClinVar records retrieved for this query.",
+        "\n".join(clinvar_summaries) if clinvar_summaries else "No matching ClinVar records were retrieved.",
         "\n\n#### Database Evidence (PubMed):",
-        "\n".join(pubmed_summaries) if pubmed_summaries else "No matching PubMed literature retrieved for this query.",
-        f"\n\n#### Response to question: *\"{question}\"*",
-        "The deterministic analysis above directly documents the molecular consequence and retrieved evidence. For customized reasoning and narrative synthesis, configure your `OPENAI_API_KEY`."
+        "\n".join(pubmed_summaries) if pubmed_summaries else "No matching PubMed literature was retrieved.",
+        f"\n\n#### Inquiry Context: *\"{question}\"*",
+        "The deterministic analysis above directly documents the molecular consequence and retrieved evidence. For custom conversational synthesis, configure `OPENAI_API_KEY`."
     ]
 
     return CopilotResponse(

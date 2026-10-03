@@ -40,15 +40,15 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Quick Actions & Standards */}
           <div className="flex items-center space-x-3">
-            <div className="hidden md:flex items-center text-xs text-stone-500 space-x-4 border-r border-stone-200 pr-4">
-              <span className="flex items-center gap-1.5" title="Strictly deterministic alignment & translation">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="font-mono text-[11px]">Deterministic Engine</span>
-              </span>
-              <span className="flex items-center gap-1.5" title="NCBI ClinVar & PubMed E-utilities">
-                <Database className="w-3.5 h-3.5 text-blue-600" />
-                <span className="font-mono text-[11px]">NCBI E-Utilities</span>
-              </span>
+            <div className="hidden lg:flex items-center space-x-2 border-r border-stone-200 pr-4">
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-stone-100 text-stone-600 text-[10px] font-mono border border-stone-200 select-none" title="Deterministic pairwise alignment & codon translation">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                <span>Deterministic Engine</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-stone-100 text-stone-600 text-[10px] font-mono border border-stone-200 select-none" title="NCBI ClinVar & PubMed E-utilities integration">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                <span>NCBI E-Utilities</span>
+              </div>
             </div>
 
             {onOpenDirectSearch && (

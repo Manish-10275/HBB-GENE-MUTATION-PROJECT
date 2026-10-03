@@ -12,7 +12,11 @@ import {
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-export async function fetchHealth(): Promise<{ status: string; reference_accession: string }> {
+export async function fetchHealth(): Promise<{
+  status: string;
+  reference_accession: string;
+  openai_configured?: boolean;
+}> {
   const res = await fetch(`${API_BASE}/health`, { cache: "no-store" });
   if (!res.ok) throw new Error("Backend health check failed");
   return res.json();

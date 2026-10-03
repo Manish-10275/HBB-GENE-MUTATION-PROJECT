@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-import { Send, Loader2, Database, BookOpen, Dna, HelpCircle } from "lucide-react";
-import { askCopilot } from "../lib/api";
+import { Send, Loader2, Database, BookOpen, Dna, HelpCircle, Cpu, AlertCircle, CheckCircle2 } from "lucide-react";
+import { askCopilot, fetchHealth } from "../lib/api";
 import { CopilotChatMessage, EvidencePacket } from "../lib/types";
 
 interface ResearchCopilotProps {
@@ -17,9 +17,26 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<CopilotChatMessage[]>([]);
+  const [copilotStatus, setCopilotStatus] = useState<"idle" | "no_key" | "success" | "error">("idle");
+  const [isOpenAiConfigured, setIsOpenAiConfigured] = useState<boolean | null>(null);
   const [lastEvidenceUsed, setLastEvidenceUsed] = useState<string[]>([
     "Sequence analysis (Deterministic Engine)",
   ]);
+
+  // Check backend OpenAI configuration state on mount
+  useEffect(() => {
+    fetchHealth()
+      .then((h) => {
+        setIsOpenAiConfigured(!!h.openai_configured);
+        if (!h.openai_configured) {
+          setCopilotStatus("no_key");
+        }
+      })
+      .catch(() => {
+        setIsOpenAiConfigured(false);
+        setCopilotStatus("no_key");
+      });
+  }, []);
 
   // Contextual suggested questions based on detected variants
   const contextualData = useMemo(() => {
@@ -59,20 +76,26 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
       welcome += ` at codon ${c.codon_number} (${c.ref_codon} [${c.ref_aa}] → ${c.sample_codon} [${c.sample_aa}])`;
     }
     welcome += `. NCBI retrieved **${clinvarCount} ClinVar record${clinvarCount === 1 ? "" : "s"}** and **${pubmedCount} PubMed paper${pubmedCount === 1 ? "" : "s"}**.`;
+    welcome += ` Select an inquiry below or type a custom question grounded in the retrieved evidence.`;
 
     const qs: string[] = [];
     if (c?.is_stop_gain) {
-      qs.push(`Why does ${c.ref_codon} → ${c.sample_codon} produce a premature termination codon (PTC)?`);
-      qs.push(`What does NCBI ClinVar report regarding pathogenicity for ${v.hgvs_c}?`);
-      qs.push(`What evidence was retrieved from PubMed for this codon ${c.codon_number} nonsense variant?`);
-      qs.push(`How does premature termination at residue ${c.codon_number} disrupt beta-globin synthesis?`);
+      qs.push(`Why does ${c.ref_codon} → ${c.sample_codon} produce a premature termination codon?`);
+      qs.push(`What does ${v.hgvs_p || "p.Gln40Ter"} mean?`);
+      qs.push(`What does the retrieved ClinVar evidence report for this variant?`);
+      qs.push(`What evidence was retrieved from PubMed about this variant?`);
+      qs.push(`What does the retrieved evidence say about the effect of ${v.hgvs_p || "p.Gln40Ter"} on beta globin?`);
     } else if (c) {
-      qs.push(`What molecular effect does the ${c.ref_aa} → ${c.sample_aa} change have on hemoglobin?`);
-      qs.push(`What clinical significance does ClinVar report for ${v.hgvs_c}?`);
-      qs.push(`Which primary literature citations were retrieved from PubMed?`);
+      qs.push(`Why does ${c.ref_codon} → ${c.sample_codon} result in ${c.ref_aa} → ${c.sample_aa}?`);
+      qs.push(`What does ${v.hgvs_p || v.hgvs_c} mean?`);
+      qs.push(`What does the retrieved ClinVar evidence report for this variant?`);
+      qs.push(`What evidence was retrieved from PubMed about this variant?`);
+      qs.push(`What does the retrieved evidence say about the effect of ${v.hgvs_p || v.hgvs_c} on beta globin?`);
     } else {
-      qs.push(`What regulatory impact can variants in the untranslated region have on HBB expression?`);
-      qs.push(`What evidence was retrieved for ${v.hgvs_c}?`);
+      qs.push(`What genomic position does ${v.hgvs_c} affect relative to the coding sequence?`);
+      qs.push(`What does the retrieved ClinVar evidence report for this variant?`);
+      qs.push(`What evidence was retrieved from PubMed about this variant?`);
+      qs.push(`What does the retrieved evidence say about the effect of ${v.hgvs_c}?`);
     }
 
     return {
@@ -103,6 +126,7 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
 
     try {
       const res = await askCopilot(q, evidencePacket, updatedMessages);
+      setCopilotStatus(res.status);
       const assistantMsg: CopilotChatMessage = {
         role: "assistant",
         content: res.answer,
@@ -113,6 +137,7 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
         onUpdateCopilotSummary(res.answer);
       }
     } catch (err: any) {
+      setCopilotStatus("error");
       setMessages([
         ...updatedMessages,
         {
@@ -128,7 +153,7 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
   return (
     <div className="bg-white border border-stone-200 rounded-lg overflow-hidden flex flex-col h-[560px]">
       {/* Header Strip */}
-      <div className="px-5 py-3.5 border-b border-stone-200 bg-stone-50/70 flex items-center justify-between">
+      <div className="px-5 py-3.5 border-b border-stone-200 bg-stone-50/70 flex flex-wrap items-center justify-between gap-2">
         <div>
           <div className="flex items-center space-x-2">
             <span className="text-[10px] uppercase font-mono tracking-wider bg-stone-900 text-white px-2 py-0.5 rounded font-semibold">
@@ -138,9 +163,38 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
               Research Copilot
             </h3>
           </div>
-          <p className="text-xs text-stone-500 font-sans">
-            Evidence grounded synthesis &bull; Derived strictly from the deterministic analysis and NCBI database records
+          <p className="text-xs text-stone-500 font-sans mt-0.5">
+            Evidence grounded synthesis &bull; Synthesizes retrieved evidence without establishing an independent clinical interpretation
           </p>
+        </div>
+
+        {/* Engine Mode Indicator Badge */}
+        <div className="flex items-center">
+          {copilotStatus === "no_key" || isOpenAiConfigured === false ? (
+            <span
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-amber-50 text-amber-800 border border-amber-300"
+              title="OpenAI API key not configured. Using deterministic summarization with zero hallucination."
+            >
+              <Cpu className="w-3.5 h-3.5 text-amber-600" />
+              Deterministic Fallback Mode (No API Key)
+            </span>
+          ) : copilotStatus === "error" ? (
+            <span
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-rose-50 text-rose-800 border border-rose-300"
+              title="OpenAI API returned an error; fallen back to deterministic evidence summary."
+            >
+              <AlertCircle className="w-3.5 h-3.5 text-rose-600" />
+              Fallback Mode (API Error)
+            </span>
+          ) : (
+            <span
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-emerald-50 text-emerald-800 border border-emerald-300"
+              title="Live OpenAI model configured for natural language synthesis."
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              Live OpenAI Model
+            </span>
+          )}
         </div>
       </div>
 
