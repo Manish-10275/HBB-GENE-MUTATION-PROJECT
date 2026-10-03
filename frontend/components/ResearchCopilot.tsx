@@ -18,22 +18,25 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<CopilotChatMessage[]>([]);
   const [copilotStatus, setCopilotStatus] = useState<"idle" | "no_key" | "success" | "error">("idle");
-  const [isOpenAiConfigured, setIsOpenAiConfigured] = useState<boolean | null>(null);
+  const [isGeminiConfigured, setIsGeminiConfigured] = useState<boolean | null>(null);
+  const [geminiModel, setGeminiModel] = useState<string>("gemini-3.8-flash");
   const [lastEvidenceUsed, setLastEvidenceUsed] = useState<string[]>([
     "Sequence analysis (Deterministic Engine)",
   ]);
 
-  // Check backend OpenAI configuration state on mount
+  // Check backend Gemini configuration state on mount
   useEffect(() => {
     fetchHealth()
       .then((h) => {
-        setIsOpenAiConfigured(!!h.openai_configured);
-        if (!h.openai_configured) {
+        const configured = !!(h.gemini_configured ?? h.openai_configured);
+        setIsGeminiConfigured(configured);
+        if (h.gemini_model) setGeminiModel(h.gemini_model);
+        if (!configured) {
           setCopilotStatus("no_key");
         }
       })
       .catch(() => {
-        setIsOpenAiConfigured(false);
+        setIsGeminiConfigured(false);
         setCopilotStatus("no_key");
       });
   }, []);
@@ -170,10 +173,10 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
 
         {/* Engine Mode Indicator Badge */}
         <div className="flex items-center">
-          {copilotStatus === "no_key" || isOpenAiConfigured === false ? (
+          {copilotStatus === "no_key" || isGeminiConfigured === false ? (
             <span
               className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-amber-50 text-amber-800 border border-amber-300"
-              title="OpenAI API key not configured. Using deterministic summarization with zero hallucination."
+              title="Google Gemini API key not configured. Using deterministic summarization with zero hallucination."
             >
               <Cpu className="w-3.5 h-3.5 text-amber-600" />
               Deterministic Fallback Mode (No API Key)
@@ -181,7 +184,7 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
           ) : copilotStatus === "error" ? (
             <span
               className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-rose-50 text-rose-800 border border-rose-300"
-              title="OpenAI API returned an error; fallen back to deterministic evidence summary."
+              title="Google Gemini API returned an error; fallen back to deterministic evidence summary."
             >
               <AlertCircle className="w-3.5 h-3.5 text-rose-600" />
               Fallback Mode (API Error)
@@ -189,10 +192,10 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
           ) : (
             <span
               className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-mono font-medium bg-emerald-50 text-emerald-800 border border-emerald-300"
-              title="Live OpenAI model configured for natural language synthesis."
+              title={`Live Google Gemini model (${geminiModel}) configured for natural language synthesis.`}
             >
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-              Live OpenAI Model
+              Live Gemini Model
             </span>
           )}
         </div>

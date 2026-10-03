@@ -58,6 +58,8 @@ async def health_check() -> Dict[str, Any]:
         "reference_gene": ref.gene,
         "reference_length_bp": ref.total_length,
         "cds_coordinates": f"{ref.cds_start}..{ref.cds_end}",
+        "gemini_configured": bool(settings.effective_gemini_api_key),
+        "gemini_model": settings.GEMINI_MODEL,
         "openai_configured": bool(settings.OPENAI_API_KEY)
     }
 

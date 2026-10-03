@@ -26,7 +26,7 @@ STRICT OPERATIONAL DIRECTIVES:
 
 def _generate_offline_synthesis(packet: EvidencePacket, question: str) -> CopilotResponse:
     """
-    Generates a deterministic summary when OpenAI API key is not configured.
+    Generates a deterministic summary when Gemini API key is not configured.
     Ensures zero hallucination and full utility in offline/no-key mode.
     """
     var_descriptions: List[str] = []
@@ -59,7 +59,7 @@ def _generate_offline_synthesis(packet: EvidencePacket, question: str) -> Copilo
 
     answer_parts = [
         "### Deterministic Evidence Summary *(Deterministic Fallback Mode)*\n",
-        "> **Mode: Deterministic Fallback.** Live natural-language synthesis requires setting `OPENAI_API_KEY` in your `.env` file. "
+        "> **Mode: Deterministic Fallback.** Live natural-language synthesis requires setting `GEMINI_API_KEY` in your `.env` file. "
         "Below is the exact, unhallucinated scientific evidence packet assembled from deterministic bioinformatics and retrieved database records.\n\n",
         "#### Computed Sequence Analysis:",
         "\n".join(var_descriptions) if var_descriptions else "No sequence variants detected (100% identity to NM_000518.5 reference).",
@@ -68,7 +68,7 @@ def _generate_offline_synthesis(packet: EvidencePacket, question: str) -> Copilo
         "\n\n#### Database Evidence (PubMed):",
         "\n".join(pubmed_summaries) if pubmed_summaries else "No matching PubMed literature was retrieved.",
         f"\n\n#### Inquiry Context: *\"{question}\"*",
-        "The deterministic analysis above directly documents the molecular consequence and retrieved evidence. For custom conversational synthesis, configure `OPENAI_API_KEY`."
+        "The deterministic analysis above directly documents the molecular consequence and retrieved evidence. For custom conversational synthesis, configure `GEMINI_API_KEY`."
     ]
 
     return CopilotResponse(
@@ -85,16 +85,17 @@ async def synthesize_research_copilot(
     conversation_history: List[CopilotChatMessage]
 ) -> CopilotResponse:
     """
-    Coordinates LLM research synthesis strictly bounded by the supplied evidence packet.
+    Coordinates Google Gemini LLM research synthesis strictly bounded by the supplied evidence packet.
     """
-    api_key = settings.OPENAI_API_KEY
+    api_key = settings.effective_gemini_api_key
     if not api_key:
         return _generate_offline_synthesis(evidence_packet, question)
 
     try:
-        from openai import AsyncOpenAI
+        from google import genai
+        from google.genai import types
 
-        client = AsyncOpenAI(api_key=api_key)
+        client = genai.Client(api_key=api_key)
 
         evidence_json = evidence_packet.model_dump_json(indent=2)
         user_prompt = f"""EVIDENCE PACKET:
@@ -109,23 +110,28 @@ Provide an evidence-grounded scientific explanation answering the research quest
 Explicitly cite the provenance (Computed Result vs. ClinVar vs. PubMed) for every statement.
 """
 
-        messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+        contents: List[types.Content] = []
 
         # Append recent history (up to last 6 messages)
         for msg in conversation_history[-6:]:
-            if msg.role in ("user", "assistant"):
-                messages.append({"role": msg.role, "content": msg.content})
+            if msg.role == "user":
+                contents.append(types.Content(role="user", parts=[types.Part.from_text(text=msg.content)]))
+            elif msg.role in ("assistant", "model"):
+                contents.append(types.Content(role="model", parts=[types.Part.from_text(text=msg.content)]))
 
-        messages.append({"role": "user", "content": user_prompt})
+        contents.append(types.Content(role="user", parts=[types.Part.from_text(text=user_prompt)]))
 
-        response = await client.chat.completions.create(
-            model=settings.OPENAI_MODEL,
-            messages=messages,
-            temperature=0.2,
-            max_tokens=1000
+        response = await client.aio.models.generate_content(
+            model=settings.GEMINI_MODEL,
+            contents=contents,
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT,
+                temperature=0.2,
+                max_output_tokens=1000,
+            ),
         )
 
-        answer_text = response.choices[0].message.content or ""
+        answer_text = response.text or ""
 
         # Identify evidence sources utilized
         evidence_used = ["Sequence analysis (Deterministic Engine)"]
@@ -142,12 +148,12 @@ Explicitly cite the provenance (Computed Result vs. ClinVar vs. PubMed) for ever
         )
 
     except Exception as e:
-        logger.error(f"Error during AI synthesis: {e}")
+        logger.error(f"Error during Gemini AI synthesis: {e}")
         # Graceful fallback to deterministic summary
         fallback = _generate_offline_synthesis(evidence_packet, question)
         fallback.status = "error"
         fallback.answer = (
-            f"**Error contacting OpenAI API:** `{str(e)}`\n\n"
+            f"**Error contacting Gemini API:** `{str(e)}`\n\n"
             + fallback.answer
         )
         return fallback

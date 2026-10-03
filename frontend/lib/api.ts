@@ -15,6 +15,8 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 export async function fetchHealth(): Promise<{
   status: string;
   reference_accession: string;
+  gemini_configured?: boolean;
+  gemini_model?: string;
   openai_configured?: boolean;
 }> {
   const res = await fetch(`${API_BASE}/health`, { cache: "no-store" });
