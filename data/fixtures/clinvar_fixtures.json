@@ -1,0 +1,154 @@
+{
+  "c.118C>T": [
+    {
+      "id": "15584",
+      "title": "NM_000518.4(HBB):c.371C>A (p.Thr124Asn)",
+      "accession": "VCV000015584",
+      "clinical_significance": "Uncertain significance",
+      "review_status": "criteria provided, multiple submitters, no conflicts",
+      "conditions": [
+        "Erythrocytosis, familial, 6",
+        "Heinz body anemia",
+        "Beta-thalassemia HBB/LCRB",
+        "Malaria, susceptibility to",
+        "Hb SS disease",
+        "Dominant beta-thalassemia",
+        "Hereditary persistence of fetal hemoglobin",
+        "METHEMOGLOBINEMIA, BETA TYPE"
+      ],
+      "last_evaluated": "2024/01/31 00:00",
+      "variation_id": "15584",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/15584/"
+    },
+    {
+      "id": "15488",
+      "title": "NM_000518.5(HBB):c.*111A>G",
+      "accession": "VCV000015488",
+      "clinical_significance": "Pathogenic",
+      "review_status": "reviewed by expert panel",
+      "conditions": [
+        "Beta-thalassemia HBB/LCRB"
+      ],
+      "last_evaluated": "2026/04/30 00:00",
+      "variation_id": "15488",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/15488/"
+    },
+    {
+      "id": "15470",
+      "title": "NM_000518.5(HBB):c.-78A>C",
+      "accession": "VCV000015470",
+      "clinical_significance": "Pathogenic",
+      "review_status": "reviewed by expert panel",
+      "conditions": [
+        "Beta-thalassemia HBB/LCRB"
+      ],
+      "last_evaluated": "2026/04/07 00:00",
+      "variation_id": "15470",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/15470/"
+    }
+  ],
+  "c.20A>T": [
+    {
+      "id": "1459872",
+      "title": "NM_000518.5(HBB):c.380_396del (p.Val127fs)",
+      "accession": "VCV001459872",
+      "clinical_significance": "Pathogenic",
+      "review_status": "criteria provided, multiple submitters, no conflicts",
+      "conditions": [
+        "not provided",
+        "beta Thalassemia"
+      ],
+      "last_evaluated": "2025/04/08 00:00",
+      "variation_id": "1459872",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/1459872/"
+    },
+    {
+      "id": "801184",
+      "title": "NM_000518.5(HBB):c.-121C>T",
+      "accession": "VCV000801184",
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "review_status": "criteria provided, multiple submitters, no conflicts",
+      "conditions": [
+        "Beta-thalassemia HBB/LCRB",
+        "not provided",
+        "beta Thalassemia"
+      ],
+      "last_evaluated": "2025/01/10 00:00",
+      "variation_id": "801184",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/801184/"
+    },
+    {
+      "id": "590773",
+      "title": "NM_000518.5(HBB):c.91A>C (p.Arg31=)",
+      "accession": "VCV000590773",
+      "clinical_significance": "Likely pathogenic",
+      "review_status": "criteria provided, multiple submitters, no conflicts",
+      "conditions": [
+        "not provided",
+        "beta Thalassemia"
+      ],
+      "last_evaluated": "2026/06/23 00:00",
+      "variation_id": "590773",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/590773/"
+    }
+  ],
+  "c.19G>A": [
+    {
+      "id": "446729",
+      "title": "NM_000518.4(HBB):c.[19G>A;286A>G]",
+      "accession": "VCV000446729",
+      "clinical_significance": "other",
+      "review_status": "no assertion criteria provided",
+      "conditions": [
+        "HEMOGLOBIN ARLINGTON PARK"
+      ],
+      "last_evaluated": "2017/12/12 00:00",
+      "variation_id": "446729",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/446729/"
+    },
+    {
+      "id": "15333",
+      "title": "NM_000518.5(HBB):c.20A>T (p.Glu7Val)",
+      "accession": "VCV000015333",
+      "clinical_significance": "Pathogenic",
+      "review_status": "criteria provided, multiple submitters, no conflicts",
+      "conditions": [
+        "Beta-thalassemia HBB/LCRB",
+        "METHEMOGLOBINEMIA, BETA TYPE",
+        "Heinz body anemia",
+        "Hereditary persistence of fetal hemoglobin",
+        "Malaria, susceptibility to",
+        "Dominant beta-thalassemia",
+        "Hb SS disease",
+        "Erythrocytosis, familial, 6"
+      ],
+      "last_evaluated": "2026/07/01 00:00",
+      "variation_id": "15333",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/15333/"
+    },
+    {
+      "id": "15302",
+      "title": "NM_000518.4(HBB):c.157G>A (p.Asp53Asn)",
+      "accession": "VCV000015302",
+      "clinical_significance": "Conflicting classifications of pathogenicity",
+      "review_status": "criteria provided, conflicting classifications",
+      "conditions": [
+        "not specified",
+        "not provided",
+        "beta Thalassemia"
+      ],
+      "last_evaluated": "2025/10/02 00:00",
+      "variation_id": "15302",
+      "source": "NCBI ClinVar (DEVELOPMENT FIXTURE)",
+      "url": "https://www.ncbi.nlm.nih.gov/clinvar/variation/15302/"
+    }
+  ]
+}
