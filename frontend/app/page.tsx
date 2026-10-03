@@ -23,7 +23,6 @@ import {
   ReportResponse,
   DetectedVariant,
 } from "../lib/types";
-import { Dna, Activity, ShieldCheck, Database, Layers } from "lucide-react";
 
 export default function Home() {
   const [sequence, setSequence] = useState("");
@@ -97,7 +96,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans bg-[#fbfbfa]">
       <Header
         hasAnalysis={Boolean(analysisResult?.evidence_packet)}
         onOpenReport={handleOpenReport}
@@ -106,48 +105,43 @@ export default function Home() {
 
       <SafetyBanner />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-7">
         {/* Editorial Subheader & Reference Strip */}
-        <section className="bg-white border border-stone-200 rounded-lg p-6 shadow-sm">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <section className="bg-white border border-stone-200 rounded-lg p-5">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-stone-500 mb-1">
-                <span>Human Hemoglobin Subunit Beta</span>
+                <span>Homo sapiens HBB</span>
+                <span>&bull;</span>
+                <span className="text-stone-700 font-semibold">RefSeq MANE Select</span>
                 <span>&bull;</span>
                 <span className="text-emerald-700 font-semibold">CCDS7753.1</span>
               </div>
-              <h1 className="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-stone-900">
+              <h1 className="font-serif text-2xl font-semibold tracking-tight text-stone-900">
                 HBB Mutation Analyzer
               </h1>
-              <p className="text-sm text-stone-600 mt-1.5 max-w-2xl font-sans">
-                A serious genomic research and educational environment. Deterministically detects nucleotide
-                substitutions, computes codon and amino acid consequences, retrieves NCBI evidence, and coordinates
-                grounded AI research synthesis.
+              <p className="text-xs text-stone-600 mt-1 max-w-3xl font-sans">
+                A serious genomic research environment for deterministic variant calling, codon transformation analysis, external NCBI database annotations, and evidence-grounded research synthesis.
               </p>
             </div>
 
-            {/* Reference Coordinate Badge Box */}
-            <div className="bg-stone-50 border border-stone-200/90 rounded-md p-4 min-w-[280px]">
-              <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 block mb-2 font-semibold">
-                CANONICAL REFERENCE TARGET
-              </span>
-              <div className="grid grid-cols-2 gap-y-2 gap-x-4 text-xs font-mono">
-                <div>
-                  <span className="text-stone-400 block text-[10px]">Accession</span>
-                  <strong className="text-stone-900">NM_000518.5</strong>
-                </div>
-                <div>
-                  <span className="text-stone-400 block text-[10px]">Total Length</span>
-                  <strong className="text-stone-900">628 bp</strong>
-                </div>
-                <div>
-                  <span className="text-stone-400 block text-[10px]">Coding Region (CDS)</span>
-                  <strong className="text-stone-900">51..494 bp</strong>
-                </div>
-                <div>
-                  <span className="text-stone-400 block text-[10px]">Protein Product</span>
-                  <strong className="text-stone-900">NP_000509.1 (147 aa)</strong>
-                </div>
+            {/* Reference Coordinate Badge Strip */}
+            <div className="bg-stone-50 border border-stone-200 rounded p-3 text-xs font-mono flex flex-wrap items-center gap-x-5 gap-y-1 shrink-0">
+              <div>
+                <span className="text-stone-400 text-[10px] block">Target</span>
+                <strong className="text-stone-900">NM_000518.5</strong>
+              </div>
+              <div>
+                <span className="text-stone-400 text-[10px] block">Length</span>
+                <strong className="text-stone-900">628 bp</strong>
+              </div>
+              <div>
+                <span className="text-stone-400 text-[10px] block">CDS Span</span>
+                <strong className="text-stone-900">51..494 bp</strong>
+              </div>
+              <div>
+                <span className="text-stone-400 text-[10px] block">Protein</span>
+                <strong className="text-stone-900">NP_000509.1 (147 aa)</strong>
               </div>
             </div>
           </div>
@@ -167,90 +161,65 @@ export default function Home() {
 
         {/* Analysis Results View */}
         {analysisResult && (
-          <div className="space-y-8 animate-fadeIn">
-            {/* Overview Metrics Cards */}
-            <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-2xs">
-                <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 block">
-                  Sequence Identity
-                </span>
-                <div className="mt-1 flex items-baseline space-x-1">
-                  <span className="text-2xl font-bold font-mono text-stone-900">
+          <div className="space-y-7">
+            {/* 2. Overview Metrics Strip (Crisp horizontal summary, avoiding excessive cards) */}
+            <section className="bg-white border border-stone-200 rounded-lg p-3.5 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                <div>
+                  <span className="text-stone-400 text-[10px] uppercase block">Sequence Identity</span>
+                  <strong className="text-sm text-stone-900">
                     {analysisResult.summary.sequence_identity_pct ?? "N/A"}%
-                  </span>
+                  </strong>
                 </div>
-                <span className="text-[11px] text-stone-500 font-sans mt-0.5 block">
-                  Relative to NM_000518.5
-                </span>
-              </div>
-
-              <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-2xs">
-                <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 block">
-                  Sample Query Length
-                </span>
-                <div className="mt-1 flex items-baseline space-x-1">
-                  <span className="text-2xl font-bold font-mono text-stone-900">
-                    {analysisResult.summary.sample_length_bp ?? sequence.length}
-                  </span>
-                  <span className="text-xs text-stone-400 font-mono">bp</span>
+                <div>
+                  <span className="text-stone-400 text-[10px] uppercase block">Sample Length</span>
+                  <strong className="text-sm text-stone-900">
+                    {analysisResult.summary.sample_length_bp ?? sequence.length} bp
+                  </strong>
                 </div>
-                <span className="text-[11px] text-stone-500 font-sans mt-0.5 block">
-                  Reference: 628 bp
-                </span>
-              </div>
-
-              <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-2xs">
-                <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 block">
-                  Detected Variants
-                </span>
-                <div className="mt-1 flex items-baseline space-x-1">
-                  <span className="text-2xl font-bold font-mono text-rose-700">
+                <div>
+                  <span className="text-stone-400 text-[10px] uppercase block">Alignment Score</span>
+                  <strong className="text-sm text-stone-900">
+                    {analysisResult.summary.alignment_score ?? "N/A"}
+                  </strong>
+                </div>
+                <div>
+                  <span className="text-stone-400 text-[10px] uppercase block">Detected Variants</span>
+                  <strong className="text-sm text-rose-700">
                     {analysisResult.variants.length}
-                  </span>
+                  </strong>
                 </div>
-                <span className="text-[11px] text-stone-500 font-sans mt-0.5 block">
-                  Deterministic nucleotide shifts
-                </span>
               </div>
 
-              <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-2xs">
-                <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 block">
-                  Retrieved Evidence
+              <div className="flex items-center gap-3 text-stone-600 border-t sm:border-t-0 sm:border-l border-stone-200 pt-2 sm:pt-0 sm:pl-4">
+                <span className="text-stone-400 text-[10px] uppercase block">NCBI Evidence:</span>
+                <span className="bg-blue-50 text-blue-800 border border-blue-200 px-2 py-0.5 rounded text-[11px] font-semibold">
+                  ClinVar: {analysisResult.evidence_packet?.clinvar_records.length ?? 0}
                 </span>
-                <div className="mt-1 flex items-baseline space-x-2">
-                  <span className="text-2xl font-bold font-mono text-blue-700">
-                    {analysisResult.evidence_packet?.clinvar_records.length ?? 0}
-                  </span>
-                  <span className="text-xs text-stone-400 font-sans">ClinVar</span>
-                  <span className="text-2xl font-bold font-mono text-emerald-700 ml-2">
-                    {analysisResult.evidence_packet?.pubmed_records.length ?? 0}
-                  </span>
-                  <span className="text-xs text-stone-400 font-sans">PubMed</span>
-                </div>
-                <span className="text-[11px] text-stone-500 font-sans mt-0.5 block">
-                  NCBI external scientific records
+                <span className="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded text-[11px] font-semibold">
+                  PubMed: {analysisResult.evidence_packet?.pubmed_records.length ?? 0}
                 </span>
               </div>
             </section>
 
-            {/* 2. Detected Variants Table */}
+            {/* 3. Detected Variant Summary (Immediately Visible) */}
             <section>
               <VariantsTable variants={analysisResult.variants} />
             </section>
 
-            {/* 3. Codon & Protein Consequence Visualizer (Feature Highlight) */}
+            {/* 4. PRIMARY VISUAL INSIGHT: Codon Transformation & Protein Consequence */}
             <section>
               <CodonVisualizer variants={analysisResult.variants} />
             </section>
 
-            {/* 4. Monospace Alignment Viewer */}
+            {/* 5. Collapsible Pairwise Alignment */}
             {analysisResult.alignment && (
               <section>
-                <AlignmentViewer alignment={analysisResult.alignment} />
+                <AlignmentViewer alignment={analysisResult.alignment} defaultExpanded={false} />
               </section>
             )}
 
-            {/* 5. External Scientific Evidence (ClinVar & PubMed) */}
+            {/* 6. External Scientific Evidence Layer (Collapsible ClinVar & PubMed with Summaries) */}
             {analysisResult.evidence_packet && (
               <section>
                 <EvidenceWorkspace
@@ -261,7 +230,7 @@ export default function Home() {
               </section>
             )}
 
-            {/* 6. AI Research Copilot */}
+            {/* 7. AI Research Copilot (Kept at the end of the workflow) */}
             <section>
               <ResearchCopilot
                 evidencePacket={analysisResult.evidence_packet || null}
@@ -279,7 +248,7 @@ export default function Home() {
             HBB Mutation Analyzer &bull; Understand the sequence. Follow the evidence.
           </p>
           <p>
-            NCBI RefSeq NM_000518.5 (GeneID: 3043, CCDS7753.1). Strictly for academic and research evaluation.
+            NCBI RefSeq NM_000518.5 (GeneID: 3043, CCDS7753.1). Strictly for academic and educational evaluation.
           </p>
         </div>
       </footer>
