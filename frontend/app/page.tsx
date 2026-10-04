@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Header } from "../components/Header";
 import { SafetyBanner } from "../components/SafetyBanner";
 import { SequenceWorkspace } from "../components/SequenceWorkspace";
+import { HBBGeneStructureMap } from "../components/HBBGeneStructureMap";
+import { ScreeningClassifierBanner } from "../components/ScreeningClassifierBanner";
 import { CodonVisualizer } from "../components/CodonVisualizer";
 import { AlignmentViewer } from "../components/AlignmentViewer";
 import { VariantsTable } from "../components/VariantsTable";
@@ -15,20 +17,26 @@ import {
   analyzeSequence,
   fetchExamples,
   fetchReference,
+  fetchSimulatorPresets,
   generateReport,
+  generateSimulatedSequence,
 } from "../lib/api";
 import {
   AnalyzeResponse,
   ExampleSequence,
   ReportResponse,
-  DetectedVariant,
+  SimulatorPreset,
 } from "../lib/types";
 
 export default function Home() {
   const [sequence, setSequence] = useState("");
+  const [referenceAccession, setReferenceAccession] = useState("NM_000518.5");
+  const [zygosity, setZygosity] = useState("heterozygous");
   const [examples, setExamples] = useState<ExampleSequence[]>([]);
+  const [simulatorPresets, setSimulatorPresets] = useState<SimulatorPreset[]>([]);
   const [referenceMeta, setReferenceMeta] = useState<any>(null);
   const [analysisResult, setAnalysisResult] = useState<AnalyzeResponse | null>(null);
+  const [activeVariantId, setActiveVariantId] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisError, setAnalysisError] = useState<string | null>(null);
 
@@ -38,21 +46,24 @@ export default function Home() {
   const [generatedReport, setGeneratedReport] = useState<ReportResponse | null>(null);
   const [copilotSummaryText, setCopilotSummaryText] = useState<string>("");
 
-  // Load initial reference data and example sequences on mount
+  // Load initial reference data, example sequences, and simulator presets on mount
   useEffect(() => {
     async function loadInitialData() {
       try {
-        const [refData, exData] = await Promise.all([
-          fetchReference().catch(() => null),
+        const [refData, exData, presets] = await Promise.all([
+          fetchReference("NM_000518.5").catch(() => null),
           fetchExamples().catch(() => []),
+          fetchSimulatorPresets().catch(() => []),
         ]);
         if (refData) setReferenceMeta(refData);
+        if (presets && presets.length > 0) setSimulatorPresets(presets);
         if (exData && exData.length > 0) {
           setExamples(exData);
           // Pre-populate with the controlled validation case
           const valCase = exData.find((e: ExampleSequence) => e.is_validation_case);
           if (valCase) {
             setSequence(valCase.sequence);
+            setReferenceAccession("NM_000518.5");
           } else {
             setSequence(exData[0].sequence);
           }
@@ -71,12 +82,50 @@ export default function Home() {
     setAnalysisError(null);
 
     try {
-      const result = await analyzeSequence(sequence);
+      const result = await analyzeSequence(sequence, referenceAccession, zygosity);
       setAnalysisResult(result);
+      setActiveVariantId(result.variants.length > 0 ? result.variants[0].id : null);
     } catch (err: any) {
       setAnalysisError(err.message || "Sequence analysis encountered an error.");
     } finally {
       setIsAnalyzing(false);
+    }
+  };
+
+  const handleSelectSimulatorPreset = async (presetId: string) => {
+    setIsAnalyzing(true);
+    setAnalysisError(null);
+    try {
+      const sim = await generateSimulatedSequence(presetId);
+      setSequence(sim.sequence);
+      setReferenceAccession(sim.reference_accession);
+
+      // Automatically run analysis on the simulated sequence
+      const result = await analyzeSequence(sim.sequence, sim.reference_accession, zygosity);
+      setAnalysisResult(result);
+      setActiveVariantId(result.variants.length > 0 ? result.variants[0].id : null);
+    } catch (err: any) {
+      setAnalysisError(err.message || "Failed to load mutation preset.");
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleZygosityChange = async (newZyg: string) => {
+    setZygosity(newZyg);
+    if (sequence.trim()) {
+      setIsAnalyzing(true);
+      try {
+        const result = await analyzeSequence(sequence, referenceAccession, newZyg);
+        setAnalysisResult(result);
+        if (result.variants.length > 0 && !result.variants.some((v) => v.id === activeVariantId)) {
+          setActiveVariantId(result.variants[0].id);
+        }
+      } catch (err: any) {
+        setAnalysisError(err.message || "Failed to update zygosity.");
+      } finally {
+        setIsAnalyzing(false);
+      }
     }
   };
 
@@ -115,29 +164,33 @@ export default function Home() {
                 <span>&bull;</span>
                 <span className="text-stone-700 font-semibold">RefSeq MANE Select</span>
                 <span>&bull;</span>
-                <span className="text-emerald-700 font-semibold">CCDS7753.1</span>
+                <span className="text-emerald-700 font-semibold">Dual Architecture (cDNA / Genomic)</span>
               </div>
               <h1 className="font-serif text-2xl font-semibold tracking-tight text-stone-900">
                 HBB Mutation Analyzer
               </h1>
               <p className="text-xs text-stone-600 mt-1 max-w-3xl font-sans">
-                A serious genomic research environment for deterministic variant calling, codon transformation analysis, external NCBI database annotations, and evidence-grounded research synthesis.
+                A serious genomic research environment for deterministic variant calling, codon transformation analysis, Indian thalassemia mutation screening, external NCBI database annotations, and evidence-grounded research synthesis.
               </p>
             </div>
 
             {/* Reference Coordinate Badge Strip */}
             <div className="bg-stone-50 border border-stone-200 rounded p-3 text-xs font-mono flex flex-wrap items-center gap-x-5 gap-y-1 shrink-0">
               <div>
-                <span className="text-stone-400 text-[10px] block">Target</span>
-                <strong className="text-stone-900">NM_000518.5</strong>
+                <span className="text-stone-400 text-[10px] block">Active Target</span>
+                <strong className="text-stone-900">{referenceAccession}</strong>
               </div>
               <div>
                 <span className="text-stone-400 text-[10px] block">Length</span>
-                <strong className="text-stone-900">628 bp</strong>
+                <strong className="text-stone-900">
+                  {referenceAccession.startsWith("NG_") ? "1,608 bp" : "628 bp"}
+                </strong>
               </div>
               <div>
                 <span className="text-stone-400 text-[10px] block">CDS Span</span>
-                <strong className="text-stone-900">51..494 bp</strong>
+                <strong className="text-stone-900">
+                  {referenceAccession.startsWith("NG_") ? "70,595..72,018 bp" : "51..494 bp"}
+                </strong>
               </div>
               <div>
                 <span className="text-stone-400 text-[10px] block">Protein</span>
@@ -147,7 +200,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 1. Sequence Input Workspace */}
+        {/* 1. Sequence Input & Simulation Workspace */}
         <section>
           <SequenceWorkspace
             sequence={sequence}
@@ -155,14 +208,31 @@ export default function Home() {
             onAnalyze={handleRunAnalysis}
             isLoading={isAnalyzing}
             examples={examples}
+            simulatorPresets={simulatorPresets}
+            onSelectSimulatorPreset={handleSelectSimulatorPreset}
+            referenceAccession={referenceAccession}
+            onChangeReferenceAccession={setReferenceAccession}
+            zygosity={zygosity}
+            onChangeZygosity={handleZygosityChange}
             error={analysisError}
+          />
+        </section>
+
+        {/* 2. Interactive HBB Gene Structure & Exon Map */}
+        <section>
+          <HBBGeneStructureMap
+            detectedVariants={analysisResult?.variants || []}
+            activeVariantId={activeVariantId}
+            onSelectVariant={setActiveVariantId}
+            onSelectMutationPreset={handleSelectSimulatorPreset}
+            activeReference={referenceAccession}
           />
         </section>
 
         {/* Analysis Results View */}
         {analysisResult && (
           <div className="space-y-7">
-            {/* 2. Overview Metrics Strip (Crisp horizontal summary, avoiding excessive cards) */}
+            {/* 3. Overview Metrics Strip (Crisp horizontal summary) */}
             <section className="bg-white border border-stone-200 rounded-lg p-3.5 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
                 <div>
@@ -202,24 +272,42 @@ export default function Home() {
               </div>
             </section>
 
-            {/* 3. Detected Variant Summary (Immediately Visible) */}
+            {/* 4. Educational Screening Classification Banner */}
+            {analysisResult.screening_classification && (
+              <section>
+                <ScreeningClassifierBanner
+                  classification={analysisResult.screening_classification}
+                  currentZygosity={zygosity}
+                  onZygosityChange={handleZygosityChange}
+                />
+              </section>
+            )}
+
+            {/* 5. Detected Variant Summary (Immediately Visible) */}
             <section>
-              <VariantsTable variants={analysisResult.variants} />
+              <VariantsTable
+                variants={analysisResult.variants}
+                activeVariantId={activeVariantId}
+                onSelectVariant={setActiveVariantId}
+              />
             </section>
 
-            {/* 4. PRIMARY VISUAL INSIGHT: Codon Transformation & Protein Consequence */}
+            {/* 6. PRIMARY VISUAL INSIGHT: Codon Transformation & Protein Consequence */}
             <section>
-              <CodonVisualizer variants={analysisResult.variants} />
+              <CodonVisualizer
+                variants={analysisResult.variants}
+                activeVariantId={activeVariantId}
+              />
             </section>
 
-            {/* 5. Collapsible Pairwise Alignment */}
+            {/* 7. Collapsible Pairwise Alignment */}
             {analysisResult.alignment && (
               <section>
                 <AlignmentViewer alignment={analysisResult.alignment} defaultExpanded={false} />
               </section>
             )}
 
-            {/* 6. External Scientific Evidence Layer (Collapsible ClinVar & PubMed with Summaries) */}
+            {/* 8. External Scientific Evidence Layer (Collapsible ClinVar & PubMed with Exact Match Distinction) */}
             {analysisResult.evidence_packet && (
               <section>
                 <EvidenceWorkspace
@@ -230,10 +318,11 @@ export default function Home() {
               </section>
             )}
 
-            {/* 7. AI Research Copilot (Kept at the end of the workflow) */}
+            {/* 9. AI Research Copilot (Kept at the end of the workflow) */}
             <section>
               <ResearchCopilot
                 evidencePacket={analysisResult.evidence_packet || null}
+                initialAiSummary={analysisResult.ai}
                 onUpdateCopilotSummary={setCopilotSummaryText}
               />
             </section>
@@ -248,7 +337,7 @@ export default function Home() {
             HBB Mutation Analyzer &bull; Understand the sequence. Follow the evidence.
           </p>
           <p>
-            NCBI RefSeq NM_000518.5 (GeneID: 3043, CCDS7753.1). Strictly for academic and educational evaluation.
+            NCBI RefSeq NM_000518.5 &amp; NG_000007.3 (GeneID: 3043, CCDS7753.1). Strictly for academic and educational evaluation.
           </p>
         </div>
       </footer>

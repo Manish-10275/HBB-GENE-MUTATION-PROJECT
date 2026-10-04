@@ -60,13 +60,19 @@ In historic hemoglobin literature, globin amino acid residues were numbered star
 
 ---
 
-## 4. Other Benchmark Variants
+---
 
-| Common Name | HGVS cDNA | Ref Codon | Alt Codon | Amino Acid Change | Impact |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Sickle Cell (HbS)** | `c.20A>T` | `GAG` (Codon 7) | `GTG` | `p.Glu7Val` (legacy Glu6Val) | Missense |
-| **Hemoglobin C (HbC)** | `c.19G>A` | `GAG` (Codon 7) | `AAG` | `p.Glu7Lys` (legacy Glu6Lys) | Missense |
-| **Synthetic Frameshift** | `c.117_118insA` | Disrupts frame | Frame shifted | Downstream PTC | Frameshift |
+## 4. The Seven Authoritative Benchmark Variants
+
+| Common Name | Coordinate Reference | HGVS cDNA / Genomic | Codon / Locus | Amino Acid Consequence | Functional Consequence | ClinVar ID | Phenotype |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Controlled Benchmark** | `NM_000518.5` | `c.118C>T` | Codon 40 (`CAG` $\to$ `TAG`) | `p.Gln40Ter` (legacy Codon 39) | Nonsense (Stop Gain) | **15402** | $\beta^0$ Thalassemia |
+| **Sickle Cell (HbS)** | `NM_000518.5` | `c.20A>T` | Codon 7 (`GAG` $\to$ `GTG`) | `p.Glu7Val` (legacy Glu6Val) | Missense | **15333** | Sickle Cell Trait / Disease |
+| **Hemoglobin C (HbC)** | `NM_000518.5` | `c.19G>A` | Codon 7 (`GAG` $\to$ `AAG`) | `p.Glu7Lys` (legacy Glu6Lys) | Missense | **15126** | Hemoglobin C Trait / Disease |
+| **IVS1-5 (G>C)** | `NG_000007.3` | `c.92+5G>C`<br>`g.70691G>C` | Intron 1 +5 donor splice | None | Splice Site Defect | **15447** | $\beta^+$ Thalassemia |
+| **Cd41/42 (-TCTT)** | `NM_000518.5` | `c.126_129del` | Codons 41-42 (Exon 2) | `p.Phe42fs` | Frameshift Deletion (3'-shifted) | **15417** | $\beta^0$ Thalassemia |
+| **Cd8/9 (+G)** | `NM_000518.5` | `c.27dup` | Codons 8-9 (Exon 1) | `p.Ser10fs` | Frameshift Duplication | **36308** | $\beta^0$ Thalassemia |
+| **Cd30 (G>C)** | `NM_000518.5` | `c.93G>C` | Codon 30 / boundary 31 | `p.Arg31Ser` | Exon 1 Splice Junction Defect | **869321** | $\beta^0$ / Severe $\beta^+$ |
 
 ---
 
@@ -80,3 +86,21 @@ The engine executes deterministic global pairwise alignment using the Needleman-
 * **Gap Extend Penalty:** $-1.0$
 
 This configuration reliably handles substitutions as well as in-frame and frameshift indels while preserving coordinate fidelity.
+
+
+## 6. ClinVar Retrieval Hardening & Evidence Tiering
+
+To guarantee absolute scientific provenance without false positives or candidate truncation:
+1. **Progressive Search Architecture**:
+   - Tier 1: Exact quoted transcript cDNA notation (`"c.118C>T"[Variant Name] AND HBB[Gene Name]`).
+   - Tier 2: Quoted protein change (`"p.Gln40Ter"[Variant Name] AND HBB[Gene Name]`).
+   - Tier 3: Gene-scoped cDNA variant search with expanded window (`retmax=50`).
+   - Tier 4: Canonical indels and historical literature aliases (`CD39 C>T`).
+   - Tier 5: Direct Variation ID / VCV accession query.
+2. **Deterministic Post-Retrieval Verification**:
+   - Compound heterozygotes (`c.[205C>T;20A>T]`) are strictly disqualified from single variant exact match status.
+   - Alternate alleles at the same codon (e.g. `c.118C>A` vs `c.118C>T`) are segregated.
+3. **Three-Tier Evidence Classification**:
+   - `EXACT VARIANT MATCH`: Exact codon coordinate, alleles, and consequence match.
+   - `RELATED HBB RECORD`: Variants in HBB at different positions or compound genotypes.
+   - `GENERAL HBB / BETA THALASSEMIA RECORD`: Unannotated or condition-level records.

@@ -6,11 +6,15 @@ import { ArrowRight, Search } from "lucide-react";
 
 interface VariantsTableProps {
   variants: DetectedVariant[];
+  activeVariantId?: string | null;
+  onSelectVariant?: (variantId: string) => void;
   onSelectVariantForEvidence?: (variant: DetectedVariant) => void;
 }
 
 export const VariantsTable: React.FC<VariantsTableProps> = ({
   variants,
+  activeVariantId,
+  onSelectVariant,
   onSelectVariantForEvidence,
 }) => {
   if (variants.length === 0) {
@@ -31,7 +35,7 @@ export const VariantsTable: React.FC<VariantsTableProps> = ({
             Detected Variant Summary
           </h3>
           <p className="text-xs text-stone-500 font-sans">
-            Deterministic differences called against NM_000518.5 coordinates.
+            Deterministic differences called against NM_000518.5 coordinates. Click a variant to synchronize with the Mutation Map.
           </p>
         </div>
         <span className="text-xs font-mono font-bold bg-stone-900 text-white px-2 py-0.5 rounded">
@@ -59,11 +63,27 @@ export const VariantsTable: React.FC<VariantsTableProps> = ({
               const isNonsense = v.functional_impact.toLowerCase().includes("nonsense");
               const isMissense = v.functional_impact.toLowerCase().includes("missense");
               const isSynonymous = v.functional_impact.toLowerCase().includes("synonymous");
+              const isActive = activeVariantId ? v.id === activeVariantId : false;
 
               return (
-                <tr key={v.id} className="hover:bg-stone-50/60">
+                <tr
+                  key={v.id}
+                  onClick={() => onSelectVariant && onSelectVariant(v.id)}
+                  className={`transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-amber-50/90 font-medium border-l-4 border-amber-500"
+                      : "hover:bg-stone-50/60"
+                  }`}
+                >
                   <td className="py-2.5 px-4 font-mono font-bold text-stone-900">
-                    {v.hgvs_c}
+                    <span className="inline-flex items-center gap-1.5">
+                      <span>{v.hgvs_c}</span>
+                      {isActive && (
+                        <span className="text-[9px] font-mono uppercase bg-amber-200 text-amber-900 px-1 py-0.2 rounded font-bold">
+                          MAP ACTIVE
+                        </span>
+                      )}
+                    </span>
                   </td>
                   <td className="py-2.5 px-4 font-mono text-stone-600">
                     c.{v.c_position}

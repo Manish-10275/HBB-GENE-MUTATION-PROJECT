@@ -28,6 +28,7 @@ def assemble_evidence_packet(
     variants: List[DetectedVariant],
     clinvar_records: List[ClinVarRecord],
     pubmed_records: List[PubMedRecord],
+    screening_classification: Optional[Any] = None,
     custom_limitations: Optional[List[str]] = None
 ) -> EvidencePacket:
     """
@@ -72,6 +73,7 @@ def assemble_evidence_packet(
         variants=variants,
         clinvar_records=clinvar_records,
         pubmed_records=pubmed_records,
+        screening_classification=screening_classification,
         limitations=limitations,
         source_metadata=source_meta
     )

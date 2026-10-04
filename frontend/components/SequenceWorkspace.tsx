@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Play, Sparkles, CheckCircle, RotateCcw, AlertCircle, Copy, Check } from "lucide-react";
-import { ExampleSequence } from "../lib/types";
+import { Play, RotateCcw, AlertCircle, Copy, Check, CheckCircle, Dna, Sparkles } from "lucide-react";
+import { ExampleSequence, SimulatorPreset } from "../lib/types";
 
 interface SequenceWorkspaceProps {
   sequence: string;
@@ -10,6 +10,12 @@ interface SequenceWorkspaceProps {
   onAnalyze: () => void;
   isLoading: boolean;
   examples: ExampleSequence[];
+  simulatorPresets?: SimulatorPreset[];
+  onSelectSimulatorPreset?: (presetId: string) => void;
+  referenceAccession?: string;
+  onChangeReferenceAccession?: (ref: string) => void;
+  zygosity?: string;
+  onChangeZygosity?: (zyg: string) => void;
   error?: string | null;
 }
 
@@ -19,9 +25,16 @@ export const SequenceWorkspace: React.FC<SequenceWorkspaceProps> = ({
   onAnalyze,
   isLoading,
   examples,
+  simulatorPresets = [],
+  onSelectSimulatorPreset,
+  referenceAccession = "NM_000518.5",
+  onChangeReferenceAccession,
+  zygosity = "heterozygous",
+  onChangeZygosity,
   error,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [presetDropdownOpen, setPresetDropdownOpen] = useState(false);
 
   // Live stats calculation
   const stats = useMemo(() => {
@@ -60,41 +73,110 @@ export const SequenceWorkspace: React.FC<SequenceWorkspaceProps> = ({
 
   const handleLoadExample = (example: ExampleSequence) => {
     onChangeSequence(example.sequence);
+    if (onChangeReferenceAccession) {
+      onChangeReferenceAccession("NM_000518.5");
+    }
+  };
+
+  const handleSelectPreset = (presetId: string) => {
+    if (onSelectSimulatorPreset) {
+      onSelectSimulatorPreset(presetId);
+    }
+    setPresetDropdownOpen(false);
   };
 
   return (
     <div className="bg-white border border-stone-200 rounded-lg shadow-sm overflow-hidden">
       {/* Workspace Header */}
-      <div className="px-5 py-3.5 border-b border-stone-200 bg-stone-50/70 flex flex-wrap items-center justify-between gap-3">
+      <div className="px-5 py-3.5 border-b border-stone-200 bg-stone-50/70 flex flex-col md:flex-row md:items-center justify-between gap-3">
         <div>
           <h2 className="text-sm font-semibold font-sans text-stone-900 flex items-center gap-2">
-            Sequence Input & Validation Workspace
+            <span>Sequence Input &amp; Screening Simulator</span>
           </h2>
           <p className="text-xs text-stone-500">
-            Accepts raw cDNA/DNA or FASTA formatted text. Analyzed strictly against NM_000518.5 (628 bp).
+            Accepts raw DNA or FASTA. Supports transcript (NM_000518.5, 628 bp) and genomic locus (NG_000007.3, 1,608 bp).
           </p>
         </div>
 
-        {/* Example Pickers */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-medium text-stone-500 uppercase tracking-wider mr-1">
-            Benchmarks:
-          </span>
-          {examples.map((ex) => (
+        {/* Quick Pickers & Indian Panel Controls */}
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Reference Mode Selector */}
+          {onChangeReferenceAccession && (
+            <div className="flex items-center text-xs font-mono bg-white border border-stone-200 rounded px-2 py-1 shadow-2xs">
+              <span className="text-stone-400 mr-1.5 text-[10px] uppercase">Ref:</span>
+              <select
+                value={referenceAccession}
+                onChange={(e) => onChangeReferenceAccession(e.target.value)}
+                className="bg-transparent text-stone-800 font-semibold focus:outline-none cursor-pointer"
+              >
+                <option value="NM_000518.5">NM_000518.5 (cDNA, 628 bp)</option>
+                <option value="NG_000007.3">NG_000007.3 (Genomic, 1608 bp)</option>
+              </select>
+            </div>
+          )}
+
+          {/* Screening Zygosity Selector */}
+          {onChangeZygosity && (
+            <div className="flex items-center text-xs font-mono bg-white border border-stone-200 rounded px-2 py-1 shadow-2xs">
+              <span className="text-stone-400 mr-1.5 text-[10px] uppercase">Zygosity:</span>
+              <select
+                value={zygosity}
+                onChange={(e) => onChangeZygosity(e.target.value)}
+                className="bg-transparent text-stone-800 font-semibold focus:outline-none cursor-pointer"
+              >
+                <option value="heterozygous">Heterozygous (Carrier)</option>
+                <option value="homozygous">Homozygous (Affected)</option>
+              </select>
+            </div>
+          )}
+
+          {/* Indian Panel & Simulator Presets Dropdown */}
+          {simulatorPresets.length > 0 && (
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setPresetDropdownOpen(!presetDropdownOpen)}
+                className="text-xs px-2.5 py-1 rounded font-mono font-semibold transition-all border bg-indigo-50 text-indigo-900 border-indigo-200 hover:bg-indigo-100 flex items-center gap-1.5 shadow-2xs"
+              >
+                <Dna className="w-3.5 h-3.5 text-indigo-700" />
+                <span>Simulate Mutation Preset</span>
+                <span className="text-[10px]">▾</span>
+              </button>
+
+              {presetDropdownOpen && (
+                <div className="absolute right-0 mt-1 w-72 bg-white border border-stone-200 rounded-md shadow-lg z-30 py-1 text-xs">
+                  <div className="px-3 py-1 text-[10px] font-mono text-stone-400 uppercase tracking-wider font-semibold border-b border-stone-100">
+                    Indian Thalassemia &amp; Controls
+                  </div>
+                  {simulatorPresets.map((p) => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      onClick={() => handleSelectPreset(p.id)}
+                      className="w-full text-left px-3 py-1.5 hover:bg-stone-50 flex flex-col transition-colors border-b border-stone-50"
+                    >
+                      <span className="font-semibold text-stone-900 font-mono">{p.name}</span>
+                      <span className="text-[10px] text-stone-500 font-sans">{p.subtitle}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Validation Case Benchmark Button */}
+          {examples.length > 0 && (
             <button
-              key={ex.filename}
-              onClick={() => handleLoadExample(ex)}
-              className={`text-xs px-2.5 py-1 rounded font-mono transition-all border ${
-                ex.is_validation_case
-                  ? "bg-amber-100/90 text-amber-900 border-amber-300 hover:bg-amber-200 font-semibold shadow-xs"
-                  : "bg-white text-stone-700 border-stone-200 hover:bg-stone-100 hover:border-stone-300"
-              }`}
-              title={ex.description}
+              onClick={() => {
+                const valCase = examples.find((e) => e.is_validation_case) || examples[0];
+                handleLoadExample(valCase);
+              }}
+              className="text-xs px-2.5 py-1 rounded font-mono font-semibold transition-all border bg-amber-100 text-amber-900 border-amber-300 hover:bg-amber-200 shadow-2xs"
+              title="Controlled validation benchmark: c.118C>T (p.Gln40Ter)"
             >
-              {ex.is_validation_case ? "★ " : ""}
-              {ex.title.split("(")[0].trim()}
+              ★ Benchmark c.118C&gt;T
             </button>
-          ))}
+          )}
         </div>
       </div>
 
@@ -143,8 +225,12 @@ export const SequenceWorkspace: React.FC<SequenceWorkspaceProps> = ({
               <span className="text-stone-400 font-mono">GC Content: </span>
               <strong className="text-stone-800 font-mono">{stats.gcContent}%</strong>
             </div>
+            <div>
+              <span className="text-stone-400 font-mono">Target: </span>
+              <strong className="text-stone-800 font-mono">{referenceAccession}</strong>
+            </div>
             {stats.header && (
-              <div className="max-w-md truncate" title={stats.header}>
+              <div className="max-w-xs truncate" title={stats.header}>
                 <span className="text-stone-400 font-mono">Header: </span>
                 <span className="text-stone-700 font-mono italic">{stats.header}</span>
               </div>
@@ -166,7 +252,10 @@ export const SequenceWorkspace: React.FC<SequenceWorkspaceProps> = ({
             )}
 
             <div className="flex items-center gap-2.5">
-              <span className="text-[10px] uppercase font-mono text-stone-500 hidden sm:inline select-none" title="Deterministic pairwise alignment & codon translation">
+              <span
+                className="text-[10px] uppercase font-mono text-stone-500 hidden sm:inline select-none"
+                title="Deterministic pairwise alignment & codon translation"
+              >
                 Deterministic Engine
               </span>
               <button
@@ -181,7 +270,7 @@ export const SequenceWorkspace: React.FC<SequenceWorkspaceProps> = ({
                 {isLoading ? (
                   <>
                     <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                    Aligning & Computing...
+                    Aligning &amp; Computing...
                   </>
                 ) : (
                   <>

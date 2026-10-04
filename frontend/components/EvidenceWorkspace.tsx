@@ -27,12 +27,18 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
   const [clinvarExpanded, setClinvarExpanded] = useState(false);
   const [pubmedExpanded, setPubmedExpanded] = useState(false);
 
+  const exactRecords = clinvarRecords.filter((c) => c.is_exact_match);
+  const relatedRecords = clinvarRecords.filter((c) => !c.is_exact_match);
+  const hasExactMatch = exactRecords.length > 0;
+
   // Useful summaries for collapsed state
-  const primaryClinvarSig = clinvarRecords.length > 0
+  const primaryClinvarSig = hasExactMatch
+    ? exactRecords[0].clinical_significance
+    : clinvarRecords.length > 0
     ? clinvarRecords[0].clinical_significance
     : "No records";
   const clinvarConditions = Array.from(
-    new Set(clinvarRecords.flatMap((c) => c.conditions))
+    new Set((hasExactMatch ? exactRecords : clinvarRecords).flatMap((c) => c.conditions))
   ).slice(0, 4);
 
   const pubmedJournals = Array.from(
@@ -56,7 +62,7 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
             External Scientific Evidence Layer
           </h3>
           <p className="text-xs text-stone-500 font-sans">
-            Direct retrieval from NCBI ClinVar and PubMed. Unaltered database assertions.
+            Direct retrieval from NCBI ClinVar and PubMed. Unaltered database assertions with verified exact matching.
           </p>
         </div>
       </div>
@@ -74,6 +80,15 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                 <span className="text-xs font-mono text-stone-500">
                   ({clinvarRecords.length} {clinvarRecords.length === 1 ? "record" : "records"} retrieved)
                 </span>
+                {hasExactMatch ? (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded font-semibold border bg-emerald-50 text-emerald-800 border-emerald-300">
+                    EXACT VARIANT MATCH ({exactRecords.length})
+                  </span>
+                ) : clinvarRecords.length > 0 ? (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded font-semibold border bg-amber-50 text-amber-800 border-amber-300">
+                    RELATED HBB EVIDENCE
+                  </span>
+                ) : null}
                 {clinvarRecords.length > 0 && (
                   <span
                     className={`text-[10px] font-mono px-2 py-0.5 rounded font-semibold border ${
@@ -91,7 +106,9 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
               {/* Useful summary strip when collapsed or expanded */}
               {clinvarRecords.length > 0 ? (
                 <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs">
-                  <span className="text-stone-500 font-sans">Reported Clinical Significance:</span>
+                  <span className="text-stone-500 font-sans">
+                    {hasExactMatch ? "Exact Variant Classification:" : "Reported Clinical Significance:"}
+                  </span>
                   <span
                     className={`text-[11px] font-bold px-2 py-0.5 rounded border ${
                       primaryClinvarSig.toLowerCase().includes("pathogenic")
@@ -135,76 +152,199 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
         </div>
 
         {clinvarExpanded && (
-          <div className="p-4 space-y-3 bg-white">
-            {clinvarRecords.map((c) => {
-              const sigLower = c.clinical_significance.toLowerCase();
-              const isPathogenic = sigLower.includes("pathogenic");
-
-              return (
-                <div
-                  key={c.id}
-                  className="border border-stone-200 rounded p-3.5 bg-stone-50/40 text-xs space-y-2"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <a
-                        href={c.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="font-bold text-stone-900 hover:text-blue-700 inline-flex items-center gap-1"
-                      >
-                        <span>{c.title}</span>
-                        <ExternalLink className="w-3 h-3 text-stone-400 shrink-0" />
-                      </a>
-                      <div className="text-[11px] font-mono text-stone-500 mt-0.5">
-                        Accession: {c.accession || `VCV${c.id}`} | Variation ID: {c.id}
-                      </div>
-                    </div>
-
-                    <span
-                      className={`text-[11px] font-bold px-2 py-0.5 rounded border shrink-0 ${
-                        isPathogenic
-                          ? "bg-rose-50 text-rose-800 border-rose-200"
-                          : "bg-amber-50 text-amber-800 border-amber-200"
-                      }`}
-                    >
-                      {c.clinical_significance}
-                    </span>
-                  </div>
-
-                  <div className="text-[11px] text-stone-600 flex flex-wrap items-center gap-x-4 gap-y-1">
-                    <span className="flex items-center gap-1">
-                      <Tag className="w-3 h-3 text-stone-400" />
-                      Review: <strong>{c.review_status}</strong>
-                    </span>
-                    {c.last_evaluated && (
-                      <span className="flex items-center gap-1 font-mono">
-                        <Calendar className="w-3 h-3 text-stone-400" />
-                        Last evaluated: {c.last_evaluated}
-                      </span>
-                    )}
-                  </div>
-
-                  {c.conditions.length > 0 && (
-                    <div className="pt-2 border-t border-stone-200/60">
-                      <span className="text-[10px] uppercase font-mono text-stone-400 block mb-1">
-                        Reported Phenotypes:
-                      </span>
-                      <div className="flex flex-wrap gap-1">
-                        {c.conditions.map((cond, i) => (
-                          <span
-                            key={i}
-                            className="text-[10px] bg-white border border-stone-200 px-1.5 py-0.5 rounded text-stone-700"
-                          >
-                            {cond}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+          <div className="p-4 space-y-4 bg-white">
+            {/* Exact Records Subsection */}
+            {exactRecords.length > 0 && (
+              <div className="space-y-2.5">
+                <div className="text-[11px] font-mono font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                  Exact Variant Evidence ({exactRecords.length})
                 </div>
-              );
-            })}
+                {exactRecords.map((c) => {
+                  const sigLower = c.clinical_significance.toLowerCase();
+                  const isPathogenic = sigLower.includes("pathogenic");
+
+                  return (
+                    <div
+                      key={c.id}
+                      className="border border-emerald-200 border-l-4 border-l-emerald-600 rounded p-3.5 bg-emerald-50/20 text-xs space-y-2"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <a
+                              href={c.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="font-bold text-stone-900 hover:text-blue-700 inline-flex items-center gap-1"
+                            >
+                              <span>{c.title}</span>
+                              <ExternalLink className="w-3 h-3 text-stone-400 shrink-0" />
+                            </a>
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold">
+                              {c.evidence_type || "DIRECT VARIANT EVIDENCE"}
+                            </span>
+                          </div>
+                          <div className="text-[11px] font-mono text-stone-500 mt-0.5">
+                            Accession: {c.accession || `VCV${c.id}`} | Variation ID: {c.id}
+                          </div>
+                        </div>
+
+                        <span
+                          className={`text-[11px] font-bold px-2 py-0.5 rounded border shrink-0 ${
+                            isPathogenic
+                              ? "bg-rose-50 text-rose-800 border-rose-200"
+                              : "bg-amber-50 text-amber-800 border-amber-200"
+                          }`}
+                        >
+                          {c.clinical_significance}
+                        </span>
+                      </div>
+
+                      <div className="text-[11px] text-stone-600 flex flex-wrap items-center gap-x-4 gap-y-1">
+                        <span className="flex items-center gap-1">
+                          <Tag className="w-3 h-3 text-stone-400" />
+                          Review: <strong>{c.review_status}</strong>
+                        </span>
+                        <span className="font-mono text-stone-500">
+                          Source: <strong>{c.source}</strong>
+                        </span>
+                        {c.retrieval_date && (
+                          <span className="flex items-center gap-1 font-mono text-stone-500">
+                            <Calendar className="w-3 h-3 text-stone-400" />
+                            Retrieved: {c.retrieval_date}
+                          </span>
+                        )}
+                        {c.last_evaluated && (
+                          <span className="flex items-center gap-1 font-mono">
+                            <Calendar className="w-3 h-3 text-stone-400" />
+                            Last evaluated: {c.last_evaluated}
+                          </span>
+                        )}
+                      </div>
+
+                      {c.conditions.length > 0 && (
+                        <div className="pt-2 border-t border-emerald-200/50">
+                          <span className="text-[10px] uppercase font-mono text-stone-500 block mb-1">
+                            Reported Phenotypes:
+                          </span>
+                          <div className="flex flex-wrap gap-1">
+                            {c.conditions.map((cond, i) => (
+                              <span
+                                key={i}
+                                className="text-[10px] bg-white border border-stone-200 px-1.5 py-0.5 rounded text-stone-700"
+                              >
+                                {cond}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Related Records Subsection */}
+            {relatedRecords.length > 0 && (
+              <div className="space-y-2.5 pt-2 border-t border-stone-200">
+                <div>
+                  <div className="text-[11px] font-mono font-bold text-stone-600 uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-stone-400 inline-block"></span>
+                    Related HBB Gene Evidence ({relatedRecords.length})
+                  </div>
+                  <p className="text-[11px] text-stone-500 mt-0.5">
+                    {hasExactMatch
+                      ? "Additional HBB locus records retrieved from NCBI for broader regional context."
+                      : "No exact ClinVar record was found for this specific variant string; showing nearby HBB gene records for context."}
+                  </p>
+                </div>
+                {relatedRecords.map((c) => {
+                  const sigLower = c.clinical_significance.toLowerCase();
+                  const isPathogenic = sigLower.includes("pathogenic");
+
+                  return (
+                    <div
+                      key={c.id}
+                      className="border border-stone-200 rounded p-3.5 bg-stone-50/40 text-xs space-y-2"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <a
+                              href={c.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="font-bold text-stone-900 hover:text-blue-700 inline-flex items-center gap-1"
+                            >
+                              <span>{c.title}</span>
+                              <ExternalLink className="w-3 h-3 text-stone-400 shrink-0" />
+                            </a>
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 font-semibold">
+                              {c.evidence_type || "RELATED GENE OR DISEASE EVIDENCE"}
+                            </span>
+                          </div>
+                          <div className="text-[11px] font-mono text-stone-500 mt-0.5">
+                            Accession: {c.accession || `VCV${c.id}`} | Variation ID: {c.id}
+                          </div>
+                        </div>
+
+                        <span
+                          className={`text-[11px] font-bold px-2 py-0.5 rounded border shrink-0 ${
+                            isPathogenic
+                              ? "bg-rose-50 text-rose-800 border-rose-200"
+                              : "bg-amber-50 text-amber-800 border-amber-200"
+                          }`}
+                        >
+                          {c.clinical_significance}
+                        </span>
+                      </div>
+
+                      <div className="text-[11px] text-stone-600 flex flex-wrap items-center gap-x-4 gap-y-1">
+                        <span className="flex items-center gap-1">
+                          <Tag className="w-3 h-3 text-stone-400" />
+                          Review: <strong>{c.review_status}</strong>
+                        </span>
+                        <span className="font-mono text-stone-500">
+                          Source: <strong>{c.source}</strong>
+                        </span>
+                        {c.retrieval_date && (
+                          <span className="flex items-center gap-1 font-mono text-stone-500">
+                            <Calendar className="w-3 h-3 text-stone-400" />
+                            Retrieved: {c.retrieval_date}
+                          </span>
+                        )}
+                        {c.last_evaluated && (
+                          <span className="flex items-center gap-1 font-mono">
+                            <Calendar className="w-3 h-3 text-stone-400" />
+                            Last evaluated: {c.last_evaluated}
+                          </span>
+                        )}
+                      </div>
+
+                      {c.conditions.length > 0 && (
+                        <div className="pt-2 border-t border-stone-200/60">
+                          <span className="text-[10px] uppercase font-mono text-stone-400 block mb-1">
+                            Reported Phenotypes:
+                          </span>
+                          <div className="flex flex-wrap gap-1">
+                            {c.conditions.map((cond, i) => (
+                              <span
+                                key={i}
+                                className="text-[10px] bg-white border border-stone-200 px-1.5 py-0.5 rounded text-stone-700"
+                              >
+                                {cond}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -275,34 +415,67 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
 
         {pubmedExpanded && (
           <div className="p-4 space-y-3 bg-white">
-            {pubmedRecords.map((p) => (
-              <div
-                key={p.pmid}
-                className="border border-stone-200 rounded p-3.5 bg-stone-50/40 text-xs space-y-1.5"
-              >
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-bold text-stone-900 hover:text-emerald-800 inline-flex items-start gap-1 leading-snug"
+            {pubmedRecords.map((p) => {
+              const evType = p.evidence_type || (p.is_direct_evidence || p.is_exact_match ? "DIRECT VARIANT EVIDENCE" : "RELATED GENE OR DISEASE EVIDENCE");
+              const isDirect = evType === "DIRECT VARIANT EVIDENCE";
+              const isRelated = evType === "RELATED GENE OR DISEASE EVIDENCE";
+
+              return (
+                <div
+                  key={p.pmid}
+                  className={`border rounded p-3.5 text-xs space-y-2 ${
+                    isDirect
+                      ? "border-emerald-300 bg-emerald-50/20"
+                      : "border-stone-200 bg-stone-50/40"
+                  }`}
                 >
-                  <span>{p.title}</span>
-                  <ExternalLink className="w-3 h-3 text-stone-400 shrink-0 mt-0.5" />
-                </a>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span
+                      className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold border tracking-wider uppercase ${
+                        isDirect
+                          ? "bg-emerald-100 text-emerald-900 border-emerald-300"
+                          : isRelated
+                          ? "bg-blue-50 text-blue-900 border-blue-300"
+                          : "bg-stone-100 text-stone-700 border-stone-300"
+                      }`}
+                    >
+                      {evType}
+                    </span>
+                    <span className="text-[10px] font-mono text-stone-500">
+                      Source: {p.source || "NCBI PubMed"}
+                      {p.retrieval_date && ` • Retrieved: ${p.retrieval_date}`}
+                    </span>
+                  </div>
 
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-stone-500 font-mono">
-                  <span>PMID: <strong className="text-stone-800">{p.pmid}</strong></span>
-                  {p.journal && <span>Journal: {p.journal}</span>}
-                  {p.pub_date && <span>Date: {p.pub_date}</span>}
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-bold text-stone-900 hover:text-emerald-800 inline-flex items-start gap-1 leading-snug"
+                  >
+                    <span>{p.title}</span>
+                    <ExternalLink className="w-3 h-3 text-stone-400 shrink-0 mt-0.5" />
+                  </a>
+
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-stone-500 font-mono">
+                    <span>PMID: <strong className="text-stone-800">{p.pmid}</strong></span>
+                    {p.journal && <span>Journal: {p.journal}</span>}
+                    {p.pub_date && <span>Date: {p.pub_date}</span>}
+                  </div>
+
+                  {p.authors.length > 0 && (
+                    <p className="text-[11px] text-stone-600 italic truncate">
+                      Authors: {p.authors.join(", ")}
+                    </p>
+                  )}
+                  {p.abstract_snippet && (
+                    <p className="text-[11px] text-stone-700 bg-white p-2 rounded border border-stone-200/60 leading-relaxed font-sans">
+                      Finding: {p.abstract_snippet}
+                    </p>
+                  )}
                 </div>
-
-                {p.authors.length > 0 && (
-                  <p className="text-[11px] text-stone-600 italic truncate">
-                    Authors: {p.authors.join(", ")}
-                  </p>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

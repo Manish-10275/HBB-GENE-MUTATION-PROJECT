@@ -15,9 +15,9 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 export async function fetchHealth(): Promise<{
   status: string;
   reference_accession: string;
-  gemini_configured?: boolean;
-  gemini_model?: string;
-  openai_configured?: boolean;
+  groq_configured: boolean;
+  groq_model: string;
+  ncbi_configured?: boolean;
 }> {
   const res = await fetch(`${API_BASE}/health`, { cache: "no-store" });
   if (!res.ok) throw new Error("Backend health check failed");
@@ -30,17 +30,56 @@ export async function fetchExamples(): Promise<ExampleSequence[]> {
   return res.json();
 }
 
-export async function fetchReference(): Promise<any> {
-  const res = await fetch(`${API_BASE}/reference`, { cache: "no-store" });
+export async function fetchReference(accession: string = "NM_000518.5"): Promise<any> {
+  const res = await fetch(`${API_BASE}/reference?accession=${encodeURIComponent(accession)}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to load reference sequence");
   return res.json();
 }
 
-export async function analyzeSequence(sequence: string): Promise<AnalyzeResponse> {
+export async function fetchReferenceList(): Promise<any[]> {
+  const res = await fetch(`${API_BASE}/reference/list`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to load reference list");
+  return res.json();
+}
+
+export async function fetchIndianMutations(): Promise<any> {
+  const res = await fetch(`${API_BASE}/mutations/indian`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to load Indian mutations panel");
+  return res.json();
+}
+
+export async function fetchSimulatorPresets(): Promise<any[]> {
+  const res = await fetch(`${API_BASE}/simulator/presets`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to load simulator presets");
+  return res.json();
+}
+
+export async function generateSimulatedSequence(preset_id: string): Promise<any> {
+  const res = await fetch(`${API_BASE}/simulator/generate`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ preset_id }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to generate simulated sequence.");
+  }
+  return res.json();
+}
+
+export async function analyzeSequence(
+  sequence: string,
+  referenceAccession: string = "NM_000518.5",
+  zygosity: string = "heterozygous"
+): Promise<AnalyzeResponse> {
   const res = await fetch(`${API_BASE}/analyze`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ sequence }),
+    body: JSON.stringify({
+      sequence,
+      reference_accession: referenceAccession,
+      zygosity,
+    }),
   });
 
   if (!res.ok) {

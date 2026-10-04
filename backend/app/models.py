@@ -68,6 +68,8 @@ class DetectedVariant(BaseModel):
     codon_change: Optional[CodonChange] = None
     functional_impact: str  # "Nonsense", "Missense", "Synonymous", "Frameshift", "Non-coding", "Unknown"
     confidence: str = "Deterministic"
+    equivalent_nomenclature: List[str] = Field(default_factory=list)
+    nomenclature_notes: Optional[str] = None
 
 
 # Evidence Models
@@ -82,6 +84,9 @@ class ClinVarRecord(BaseModel):
     variation_id: Optional[str] = None
     source: str = "NCBI ClinVar"
     url: str
+    is_exact_match: bool = False
+    evidence_type: str = "DIRECT VARIANT EVIDENCE"
+    retrieval_date: str = Field(default_factory=lambda: datetime.now(timezone.utc).strftime("%Y-%m-%d"))
 
 
 class PubMedRecord(BaseModel):
@@ -93,6 +98,24 @@ class PubMedRecord(BaseModel):
     url: str
     abstract_snippet: Optional[str] = None
     source: str = "NCBI PubMed"
+    is_exact_match: bool = False
+    is_direct_evidence: bool = False
+    evidence_type: str = "RELATED GENE OR DISEASE EVIDENCE"  # "DIRECT VARIANT EVIDENCE", "RELATED GENE OR DISEASE EVIDENCE", "CONTEXTUAL EVIDENCE"
+    retrieval_date: str = Field(default_factory=lambda: datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+
+
+class ScreeningClassification(BaseModel):
+    zygosity: str = "Heterozygous"  # "Heterozygous" or "Homozygous"
+    condition_name: str
+    severity: str  # "Normal", "Carrier / Minor", "Intermediate to Major", "Major / Severe"
+    thalassemia_type: str  # "None", "β0 Thalassemia", "β+ Thalassemia", "Sickle Trait", etc.
+    clinical_summary: str
+    laboratory_correlations: List[str] = Field(default_factory=list)
+    educational_disclaimer: str = (
+        "Educational and research simulation model only. Clinical diagnosis requires "
+        "certified molecular genetic testing, complete blood count (CBC), and "
+        "high-performance liquid chromatography (HPLC) hemoglobin electrophoresis."
+    )
 
 
 class EvidencePacket(BaseModel):
@@ -104,6 +127,7 @@ class EvidencePacket(BaseModel):
     variants: List[DetectedVariant] = Field(default_factory=list)
     clinvar_records: List[ClinVarRecord] = Field(default_factory=list)
     pubmed_records: List[PubMedRecord] = Field(default_factory=list)
+    screening_classification: Optional[ScreeningClassification] = None
     limitations: List[str] = Field(default_factory=list)
     source_metadata: Dict[str, Any] = Field(default_factory=dict)
 
@@ -112,6 +136,19 @@ class EvidencePacket(BaseModel):
 class AnalyzeRequest(BaseModel):
     sequence: str
     reference_accession: str = "NM_000518.5"
+    zygosity: Optional[str] = "heterozygous"  # "heterozygous" or "homozygous"
+
+
+class AiSynthesisStatus(BaseModel):
+    available: bool = True
+    provider: str = "groq"
+    model: str = "openai/gpt-oss-120b"
+    status: str = "success"  # "success", "no_key", "error"
+    answer: Optional[str] = None
+    fallback: bool = False
+    evidence_used: List[str] = Field(default_factory=list)
+    provenance_sections: List[str] = Field(default_factory=list)
+    provenance_label: str = "AI synthesis grounded in retrieved NCBI evidence"
 
 
 class AnalyzeResponse(BaseModel):
@@ -121,6 +158,31 @@ class AnalyzeResponse(BaseModel):
     alignment: Optional[AlignmentSummary] = None
     variants: List[DetectedVariant] = Field(default_factory=list)
     evidence_packet: Optional[EvidencePacket] = None
+    screening_classification: Optional[ScreeningClassification] = None
+    reference_metadata: Optional[Dict[str, Any]] = None
+    ai: Optional[AiSynthesisStatus] = None
+
+
+class SimulatorPreset(BaseModel):
+    id: str
+    name: str
+    subtitle: str
+    category: str
+    accession: str
+    description: str
+
+
+class SimulatorGenerateRequest(BaseModel):
+    preset_id: str
+
+
+class SimulatorGenerateResponse(BaseModel):
+    sequence: str
+    preset_id: str
+    name: str
+    reference_accession: str
+    coordinate_type: str
+    description: str
 
 
 class VariantSearchRequest(BaseModel):
@@ -152,6 +214,11 @@ class CopilotResponse(BaseModel):
     evidence_used: List[str] = Field(default_factory=list)
     limitations_cited: List[str] = Field(default_factory=list)
     status: str = "success"  # "success", "no_key", "error"
+    provider: str = "groq"
+    model: str = "openai/gpt-oss-120b"
+    fallback: bool = False
+    provenance_sections: List[str] = Field(default_factory=list)
+    provenance_label: str = "AI synthesis grounded in retrieved NCBI evidence"
 
 
 class ReportRequest(BaseModel):

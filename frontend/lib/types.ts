@@ -63,6 +63,9 @@ export interface ClinVarRecord {
   variation_id?: string | null;
   source: string;
   url: string;
+  is_exact_match?: boolean;
+  evidence_type?: string;
+  retrieval_date?: string;
 }
 
 export interface PubMedRecord {
@@ -74,6 +77,38 @@ export interface PubMedRecord {
   url: string;
   abstract_snippet?: string | null;
   source: string;
+  is_exact_match?: boolean;
+  is_direct_evidence?: boolean;
+  evidence_type?: string;
+  retrieval_date?: string;
+}
+
+export interface ScreeningClassification {
+  zygosity: string;
+  condition_name: string;
+  severity: string;
+  thalassemia_type: string;
+  clinical_summary: string;
+  laboratory_correlations: string[];
+  educational_disclaimer: string;
+}
+
+export interface SimulatorPreset {
+  id: string;
+  name: string;
+  subtitle: string;
+  category: string;
+  accession: string;
+  description: string;
+}
+
+export interface SimulatorGenerateResponse {
+  sequence: string;
+  preset_id: string;
+  name: string;
+  reference_accession: string;
+  coordinate_type: string;
+  description: string;
 }
 
 export interface EvidencePacket {
@@ -97,8 +132,21 @@ export interface EvidencePacket {
   variants: DetectedVariant[];
   clinvar_records: ClinVarRecord[];
   pubmed_records: PubMedRecord[];
+  screening_classification?: ScreeningClassification | null;
   limitations: string[];
   source_metadata: Record<string, any>;
+}
+
+export interface AiSynthesisStatus {
+  available: boolean;
+  provider: string;
+  model: string;
+  status: "success" | "no_key" | "error";
+  answer?: string | null;
+  fallback: boolean;
+  evidence_used: string[];
+  provenance_sections?: string[];
+  provenance_label?: string;
 }
 
 export interface AnalyzeResponse {
@@ -108,6 +156,9 @@ export interface AnalyzeResponse {
   alignment?: AlignmentSummary | null;
   variants: DetectedVariant[];
   evidence_packet?: EvidencePacket | null;
+  screening_classification?: ScreeningClassification | null;
+  reference_metadata?: Record<string, any> | null;
+  ai?: AiSynthesisStatus | null;
 }
 
 export interface VariantSearchResponse {
@@ -129,6 +180,11 @@ export interface CopilotResponse {
   evidence_used: string[];
   limitations_cited: string[];
   status: "success" | "no_key" | "error";
+  provider?: string;
+  model?: string;
+  fallback?: boolean;
+  provenance_sections?: string[];
+  provenance_label?: string;
 }
 
 export interface ReportResponse {

@@ -6,9 +6,10 @@ import { DetectedVariant } from "../lib/types";
 
 interface CodonVisualizerProps {
   variants: DetectedVariant[];
+  activeVariantId?: string | null;
 }
 
-export const CodonVisualizer: React.FC<CodonVisualizerProps> = ({ variants }) => {
+export const CodonVisualizer: React.FC<CodonVisualizerProps> = ({ variants, activeVariantId }) => {
   const codingVariants = variants.filter((v) => v.codon_change !== null);
 
   if (codingVariants.length === 0) {
@@ -61,10 +62,16 @@ export const CodonVisualizer: React.FC<CodonVisualizerProps> = ({ variants }) =>
           const cPosNum = parseInt(v.c_position, 10);
           const mutBaseIdx = !isNaN(cPosNum) ? (cPosNum - 1) % 3 : -1;
 
+          const isActive = activeVariantId ? v.id === activeVariantId : false;
+
           return (
             <div
               key={v.id || idx}
-              className="border border-stone-300 bg-stone-50/40 rounded-lg p-5 space-y-4"
+              className={`rounded-lg p-5 space-y-4 transition-all ${
+                isActive
+                  ? "border-2 border-stone-800 bg-white ring-2 ring-stone-800/10 shadow-sm"
+                  : "border border-stone-300 bg-stone-50/40"
+              }`}
             >
               {/* Card Meta Bar */}
               <div className="flex items-center justify-between text-xs font-mono border-b border-stone-200 pb-2.5">
@@ -72,6 +79,11 @@ export const CodonVisualizer: React.FC<CodonVisualizerProps> = ({ variants }) =>
                   <span className="font-bold text-stone-900 bg-white border border-stone-300 px-2 py-0.5 rounded text-[11px]">
                     Codon {c.codon_number} of 148
                   </span>
+                  {isActive && (
+                    <span className="text-[10px] font-mono uppercase bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded font-bold">
+                      ACTIVE
+                    </span>
+                  )}
                   <span className="text-stone-500 text-[11px]">
                     c.{c.c_start}..c.{c.c_end}
                   </span>

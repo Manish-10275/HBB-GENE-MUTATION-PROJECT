@@ -28,22 +28,18 @@ class Settings(BaseSettings):
     NCBI_API_KEY: Optional[str] = None
     NCBI_BASE_URL: str = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 
-    # Google Gemini configuration
-    GEMINI_API_KEY: Optional[str] = None
-    GOOGLE_API_KEY: Optional[str] = None
-    GEMINI_MODEL: str = "gemini-3.8-flash"
-
-    # OpenAI configuration (legacy fallback compatibility)
-    OPENAI_API_KEY: Optional[str] = None
-    OPENAI_MODEL: str = "gpt-4o-mini"
+    # Groq configuration (Ultra-fast LLM inference)
+    GROQ_API_KEY: Optional[str] = None
+    GROQ_MODEL: str = "openai/gpt-oss-120b"
+    GROQ_MAX_TOKENS: int = 2500
 
     @property
-    def effective_gemini_api_key(self) -> Optional[str]:
-        """Returns GEMINI_API_KEY or GOOGLE_API_KEY if configured."""
-        return self.GEMINI_API_KEY or self.GOOGLE_API_KEY
+    def effective_groq_api_key(self) -> Optional[str]:
+        """Returns GROQ_API_KEY if configured."""
+        return self.GROQ_API_KEY
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(Path(__file__).resolve().parent.parent.parent / ".env", ".env"),
         env_file_encoding="utf-8",
         extra="ignore"
     )

@@ -9,6 +9,7 @@ from fastapi.responses import HTMLResponse
 
 from app.config import settings
 from app.models import (
+    AiSynthesisStatus,
     AnalyzeRequest,
     AnalyzeResponse,
     ClinVarRecord,
@@ -17,6 +18,9 @@ from app.models import (
     PubMedRecord,
     ReportRequest,
     ReportResponse,
+    ScreeningClassification,
+    SimulatorGenerateRequest,
+    SimulatorGenerateResponse,
     VariantSearchRequest,
     VariantSearchResponse,
 )
@@ -29,6 +33,11 @@ from app.pubmed import fetch_pubmed_records
 from app.evidence import assemble_evidence_packet
 from app.ai import synthesize_research_copilot
 from app.reports import generate_research_report
+from app.simulator import (
+    classify_screening,
+    get_available_mutation_presets,
+    simulate_mutated_sequence,
+)
 
 app = FastAPI(
     title=settings.API_TITLE,
@@ -36,10 +45,16 @@ app = FastAPI(
     description=settings.API_DESCRIPTION
 )
 
-# Configure CORS
+# Configure CORS (robust local origin matching)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+    ],
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,9 +73,9 @@ async def health_check() -> Dict[str, Any]:
         "reference_gene": ref.gene,
         "reference_length_bp": ref.total_length,
         "cds_coordinates": f"{ref.cds_start}..{ref.cds_end}",
-        "gemini_configured": bool(settings.effective_gemini_api_key),
-        "gemini_model": settings.GEMINI_MODEL,
-        "openai_configured": bool(settings.OPENAI_API_KEY)
+        "groq_configured": bool(settings.effective_groq_api_key),
+        "groq_model": settings.GROQ_MODEL,
+        "ncbi_configured": bool(settings.NCBI_API_KEY),
     }
 
 
@@ -88,14 +103,54 @@ async def get_reference_details(
             "cds_sequence": ref.cds_sequence,
             "protein_sequence": ref.protein_sequence,
             "exons": [
-                {"number": e.number, "start": e.start, "end": e.end}
+                {
+                    "number": e.number,
+                    "start": e.start,
+                    "end": e.end,
+                    "genomic_start": e.genomic_start,
+                    "genomic_end": e.genomic_end
+                }
                 for e in ref.exons
-            ]
+            ],
+            "introns": ref.introns,
+            "genomic_start": ref.genomic_start,
+            "genomic_end": ref.genomic_end
         }
     except KeyError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Reference accession '{accession}' not supported."
+        )
+
+
+@app.get("/reference/list", tags=["Genomic Data"])
+async def list_available_references() -> List[Dict[str, Any]]:
+    """Lists available reference sequences with genomic and transcript annotations."""
+    return reference_manager.list_references()
+
+
+@app.get("/mutations/indian", tags=["Indian Thalassemia"])
+async def get_indian_mutations_panel() -> Dict[str, Any]:
+    """Retrieves the verified four Indian thalassemia mutations panel with full clinical and coordinate data."""
+    return reference_manager.get_indian_mutations()
+
+
+@app.get("/simulator/presets", tags=["Educational Simulator"])
+async def get_simulator_presets() -> List[Dict[str, Any]]:
+    """Returns available simulation presets including the Indian thalassemia panel and controls."""
+    return get_available_mutation_presets()
+
+
+@app.post("/simulator/generate", response_model=SimulatorGenerateResponse, tags=["Educational Simulator"])
+async def generate_simulated_sequence(payload: SimulatorGenerateRequest) -> SimulatorGenerateResponse:
+    """Generates an in silico mutated HBB sequence for educational screening simulation."""
+    try:
+        res = simulate_mutated_sequence(payload.preset_id)
+        return SimulatorGenerateResponse(**res)
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
         )
 
 
@@ -207,31 +262,111 @@ async def analyze_sequence(payload: AnalyzeRequest) -> AnalyzeResponse:
         for v in variants[:3]:
             # Try specific HGVS c. notation first
             c_term = f"c.{v.c_position}{v.ref_allele}>{v.alt_allele}" if v.variant_type == "substitution" else v.hgvs_c
-            cv_res = await fetch_clinvar_records(c_term)
+            cv_res = await fetch_clinvar_records(
+                query_term=c_term,
+                transcript_accession=ref_data.accession,
+                variant_aliases=v.equivalent_nomenclature,
+                protein_change=v.hgvs_p,
+            )
             for r in cv_res:
                 if not any(existing.id == r.id for existing in clinvar_records):
                     clinvar_records.append(r)
 
-            pm_res = await fetch_pubmed_records(c_term)
+            pm_res = await fetch_pubmed_records(c_term, variant_aliases=v.equivalent_nomenclature)
             for r in pm_res:
                 if not any(existing.pmid == r.pmid for existing in pubmed_records):
                     pubmed_records.append(r)
 
-    # 6. Assemble evidence packet
+    # 6. Screening classification based on zygosity
+    screening_classification = classify_screening(
+        detected_variants=variants,
+        zygosity=payload.zygosity or "heterozygous"
+    )
+
+    # 7. Assemble evidence packet
     packet = assemble_evidence_packet(
         ref_data=ref_data,
         alignment_summary=summary,
         variants=variants,
         clinvar_records=clinvar_records,
-        pubmed_records=pubmed_records
+        pubmed_records=pubmed_records,
+        screening_classification=screening_classification
     )
+
+    ref_metadata = {
+        "accession": ref_data.accession,
+        "gene": ref_data.gene,
+        "molecule_type": ref_data.molecule_type,
+        "total_length": ref_data.total_length,
+        "exons": [
+            {
+                "number": e.number,
+                "start": e.start,
+                "end": e.end,
+                "genomic_start": e.genomic_start,
+                "genomic_end": e.genomic_end,
+            }
+            for e in ref_data.exons
+        ],
+        "introns": ref_data.introns,
+        "genomic_start": ref_data.genomic_start,
+        "genomic_end": ref_data.genomic_end,
+    }
+
+    # 8. Automated AI Synthesis Explanation
+    ai_status = None
+    if getattr(payload, "include_ai", True):
+        if variants:
+            primary_v = variants[0]
+            question = (
+                f"Explain the molecular and biological consequence of the variant {primary_v.hgvs_c} "
+                f"({primary_v.hgvs_p or 'non-coding'}) based on the retrieved evidence."
+            )
+        else:
+            question = "Summarize the wild-type beta globin sequence analysis and confirm reference alignment."
+
+        try:
+            cop_res = await synthesize_research_copilot(question, packet, [])
+            ai_status = AiSynthesisStatus(
+                available=bool(settings.GROQ_API_KEY),
+                provider="groq",
+                model=settings.GROQ_MODEL,
+                status=cop_res.status,
+                answer=cop_res.answer,
+                fallback=cop_res.fallback,
+                evidence_used=cop_res.evidence_used,
+                provenance_sections=cop_res.provenance_sections,
+                provenance_label=cop_res.provenance_label
+            )
+        except Exception:
+            ai_status = AiSynthesisStatus(
+                available=bool(settings.GROQ_API_KEY),
+                provider="groq",
+                model=settings.GROQ_MODEL,
+                status="error",
+                answer="AI synthesis was temporarily unavailable.",
+                fallback=True,
+                evidence_used=["Deterministic Sequence Engine"],
+                provenance_sections=[
+                    "DIRECT SCIENTIFIC ANSWER",
+                    "A. COMPUTED FACTS",
+                    "B. DATABASE EVIDENCE",
+                    "C. ESTABLISHED BIOLOGICAL KNOWLEDGE",
+                    "D. AI SYNTHESIS",
+                    "EVIDENCE LIMITATIONS",
+                ],
+                provenance_label="Deterministic synthesis"
+            )
 
     return AnalyzeResponse(
         success=True,
         summary=packet.summary,
         alignment=summary,
         variants=variants,
-        evidence_packet=packet
+        evidence_packet=packet,
+        screening_classification=screening_classification,
+        reference_metadata=ref_metadata,
+        ai=ai_status
     )
 
 
@@ -259,8 +394,15 @@ async def search_variant_direct(
         clean_term = f"c.{variant_model.c_position}{variant_model.ref_allele}>{variant_model.alt_allele}"
 
     # Query external scientific evidence
-    clinvar_task = fetch_clinvar_records(clean_term)
-    pubmed_task = fetch_pubmed_records(clean_term)
+    aliases = variant_model.equivalent_nomenclature if variant_model else None
+    protein_change = variant_model.hgvs_p if variant_model else None
+    clinvar_task = fetch_clinvar_records(
+        query_term=clean_term,
+        transcript_accession=ref.accession,
+        variant_aliases=aliases,
+        protein_change=protein_change,
+    )
+    pubmed_task = fetch_pubmed_records(clean_term, variant_aliases=aliases)
     cv_records, pm_records = await asyncio.gather(clinvar_task, pubmed_task)
 
     return VariantSearchResponse(

@@ -21,7 +21,8 @@ Returns health status, active reference target, and backend engine details.
   "reference_gene": "HBB",
   "reference_length_bp": 628,
   "cds_coordinates": "51..494",
-  "openai_configured": false
+  "groq_configured": true,
+  "groq_model": "openai/gpt-oss-120b"
 }
 ```
 
@@ -59,6 +60,25 @@ Returns canonical sequence and feature annotation for the HBB reference transcri
 }
 ```
 
+### `GET /reference/list`
+Lists available reference sequences (`NM_000518.5` cDNA and `NG_000007.3` genomic locus) with metadata.
+
+### `GET /mutations/indian`
+Retrieves the verified four Indian thalassemia mutations panel with curated RefSeq coordinates, biological mechanisms, and ClinVar IDs.
+
+### `GET /simulator/presets`
+Returns curated mutation simulation presets for the Indian panel, sickle cell, and validation controls.
+
+### `POST /simulator/generate`
+Generates an in silico mutated HBB sequence for educational screening simulation.
+
+**Request Body:**
+```json
+{
+  "preset_id": "ivs1-5"
+}
+```
+
 ### `GET /examples`
 Returns curated validation cases and benchmarks available for single-click loading.
 
@@ -67,80 +87,14 @@ Returns curated validation cases and benchmarks available for single-click loadi
 ## 3. Core Bioinformatics Endpoints
 
 ### `POST /analyze`
-Normalizes, strictly validates, and aligns an input DNA sequence against NM_000518.5, computing codon transformations and querying external ClinVar and PubMed evidence.
+Normalizes, strictly validates, and aligns an input DNA sequence against the selected reference (`NM_000518.5` or `NG_000007.3`), computing codon transformations and querying external ClinVar and PubMed evidence.
 
 **Request Body:**
 ```json
 {
   "sequence": ">SAMPLE_HBB\nACATTTGCTTCTGACACAAC...",
-  "reference_accession": "NM_000518.5"
-}
-```
-
-**Response `200 OK`:**
-```json
-{
-  "success": true,
-  "summary": {
-    "reference_accession": "NM_000518.5",
-    "reference_length_bp": 628,
-    "cds_coordinates": "51..494",
-    "sample_length_bp": 628,
-    "sequence_identity_pct": 99.84,
-    "alignment_score": 1253.0,
-    "detected_variants_count": 1
-  },
-  "alignment": {
-    "ref_length": 628,
-    "query_length": 628,
-    "matches": 627,
-    "mismatches": 1,
-    "gaps": 0,
-    "identity_percentage": 99.84,
-    "alignment_score": 1253.0,
-    "blocks": [
-      {
-        "block_index": 1,
-        "ref_start": 1,
-        "ref_end": 60,
-        "query_start": 1,
-        "query_end": 60,
-        "ref_seq": "ACATTTGCTTCTGACACAACTGTGTTCACTAGCAACCTCAAACAGACACCATGGTGCATC",
-        "query_seq": "ACATTTGCTTCTGACACAACTGTGTTCACTAGCAACCTCAAACAGACACCATGGTGCATC",
-        "match_line": "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-      }
-    ]
-  },
-  "variants": [
-    {
-      "id": "var_sub_168_C_T",
-      "variant_type": "substitution",
-      "ref_position_mrna": 168,
-      "c_position": "118",
-      "ref_allele": "C",
-      "alt_allele": "T",
-      "hgvs_c": "NM_000518.5:c.118C>T",
-      "hgvs_p": "p.Gln40Ter",
-      "codon_change": {
-        "codon_number": 40,
-        "c_start": 118,
-        "c_end": 120,
-        "ref_codon": "CAG",
-        "sample_codon": "TAG",
-        "ref_aa": "Gln",
-        "sample_aa": "Ter",
-        "ref_aa_single": "Q",
-        "sample_aa_single": "*",
-        "consequence": "Nonsense (p.Gln40Ter)",
-        "is_stop_gain": true,
-        "is_stop_loss": false,
-        "is_synonymous": false
-      },
-      "functional_impact": "Nonsense",
-      "confidence": "Deterministic"
-    }
-  ],
-  "evidence_packet": { ... }
+  "reference_accession": "NM_000518.5",
+  "zygosity": "heterozygous"
 }
 ```
 
@@ -148,11 +102,11 @@ Normalizes, strictly validates, and aligns an input DNA sequence against NM_0005
 
 ## 4. Evidence & AI Endpoints
 
-### `GET /variant/search` (or `POST /variant/search`)
+### `GET /variant/search`
 Investigates a specific variant directly using HGVS nomenclature (e.g. `c.118C>T` or `NM_000518.5:c.118C>T`).
 
 ### `POST /copilot`
-Synthesizes research answers strictly grounded in the supplied `evidence_packet`. If `OPENAI_API_KEY` is omitted, returns a deterministic summary without crashing.
+Synthesizes research answers strictly grounded in the supplied `evidence_packet`. If `GROQ_API_KEY` is omitted, returns a deterministic summary without crashing.
 
 ### `POST /report`
 Compiles the complete `evidence_packet` into a standardized Markdown report and a styled browser-printable HTML document.
