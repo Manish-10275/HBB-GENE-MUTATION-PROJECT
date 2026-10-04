@@ -1,0 +1,84 @@
+{
+  "gene": "HBB",
+  "organism": "Homo sapiens",
+  "accession": "NG_000007.3",
+  "molecule_type": "genomic DNA",
+  "description": "Homo sapiens hemoglobin subunit beta (HBB) genomic gene locus (70545..72152)",
+  "genomic_locus_start": 70545,
+  "genomic_locus_end": 72152,
+  "total_length": 1608,
+  "cds_genomic_start": 70595,
+  "cds_genomic_end": 72018,
+  "cds_relative_segments": [
+    {"start": 51, "end": 142},
+    {"start": 273, "end": 495},
+    {"start": 1346, "end": 1474}
+  ],
+  "cds_length": 444,
+  "source": "NCBI RefSeqGene NG_000007.3",
+  "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/NG_000007.3",
+  "exons": [
+    {
+      "number": 1,
+      "name": "Exon 1",
+      "relative_start": 1,
+      "relative_end": 142,
+      "length": 142,
+      "genomic_start": 70545,
+      "genomic_end": 70686,
+      "features": {
+        "5_utr": {"start": 1, "end": 50},
+        "coding": {"start": 51, "end": 142, "codons": "1-30 (+2 nt of codon 31)"}
+      }
+    },
+    {
+      "number": 2,
+      "name": "Exon 2",
+      "relative_start": 273,
+      "relative_end": 495,
+      "length": 223,
+      "genomic_start": 70817,
+      "genomic_end": 71039,
+      "features": {
+        "coding": {"start": 273, "end": 495, "codons": "31 (last nt) - 105"}
+      }
+    },
+    {
+      "number": 3,
+      "name": "Exon 3",
+      "relative_start": 1346,
+      "relative_end": 1608,
+      "length": 263,
+      "genomic_start": 71890,
+      "genomic_end": 72152,
+      "features": {
+        "coding": {"start": 1346, "end": 1474, "codons": "106-147 + STOP"},
+        "3_utr": {"start": 1475, "end": 1608}
+      }
+    }
+  ],
+  "introns": [
+    {
+      "number": 1,
+      "name": "Intron 1 (IVS-1)",
+      "relative_start": 143,
+      "relative_end": 272,
+      "length": 130,
+      "genomic_start": 70687,
+      "genomic_end": 70816,
+      "critical_sites": [
+        {"name": "c.92+1 (IVS1-1) donor", "relative_pos": 143, "genomic_pos": 70687},
+        {"name": "c.92+5 (IVS1-5) consensus", "relative_pos": 147, "genomic_pos": 70691}
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Intron 2 (IVS-2)",
+      "relative_start": 496,
+      "relative_end": 1345,
+      "length": 850,
+      "genomic_start": 71040,
+      "genomic_end": 71889
+    }
+  ]
+}

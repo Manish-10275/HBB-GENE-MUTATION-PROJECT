@@ -1,0 +1,21 @@
+{
+  "gene": "HBB",
+  "organism": "Homo sapiens",
+  "accession": "NM_000518.5",
+  "molecule_type": "mRNA",
+  "total_length": 628,
+  "cds_start": 51,
+  "cds_end": 494,
+  "cds_length": 444,
+  "protein_id": "NP_000509.1",
+  "protein_length": 147,
+  "source": "NCBI RefSeq MANE Select",
+  "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/NM_000518.5",
+  "description": "Homo sapiens hemoglobin subunit beta (HBB), mRNA",
+  "exons": [
+    {"number": 1, "start": 1, "end": 142},
+    {"number": 2, "start": 143, "end": 365},
+    {"number": 3, "start": 366, "end": 628}
+  ],
+  "protein_sequence": "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
+}

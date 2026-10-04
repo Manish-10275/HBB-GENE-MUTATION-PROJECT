@@ -1,0 +1,103 @@
+{
+  "verdict": "RELEASE CANDIDATE",
+  "timestamp": "2026-10-04T17:48:54.095735+00:00",
+  "total_duration_seconds": 274.01,
+  "stages_count": 9,
+  "passed_stages_count": 9,
+  "failed_stages_count": 0,
+  "metrics": {
+    "clinvar_hardening_tests_passed": 9,
+    "backend_total_tests_passed": 78,
+    "doctor_checks_passed": 17
+  },
+  "failure_reasons": [],
+  "stages": [
+    {
+      "name": "ClinVar Hardening Audit",
+      "passed": true,
+      "duration_seconds": 19.9,
+      "details": "9 passed, 0 failed",
+      "metadata": {
+        "output": "============================= test session starts =============================\nplatform win32 -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0 -- E:\\HBB GENE MUTATION PROJECT\\backend\\venv\\Scripts\\python.exe\ncachedir: .pytest_cache\nrootdir: E:\\HBB GENE MUTATION PROJECT\nconfigfile: pytest.ini\nplugins: anyio-4.15.1, asyncio-1.4.0\nasyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function\ncollecting ... collected 9 items\n\nbackend/tests/test_clinvar_retrieval_hardening.py::test_a_exact_benchmark_c118ct_retrieval PASSED [ 11%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_b_protein_consequence_matching PASSED [ 22%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_c_historical_alias_matching_and_fp_rejection PASSED [ 33%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_d_rejection_of_false_positives PASSED [ 44%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_e_missing_clinvar_record_returns_empty PASSED [ 55%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_f_candidate_ranking_prioritizes_exact_match PASSED [ 66%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_g_window_expansion_retrieves_buried_record PASSED [ 77%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_h_genomic_to_cdna_coordinate_translation PASSED [ 88%]\nbackend/tests/test_clinvar_retrieval_hardening.py::test_h_genomic_query_resolves_to_15402 PASSED [100%]\n\n============================= 9 passed in 17"
+      }
+    },
+    {
+      "name": "Backend Pytest Suite",
+      "passed": true,
+      "duration_seconds": 91.77,
+      "details": "78 total tests passed, 0 failed",
+      "metadata": {
+        "output": "test_5_prompt_forbids_fabricating_pmids PASSED [ 84%]\nbackend/tests/test_provenance_and_hallucination.py::test_6_prompt_separates_general_knowledge_from_clinvar PASSED [ 85%]\nbackend/tests/test_provenance_and_hallucination.py::test_7_prompt_separates_general_knowledge_from_pubmed PASSED [ 87%]\nbackend/tests/test_provenance_and_hallucination.py::test_8_prompt_distinguishes_computed_from_database PASSED [ 88%]\nbackend/tests/test_provenance_and_hallucination.py::test_9_ai_identifies_missing_evidence PASSED [ 89%]\nbackend/tests/test_provenance_and_hallucination.py::test_10_deterministic_fallback_populates_provenance PASSED [ 91%]\nbackend/tests/test_provenance_and_hallucination.py::test_11_successful_groq_synthesis_parses_provenance PASSED [ 92%]\nbackend/tests/test_provenance_and_hallucination.py::test_12_regression_cag_to_tag_premature_termination PASSED [ 93%]\nbackend/tests/test_provenance_and_hallucination.py::test_13_pubmed_relevance_classification PASSED [ 94%]\nbackend/tests/test_provenance_and_hallucination.py::test_14_validation_rejects_hallucinated_pmid PASSED [ 96%]\nbackend/tests/test_provenance_and_hallucination.py::test_15_validation_rejects_contradictory_clinvar_classification PASSED [ 97%]\nbackend/tests/test_provenance_and_hallucination.py::test_16_equivalent_nomenclature_recognition PASSED [ 98%]\nbackend/tests/test_provenance_and_hallucination.py::test_17_provenance_labels PASSED [100%]\n\n======================== 78 passed in 89.61s (0:01:29) ========================\n"
+      }
+    },
+    {
+      "name": "Doctor Diagnostics",
+      "passed": true,
+      "duration_seconds": 101.2,
+      "details": "17 diagnostic checks passed, 0 failed",
+      "metadata": {
+        "output": "Groq daily token limit (TPD) reached. Activating deterministic fallback immediately.\nAI synthesis failed: RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m269x | Fallback activated | Provider: Groq | Model: openai/gpt-oss-120b\n\n=======================================================\n   HBB GENE MUTATION PROJECT - SYSTEM DIAGNOSTIC\n=======================================================\n\n1. Environment & Dependencies\n[PASS] Python environment (Python 3.14.7)\n[PASS] Required dependencies (all 6 core backend packages available)\n\n2. Configuration Security & Environment\n[PASS] GROQ_API_KEY loaded\n[PASS] GROQ_MODEL = openai/gpt-oss-120b\n[PASS] NCBI configuration loaded (Email: researcher@example.edu, API Key: present)\n\n3. AI Natural Language Synthesis (Groq)\n[PASS] Groq Authentication (Valid configured API key loaded)\n[PASS] Groq Connectivity (Endpoint reachable)\n[WARNING] Groq Generation (QUOTA EXHAUSTED (429 Rate Limit / Daily TPD limit reached))\n[PASS] Deterministic Fallback (Authoritative offline synthesis verified)\n\n4. Deterministic Bioinformatics Core\n[PASS] Variant parsing (NM_000518.5:c.118C>T parsed accurately)\n[PASS] Codon analysis (CAG (Gln) -> TAG (Ter) nonsense consequence confirmed)\n\n5. NCBI Database Evidence Retrieval\n[PASS] ClinVar (Retrieved 1 records including VarID 15402 (Pathogenic))\n[PASS] PubMed (Retrieved 5 peer-reviewed papers)\n[PASS] Evidence assembly (Packet HBB-EXP-A428DFEC"
+      }
+    },
+    {
+      "name": "Frontend TypeScript Check",
+      "passed": true,
+      "duration_seconds": 5.31,
+      "details": "TypeScript compilation clean with zero errors",
+      "metadata": {
+        "output": "\n> hbb-mutation-analyzer-frontend@1.0.0 type-check\n> tsc --noEmit\n\n"
+      }
+    },
+    {
+      "name": "Frontend Production Build",
+      "passed": true,
+      "duration_seconds": 53.71,
+      "details": "Optimized Next.js production bundle generated",
+      "metadata": {
+        "output": "\n> hbb-mutation-analyzer-frontend@1.0.0 build\n> next build\n\n  \u00e2\u2013\u00b2 Next.js 14.2.24\n\n   Creating an optimized production build ...\n \u00e2\u0153\u201c Compiled successfully\n   Linting and checking validity of types ...\n   Collecting page data ...\n   Generating static pages (0/4) ...\n   Generating static pages (1/4) \n   Generating static pages (2/4) \n   Generating static pages (3/4) \n \u00e2\u0153\u201c Generating static pages (4/4)\n   Finalizing page optimization ...\n   Collecting build traces ...\n\nRoute (app)                              Size     First Load JS\n\u00e2\u201d\u0152 \u00e2\u2014\u2039 /                                    23.5 kB         111 kB\n\u00e2\u201d\u201d \u00e2\u2014\u2039 /_not-found                          873 B            88 kB\n+ First Load JS shared by all            87.1 kB\n  \u00e2\u201d\u0153 chunks/117-80f86ca67ae95f27.js       31.6 kB\n  \u00e2\u201d\u0153 chunks/fd9d1056-a80e6fe05afa95fb.js  53.6 kB\n  \u00e2\u201d\u201d other shared chunks (total)          1.92 kB\n\n\n\u00e2\u2014\u2039  (Static)  prerendered as static content\n\n"
+      }
+    },
+    {
+      "name": "Scientific Consistency Checks",
+      "passed": true,
+      "duration_seconds": 1.26,
+      "details": "All 5 core biological mechanisms & coordinate systems verified",
+      "metadata": {
+        "notes": []
+      }
+    },
+    {
+      "name": "Evidence Provenance & Grounding Boundaries",
+      "passed": true,
+      "duration_seconds": 0.72,
+      "details": "Strict provenance separation and hallucination rejection verified",
+      "metadata": {
+        "notes": []
+      }
+    },
+    {
+      "name": "Repository Cleanliness & Secret Protection",
+      "passed": true,
+      "duration_seconds": 0.13,
+      "details": "No lingering scratch files, zero leaked credentials, clean runtime",
+      "metadata": {
+        "notes": []
+      }
+    },
+    {
+      "name": "Documentation Synchronization",
+      "passed": true,
+      "duration_seconds": 0.0,
+      "details": "Synchronized 0 documentation files (Already synchronized)",
+      "metadata": {}
+    }
+  ],
+  "system_info": {
+    "os": "Windows",
+    "os_release": "10",
+    "python_version": "3.14.7",
+    "groq_model": "openai/gpt-oss-120b",
+    "reference_accession": "NM_000518.5",
+    "genomic_accession": "NG_000007.3"
+  }
+}
