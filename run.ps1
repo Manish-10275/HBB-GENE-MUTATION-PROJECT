@@ -9,8 +9,9 @@ param(
     [switch]$Stop,
     [switch]$BackendOnly,
     [switch]$FrontendOnly,
-    [switch]$NoBrowser,
-    [switch]$Separate
+    [switch]$Separate,
+    [switch]$ReleaseAudit,
+    [switch]$Doctor
 )
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -27,5 +28,7 @@ if ($BackendOnly) { $pyArgs += "--backend-only" }
 if ($FrontendOnly) { $pyArgs += "--frontend-only" }
 if ($NoBrowser) { $pyArgs += "--no-browser" }
 if ($Separate) { $pyArgs += "--separate" }
+if ($ReleaseAudit) { $pyArgs += "--release-audit" }
+if ($Doctor) { $pyArgs += "--doctor" }
 
 & $pythonExe $pyArgs

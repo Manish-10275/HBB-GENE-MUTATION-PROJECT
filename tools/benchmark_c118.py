@@ -112,6 +112,7 @@ async def run_benchmark():
     assert "tag" in ans_lower, "TAG must be mentioned"
     assert "gln40ter" in ans_lower or "q40" in ans_lower or "cd39" in ans_lower or "codon 39" in ans_lower, "Variant must be identified"
     assert res.provenance_label in (
+        "Live Groq synthesis",
         "Live Groq synthesis grounded in retrieved NCBI evidence",
         "Deterministic synthesis",
         "AI synthesis grounded in retrieved NCBI evidence",
