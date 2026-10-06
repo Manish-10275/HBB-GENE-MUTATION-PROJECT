@@ -10,7 +10,7 @@ import {
   VariantSearchResponse,
 } from "./types";
 
-const API_BASE = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/+$/, "");
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export async function fetchHealth(): Promise<{
   status: string;

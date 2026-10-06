@@ -45,11 +45,16 @@ app = FastAPI(
     description=settings.API_DESCRIPTION
 )
 
-# Configure CORS (supports local development, Netlify deployments, and environment-specified frontend origins)
+# Configure CORS (robust local origin matching)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.effective_cors_origins,
-    allow_origin_regex=settings.CORS_ORIGIN_REGEX,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+    ],
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
