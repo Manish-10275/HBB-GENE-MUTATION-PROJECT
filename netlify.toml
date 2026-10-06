@@ -1,0 +1,23 @@
+# ==============================================================================
+# Netlify Configuration for HBB Mutation Analyzer Frontend
+# ==============================================================================
+# Monorepo setup:
+#   frontend/ = Next.js 14 frontend deployed on Netlify
+#   backend/  = Python FastAPI backend deployed separately on Render
+#
+# Environment variables:
+#   Set NEXT_PUBLIC_API_URL in Netlify Site Settings > Environment variables
+#   to point to your deployed Render backend URL (e.g. https://your-backend.onrender.com).
+#   Do NOT set backend secrets (GROQ_API_KEY, NCBI_API_KEY) in Netlify.
+# ==============================================================================
+
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
