@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { ClinVarRecord, PubMedRecord } from "../lib/types";
+import {
+  ClinVarEvidenceResponseDTO,
+  ClinVarRecord,
+  DiscrepancyDTO,
+  PubMedEvidenceResponseDTO,
+  PubMedRecord,
+} from "../lib/types";
 import {
   ExternalLink,
   Database,
@@ -11,21 +17,36 @@ import {
   ShieldAlert,
   ChevronDown,
   ChevronUp,
+  AlertTriangle,
+  Info,
 } from "lucide-react";
+import { classifyEvidenceStatus } from "../lib/api";
 
 interface EvidenceWorkspaceProps {
   clinvarRecords: ClinVarRecord[];
   pubmedRecords: PubMedRecord[];
   limitations: string[];
+  discrepancies?: DiscrepancyDTO[];
+  clinvarEvidence?: ClinVarEvidenceResponseDTO | null;
+  pubmedEvidence?: PubMedEvidenceResponseDTO | null;
 }
 
 export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
   clinvarRecords,
   pubmedRecords,
   limitations,
+  discrepancies = [],
+  clinvarEvidence,
+  pubmedEvidence,
 }) => {
   const [clinvarExpanded, setClinvarExpanded] = useState(false);
   const [pubmedExpanded, setPubmedExpanded] = useState(false);
+
+  // Combine any discrepancies from props or clinvarEvidence DTO
+  const activeDiscrepancies = [
+    ...discrepancies,
+    ...(clinvarEvidence?.discrepancies || []),
+  ];
 
   const exactRecords = clinvarRecords.filter((c) => c.is_exact_match);
   const relatedRecords = clinvarRecords.filter((c) => !c.is_exact_match);
@@ -37,6 +58,7 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
     : clinvarRecords.length > 0
     ? clinvarRecords[0].clinical_significance
     : "No records";
+
   const clinvarConditions = Array.from(
     new Set((hasExactMatch ? exactRecords : clinvarRecords).flatMap((c) => c.conditions))
   ).slice(0, 4);
@@ -45,6 +67,19 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
     new Set(pubmedRecords.map((p) => p.journal).filter(Boolean))
   ).slice(0, 3);
 
+  // Provenance metadata inspection
+  const clinvarProv = clinvarEvidence?.provenance;
+  const isFixture =
+    clinvarProv?.is_fixture ||
+    (clinvarRecords.length > 0 &&
+      clinvarRecords[0].source.toLowerCase().includes("fixture"));
+
+  const clinvarAvailability = classifyEvidenceStatus(
+    clinvarEvidence?.status || (clinvarRecords.length > 0 ? "found" : "not_found"),
+    clinvarRecords.length,
+    isFixture
+  );
+
   return (
     <div className="space-y-4">
       {/* Evidence Provenance Header */}
@@ -52,20 +87,64 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
         <div>
           <div className="flex items-center gap-2">
             <span className="text-[10px] uppercase font-mono tracking-wider bg-blue-50 text-blue-800 border border-blue-200 px-2 py-0.5 rounded font-semibold">
-              DATABASE EVIDENCE
+              DATABASE EVIDENCE LAYER
             </span>
             <span className="text-xs text-stone-500 font-mono">
-              NCBI E-Utilities
+              NCBI ClinVar &bull; NCBI PubMed
             </span>
+            {clinvarProv && (
+              <span className="text-[10px] font-mono bg-stone-100 text-stone-700 border border-stone-200 px-2 py-0.5 rounded">
+                Mode: <strong>{clinvarProv.mode}</strong> ({clinvarProv.provider})
+              </span>
+            )}
           </div>
           <h3 className="font-serif text-base font-semibold text-stone-900 mt-0.5">
-            External Scientific Evidence Layer
+            External Scientific Evidence &amp; Literature Layer
           </h3>
           <p className="text-xs text-stone-500 font-sans">
-            Direct retrieval from NCBI ClinVar and PubMed. Unaltered database assertions with verified exact matching.
+            Direct retrieval from NCBI databases with strict separation from deterministic sequence consequence calculations.
           </p>
         </div>
       </div>
+
+      {/* Discrepancy Alert Banner (Explicitly Rendered, Deterministic Engine is Authoritative) */}
+      {activeDiscrepancies.length > 0 && (
+        <div className="p-4 bg-amber-50 border-2 border-amber-400 rounded-lg text-xs space-y-2">
+          <div className="flex items-center gap-2 text-amber-900 font-bold">
+            <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+            <span>Scientific Discrepancy Detected between Deterministic Engine and ClinVar Record</span>
+          </div>
+          <p className="text-stone-700 leading-relaxed font-sans">
+            The external database annotation conflicts with the computed codon alteration.
+            <strong> The deterministic engine consequence calculation remains authoritative.</strong>
+          </p>
+          <div className="space-y-1.5 pt-1">
+            {activeDiscrepancies.map((d, i) => (
+              <div
+                key={i}
+                className="p-2.5 bg-white border border-amber-200 rounded font-mono text-[11px] space-y-1"
+              >
+                <div className="flex justify-between">
+                  <span className="text-stone-500">
+                    Field: <strong>{d.field_name}</strong>
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[10px]">
+                  <div className="bg-emerald-50 text-emerald-900 p-1.5 rounded border border-emerald-200">
+                    <strong>Deterministic Value:</strong> {d.deterministic_value}
+                  </div>
+                  <div className="bg-amber-50 text-amber-900 p-1.5 rounded border border-amber-200">
+                    <strong>ClinVar Value:</strong> {d.evidence_value}
+                  </div>
+                </div>
+                <div className="text-stone-600 font-sans text-[11px] pt-0.5">
+                  {d.description}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 1. ClinVar Section (Collapsible with Summary) */}
       <div className="bg-white border border-stone-200 rounded-lg overflow-hidden">
@@ -89,21 +168,18 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                     RELATED HBB EVIDENCE
                   </span>
                 ) : null}
-                {clinvarRecords.length > 0 && (
-                  <span
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded font-semibold border ${
-                      clinvarRecords[0].source.toLowerCase().includes("fixture")
-                        ? "bg-amber-100 text-amber-900 border-amber-300"
-                        : "bg-emerald-100 text-emerald-900 border-emerald-300"
-                    }`}
-                  >
-                    {clinvarRecords[0].source.toLowerCase().includes("fixture")
-                      ? "Development Fixture"
-                      : "Live NCBI Evidence"}
+                {isFixture ? (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded font-semibold border bg-amber-100 text-amber-900 border-amber-300">
+                    Development Fixture
                   </span>
-                )}
+                ) : clinvarRecords.length > 0 ? (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded font-semibold border bg-emerald-100 text-emerald-900 border-emerald-300">
+                    Live NCBI Evidence
+                  </span>
+                ) : null}
               </div>
-              {/* Useful summary strip when collapsed or expanded */}
+
+              {/* Useful summary strip or unambiguous availability banner */}
               {clinvarRecords.length > 0 ? (
                 <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs">
                   <span className="text-stone-500 font-sans">
@@ -125,9 +201,23 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                   )}
                 </div>
               ) : (
-                <p className="text-xs text-stone-500 italic mt-0.5">
-                  No matching ClinVar records retrieved for this query.
-                </p>
+                <div className="mt-1.5 text-xs">
+                  {clinvarAvailability === "fixture_unavailable" ? (
+                    <span className="text-amber-800 font-medium flex items-center gap-1.5">
+                      <ShieldAlert className="w-3.5 h-3.5 text-amber-600" />
+                      Offline fixture unavailable for this variant query.
+                    </span>
+                  ) : clinvarAvailability === "unretrievable" ? (
+                    <span className="text-rose-700 font-medium flex items-center gap-1.5">
+                      <Info className="w-3.5 h-3.5 text-rose-600" />
+                      Evidence could not be retrieved from ClinVar.
+                    </span>
+                  ) : (
+                    <span className="text-stone-500 italic">
+                      No matching ClinVar evidence found for this variant.
+                    </span>
+                  )}
+                </div>
               )}
             </div>
           </div>
@@ -166,7 +256,7 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
 
                   return (
                     <div
-                      key={c.id}
+                      key={c.id || c.variation_id}
                       className="border border-emerald-200 border-l-4 border-l-emerald-600 rounded p-3.5 bg-emerald-50/20 text-xs space-y-2"
                     >
                       <div className="flex items-start justify-between gap-2">
@@ -186,7 +276,7 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                             </span>
                           </div>
                           <div className="text-[11px] font-mono text-stone-500 mt-0.5">
-                            Accession: {c.accession || `VCV${c.id}`} | Variation ID: {c.id}
+                            Accession: {c.accession || `VCV${c.id}`} | Variation ID: {c.id || c.variation_id}
                           </div>
                         </div>
 
@@ -266,7 +356,7 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
 
                   return (
                     <div
-                      key={c.id}
+                      key={c.id || c.variation_id}
                       className="border border-stone-200 rounded p-3.5 bg-stone-50/40 text-xs space-y-2"
                     >
                       <div className="flex items-start justify-between gap-2">
@@ -286,7 +376,7 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                             </span>
                           </div>
                           <div className="text-[11px] font-mono text-stone-500 mt-0.5">
-                            Accession: {c.accession || `VCV${c.id}`} | Variation ID: {c.id}
+                            Accession: {c.accession || `VCV${c.id}`} | Variation ID: {c.id || c.variation_id}
                           </div>
                         </div>
 
@@ -365,18 +455,19 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                 {pubmedRecords.length > 0 && (
                   <span
                     className={`text-[10px] font-mono px-2 py-0.5 rounded font-semibold border ${
-                      pubmedRecords[0].source.toLowerCase().includes("fixture")
+                      pubmedRecords[0].source?.toLowerCase().includes("fixture")
                         ? "bg-amber-100 text-amber-900 border-amber-300"
                         : "bg-emerald-100 text-emerald-900 border-emerald-300"
                     }`}
                   >
-                    {pubmedRecords[0].source.toLowerCase().includes("fixture")
+                    {pubmedRecords[0].source?.toLowerCase().includes("fixture")
                       ? "Development Fixture"
                       : "Live NCBI Evidence"}
                   </span>
                 )}
               </div>
-              {/* Useful summary strip when collapsed or expanded */}
+
+              {/* Summary or not found message */}
               {pubmedRecords.length > 0 ? (
                 <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-stone-600 font-sans">
                   <span>Primary peer-reviewed citations matching variant</span>
@@ -416,7 +507,11 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
         {pubmedExpanded && (
           <div className="p-4 space-y-3 bg-white">
             {pubmedRecords.map((p) => {
-              const evType = p.evidence_type || (p.is_direct_evidence || p.is_exact_match ? "DIRECT VARIANT EVIDENCE" : "RELATED GENE OR DISEASE EVIDENCE");
+              const evType =
+                p.evidence_type ||
+                (p.is_direct_evidence || p.is_exact_match
+                  ? "DIRECT VARIANT EVIDENCE"
+                  : "RELATED GENE OR DISEASE EVIDENCE");
               const isDirect = evType === "DIRECT VARIANT EVIDENCE";
               const isRelated = evType === "RELATED GENE OR DISEASE EVIDENCE";
 
@@ -458,7 +553,9 @@ export const EvidenceWorkspace: React.FC<EvidenceWorkspaceProps> = ({
                   </a>
 
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-stone-500 font-mono">
-                    <span>PMID: <strong className="text-stone-800">{p.pmid}</strong></span>
+                    <span>
+                      PMID: <strong className="text-stone-800">{p.pmid}</strong>
+                    </span>
                     {p.journal && <span>Journal: {p.journal}</span>}
                     {p.pub_date && <span>Date: {p.pub_date}</span>}
                   </div>

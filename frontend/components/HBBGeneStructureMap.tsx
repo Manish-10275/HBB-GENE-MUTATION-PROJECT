@@ -89,7 +89,7 @@ const CURATED_MUTATIONS: MutationMarker[] = [
     genomic_abs_bp: 70842,
     region: "Exon 2",
     type: "Nonsense (Stop Gain)",
-    consequence: "p.Gln40Ter (β0 Thalassemia Benchmark)",
+    consequence: "p.Gln40Ter (Nonsense / β0 Thalassemia)",
     clinvar_id: "15402",
   },
   {

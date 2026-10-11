@@ -121,3 +121,133 @@ def evaluate_substitution_codon_consequence(
     )
 
     return codon_change, hgvs_p, impact
+
+
+def evaluate_indel_codon_consequence(
+    c_start: int,
+    c_end: int,
+    op: str,  # "deletion", "insertion", "duplication"
+    ref_allele: str,
+    alt_allele: str,
+    cds_sequence: str,
+    utr3_sequence: str = ""
+) -> Tuple[Optional[str], str, Optional[str]]:
+    """
+    Deterministically computes codon-level change and protein consequence for an indel in the coding region.
+
+    Parameters:
+    - c_start: 1-based coding nucleotide start coordinate (1..len(cds_sequence))
+    - c_end: 1-based coding nucleotide end coordinate (1..len(cds_sequence))
+    - op: "deletion", "insertion", or "duplication"
+    - ref_allele: deleted bases (or "-" for insertion)
+    - alt_allele: inserted bases (or "-" for deletion)
+    - cds_sequence: complete reference coding DNA sequence (e.g. 444 bp)
+    - utr3_sequence: complete 3' UTR sequence for reading past codon 147
+
+    Returns:
+    - hgvs_p: canonical HGVS protein string (e.g. "p.Phe42LeufsTer19", "p.Ser10ValfsTer14", "p.Leu4Ter", "p.Phe43del")
+    - functional_impact: "Frameshift Deletion", "Frameshift Insertion", "In-frame Deletion", etc.
+    - hgvs_p_short: optional abbreviated notation (e.g. "p.Phe42fs", "p.Ser10fs")
+    """
+    full_seq = cds_sequence + utr3_sequence
+    if op == "deletion":
+        del_len = c_end - c_start + 1
+        mut_seq = full_seq[:c_start - 1] + full_seq[c_end:]
+        net_delta = -del_len
+    elif op == "insertion":
+        ins_len = len(alt_allele)
+        mut_seq = full_seq[:c_start] + alt_allele + full_seq[c_start:]
+        net_delta = ins_len
+    elif op == "duplication":
+        dup_len = c_end - c_start + 1
+        dup_seq = full_seq[c_start - 1 : c_end]
+        mut_seq = full_seq[:c_end] + dup_seq + full_seq[c_end:]
+        net_delta = dup_len
+    else:
+        return None, "Unknown Indel", None
+
+    if net_delta % 3 != 0:
+        # Frameshift translation
+        first_codon = ((c_start - 1) // 3) + 1
+        curr_codon = first_codon
+        first_altered = None
+        first_wt_aa = None
+        first_mut_aa = None
+
+        while (curr_codon * 3) <= len(mut_seq) and (curr_codon * 3) <= len(cds_sequence):
+            wt_trip = cds_sequence[(curr_codon - 1) * 3 : curr_codon * 3]
+            mut_trip = mut_seq[(curr_codon - 1) * 3 : curr_codon * 3]
+            wt_aa = translate_codon(wt_trip)[0]
+            mut_aa = translate_codon(mut_trip)[0]
+            if wt_aa != mut_aa:
+                first_altered = curr_codon
+                first_wt_aa = wt_aa
+                first_mut_aa = mut_aa
+                break
+            curr_codon += 1
+
+        if first_altered is None:
+            first_altered = curr_codon
+            if (first_altered - 1) * 3 < len(cds_sequence):
+                first_wt_aa = translate_codon(cds_sequence[(first_altered - 1) * 3 : first_altered * 3])[0]
+            else:
+                first_wt_aa = "Ter"
+            first_mut_aa = translate_codon(mut_seq[(first_altered - 1) * 3 : first_altered * 3])[0]
+
+        if first_mut_aa == "Ter":
+            hgvs_p = f"p.{first_wt_aa}{first_altered}Ter"
+            hgvs_p_short = f"p.{first_wt_aa}{first_altered}fs"
+            impact = f"Frameshift {op.capitalize()} (Immediate Termination)"
+            return hgvs_p, impact, hgvs_p_short
+
+        stop_codon_num = None
+        walk = first_altered + 1
+        while (walk * 3) <= len(mut_seq):
+            trip = mut_seq[(walk - 1) * 3 : walk * 3]
+            aa = translate_codon(trip)[0]
+            if aa == "Ter":
+                stop_codon_num = walk
+                break
+            walk += 1
+
+        if stop_codon_num is not None:
+            dist = (stop_codon_num - first_altered) + 1
+            hgvs_p = f"p.{first_wt_aa}{first_altered}{first_mut_aa}fsTer{dist}"
+            hgvs_p_short = f"p.{first_wt_aa}{first_altered}fs"
+        else:
+            hgvs_p = f"p.{first_wt_aa}{first_altered}{first_mut_aa}fsTer?"
+            hgvs_p_short = f"p.{first_wt_aa}{first_altered}fs"
+        impact = f"Frameshift {op.capitalize()}"
+        return hgvs_p, impact, hgvs_p_short
+    else:
+        # In-frame change
+        if op == "deletion":
+            del_aa_start = ((c_start - 1) // 3) + 1
+            del_aa_end = ((c_end - 1) // 3) + 1
+            wt_start_aa = translate_codon(cds_sequence[(del_aa_start - 1) * 3 : del_aa_start * 3])[0]
+            if del_aa_start == del_aa_end:
+                hgvs_p = f"p.{wt_start_aa}{del_aa_start}del"
+            else:
+                wt_end_aa = translate_codon(cds_sequence[(del_aa_end - 1) * 3 : del_aa_end * 3])[0]
+                hgvs_p = f"p.{wt_start_aa}{del_aa_start}_{wt_end_aa}{del_aa_end}del"
+            return hgvs_p, "In-frame Deletion", hgvs_p
+        elif op == "duplication":
+            dup_aa_start = ((c_start - 1) // 3) + 1
+            dup_aa_end = ((c_end - 1) // 3) + 1
+            wt_start_aa = translate_codon(cds_sequence[(dup_aa_start - 1) * 3 : dup_aa_start * 3])[0]
+            if dup_aa_start == dup_aa_end:
+                hgvs_p = f"p.{wt_start_aa}{dup_aa_start}dup"
+            else:
+                wt_end_aa = translate_codon(cds_sequence[(dup_aa_end - 1) * 3 : dup_aa_end * 3])[0]
+                hgvs_p = f"p.{wt_start_aa}{dup_aa_start}_{wt_end_aa}{dup_aa_end}dup"
+            return hgvs_p, "In-frame Duplication", hgvs_p
+        elif op == "insertion":
+            flank_left_aa = ((c_start - 1) // 3) + 1
+            flank_right_aa = flank_left_aa + 1
+            wt_left = translate_codon(cds_sequence[(flank_left_aa - 1) * 3 : flank_left_aa * 3])[0]
+            wt_right = translate_codon(cds_sequence[(flank_right_aa - 1) * 3 : flank_right_aa * 3])[0]
+            ins_aa_list = [translate_codon(alt_allele[k * 3 : (k + 1) * 3])[0] for k in range(len(alt_allele) // 3)]
+            ins_aa_str = "".join(ins_aa_list)
+            hgvs_p = f"p.{wt_left}{flank_left_aa}_{wt_right}{flank_right_aa}ins{ins_aa_str}"
+            return hgvs_p, "In-frame Insertion", hgvs_p
+        return None, "In-frame Variant", None

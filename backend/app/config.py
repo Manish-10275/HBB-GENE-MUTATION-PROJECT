@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     NCBI_EMAIL: Optional[str] = "researcher@example.edu"
     NCBI_API_KEY: Optional[str] = None
     NCBI_BASE_URL: str = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+    EVIDENCE_MODE: str = "offline"  # "offline" or "live"
 
     # Groq configuration (Ultra-fast LLM inference)
     GROQ_API_KEY: Optional[str] = None

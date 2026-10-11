@@ -1,6 +1,7 @@
 """FastAPI main application entrypoint for HBB Mutation Analyzer."""
 
 import asyncio
+import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException, Query, status
@@ -59,6 +60,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+from app.api import router as v2_router
+app.include_router(v2_router)
 
 
 @app.get("/health", tags=["System"])
@@ -260,8 +264,12 @@ async def analyze_sequence(payload: AnalyzeRequest) -> AnalyzeResponse:
     if variants:
         # Query for up to first 3 variants
         for v in variants[:3]:
-            # Try specific HGVS c. notation first
-            c_term = f"c.{v.c_position}{v.ref_allele}>{v.alt_allele}" if v.variant_type == "substitution" else v.hgvs_c
+            if v.variant_type == "substitution":
+                c_term = f"c.{v.c_position}{v.ref_allele}>{v.alt_allele}"
+            elif v.variant_type in ("deletion", "duplication", "insertion"):
+                c_term = v.hgvs_c.split(":")[-1] if ":" in v.hgvs_c else v.hgvs_c
+            else:
+                c_term = v.hgvs_c
             cv_res = await fetch_clinvar_records(
                 query_term=c_term,
                 transcript_accession=ref_data.accession,
@@ -378,6 +386,7 @@ async def search_variant_direct(
 ) -> VariantSearchResponse:
     """Direct variant investigation via HGVS notation."""
     search_query = (query or (body.query if body else "")).strip()
+    search_query = re.sub(r"(\d+)\s+(\d+)", r"\1+\2", search_query)
     if not search_query:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -391,7 +400,12 @@ async def search_variant_direct(
     standard_hgvs = None
     if variant_model:
         standard_hgvs = variant_model.hgvs_c
-        clean_term = f"c.{variant_model.c_position}{variant_model.ref_allele}>{variant_model.alt_allele}"
+        if variant_model.variant_type == "substitution":
+            clean_term = f"c.{variant_model.c_position}{variant_model.ref_allele}>{variant_model.alt_allele}"
+        elif variant_model.variant_type in ("deletion", "duplication", "insertion"):
+            clean_term = variant_model.hgvs_c.split(":")[-1] if ":" in variant_model.hgvs_c else variant_model.hgvs_c
+        else:
+            clean_term = variant_model.hgvs_c
 
     # Query external scientific evidence
     aliases = variant_model.equivalent_nomenclature if variant_model else None

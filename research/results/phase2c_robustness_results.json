@@ -1,0 +1,182 @@
+[
+  {
+    "adversarial_test_type": "Designed to verify INVALID_COORDINATE rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-297",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "Invalid coordinate range in 'c.150_145del': start coordinate (mRNA 200) must precede end coordinate (mRNA 195).",
+    "input_HGVS": "c.150_145del",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify INVALID_COORDINATE rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-298",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "Invalid coordinate range in 'c.400_350del': start coordinate (mRNA 450) must precede end coordinate (mRNA 400).",
+    "input_HGVS": "c.400_350del",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify INVALID_COORDINATE rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-299",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "Invalid coordinate range in 'c.250_240dup': start coordinate must precede or equal end coordinate.",
+    "input_HGVS": "c.250_240dup",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify SYNTAX_ERROR rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-300",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "Insertion coordinates must designate two consecutive flanking nucleotides (mRNA 100 and 103 given).",
+    "input_HGVS": "c.50_53insA",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify SYNTAX_ERROR rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-301",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "Insertion coordinates must designate two consecutive flanking nucleotides (mRNA 150 and 154 given).",
+    "input_HGVS": "c.100_104insGCC",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify SYNTAX_ERROR rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-302",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "Insertion coordinates must designate two consecutive flanking nucleotides (mRNA 250 and 255 given).",
+    "input_HGVS": "c.200_205insTT",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify OUT_OF_BOUNDS rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-303",
+    "class": "C12",
+    "error_code_returned": "OUT_OF_BOUNDS",
+    "error_message": "Coordinate '650' (mRNA 700) exceeds reference transcript length (628 bp).",
+    "input_HGVS": "c.650A>G",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify OUT_OF_BOUNDS rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-304",
+    "class": "C12",
+    "error_code_returned": "OUT_OF_BOUNDS",
+    "error_message": "Coordinate '750' (mRNA 800) exceeds reference transcript length (628 bp).",
+    "input_HGVS": "c.750del",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify OUT_OF_BOUNDS rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-305",
+    "class": "C12",
+    "error_code_returned": "OUT_OF_BOUNDS",
+    "error_message": "Coordinate '800' (mRNA 850) exceeds reference transcript length (628 bp).",
+    "input_HGVS": "c.800dup",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify OUT_OF_BOUNDS rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-306",
+    "class": "C12",
+    "error_code_returned": "OUT_OF_BOUNDS",
+    "error_message": "Intronic coordinate 'c.92+250' exceeds Intron 1 physical length (130 bp).",
+    "input_HGVS": "c.92+250G>A",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify OUT_OF_BOUNDS rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-307",
+    "class": "C12",
+    "error_code_returned": "OUT_OF_BOUNDS",
+    "error_message": "Intronic coordinate 'c.93-200' exceeds Intron 1 physical length (130 bp).",
+    "input_HGVS": "c.93-200G>A",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify OUT_OF_BOUNDS rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-308",
+    "class": "C12",
+    "error_code_returned": "OUT_OF_BOUNDS",
+    "error_message": "Intronic coordinate 'c.315+950' exceeds Intron 2 physical length (850 bp).",
+    "input_HGVS": "c.315+950G>A",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify INVALID_COORDINATE rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-309",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "HGVS nomenclature does not recognize base zero (c.0). Nucleotide preceding c.1 is c.-1.",
+    "input_HGVS": "c.0A>G",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify INVALID_COORDINATE rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-310",
+    "class": "C12",
+    "error_code_returned": "INVALID_COORDINATE",
+    "error_message": "Invalid 3' UTR offset '*0'.",
+    "input_HGVS": "c.*0A>G",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify SYNTAX_ERROR rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-311",
+    "class": "C12",
+    "error_code_returned": "SYNTAX_ERROR",
+    "error_message": "Invalid nucleotide 'Z' in alternate allele. Must be standard DNA bases (A, C, G, T).",
+    "input_HGVS": "c.50A>Z",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify SYNTAX_ERROR rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-312",
+    "class": "C12",
+    "error_code_returned": "SYNTAX_ERROR",
+    "error_message": "Unrecognized or malformed HGVS variant syntax 'c.delA'. Supported notations: SNV ('c.118C>T'), splice ('c.92+5G>C'), deletion ('c.15del', 'c.20_22del'), duplication ('c.27dup'), and insertion ('c.27_28insG').",
+    "input_HGVS": "c.delA",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify REFERENCE_MISMATCH rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-313",
+    "class": "C12",
+    "error_code_returned": "REFERENCE_MISMATCH",
+    "error_message": "Reference base mismatch at c.70: query states 'T', but reference sequence NM_000518.5 has 'G'.",
+    "input_HGVS": "c.70T>A",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  },
+  {
+    "adversarial_test_type": "Designed to verify REFERENCE_MISMATCH rejection without silent guessing.",
+    "candidate_id": "HBB-CP2-314",
+    "class": "C12",
+    "error_code_returned": "REFERENCE_MISMATCH",
+    "error_message": "Reference base mismatch at c.92+1: query states 'A', but genomic reference NG_000007.3 has 'G'.",
+    "input_HGVS": "c.92+1A>G",
+    "rejection_valid": true,
+    "robustness_status": "GRACEFULLY_REJECTED"
+  }
+]

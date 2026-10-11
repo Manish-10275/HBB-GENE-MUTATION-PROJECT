@@ -1,0 +1,44 @@
+{
+  "dataset": {
+    "candidate_count": 55,
+    "dataset_name": "phase2c_primary.json",
+    "dataset_path": "research/manifest/phase2c_primary.json",
+    "dataset_sha256": "39eb60de0e60dea8a76f2290912905b197fb1a04b738f72b0493bcdab2e0eb96",
+    "dataset_size_bytes": 59605,
+    "freeze_status": "FROZEN"
+  },
+  "governance": {
+    "benchmark_executed": false,
+    "historical_contamination_count": 0,
+    "historical_phase2b_test_hash": "2f6b88422b82d3f74c20f00985a34ffb5c1c78c311e4d8b584bc732cf5fc5994",
+    "performance_metrics_calculated": false
+  },
+  "metadata": {
+    "benchmark_protocol_version": "1.0.0",
+    "protocol_stage": "CP3",
+    "status": "FROZEN_PRE_BENCHMARK",
+    "title": "Phase 2C \u2014 CP3 Machine-Readable Environment Record"
+  },
+  "reference_sequences": {
+    "build": "GRCh38",
+    "cds_span": "c.1..c.444 (147 AA)",
+    "genomic_accession": "NG_000007.3",
+    "hbb_locus": "11p15.4",
+    "transcript_accession": "NM_000518.5"
+  },
+  "repository": {
+    "branch": "master",
+    "clean_working_tree_for_code": true,
+    "git_commit": "845f595cc039e006d74237945450c7b4a9569ee6",
+    "production_code_modified": false
+  },
+  "separate_cohorts": {
+    "conditional_exploratory_cohort_count": 64,
+    "synthetic_robustness_cohort_count": 18
+  },
+  "software_environment": {
+    "os_name": "nt",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python_version": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]"
+  }
+}

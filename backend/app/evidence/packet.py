@@ -1,8 +1,9 @@
-"""Assembles the structured EvidencePacket representing the complete scientific context."""
+"""Legacy EvidencePacket assembly preserved for backward-compatibility."""
 
 import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
+
 from app.models import (
     AlignmentSummary,
     ClinVarRecord,
@@ -12,13 +13,12 @@ from app.models import (
 )
 from app.reference import ReferenceData
 
-
 STANDARD_LIMITATIONS: List[str] = [
     "Analysis is based on in silico pairwise alignment against reference transcript NM_000518.5 (CCDS7753.1).",
     "Does not evaluate non-coding deep intronic regulatory elements outside the sequenced span.",
     "Database records reflect NCBI ClinVar and PubMed index at retrieval time and are not diagnostic determinations.",
     "Protein consequence predictions assume canonical translation initiation and reading frame.",
-    "This tool is strictly designed for research and educational investigation and does not provide clinical diagnoses."
+    "This tool is strictly designed for research and educational investigation and does not provide clinical diagnoses.",
 ]
 
 
@@ -29,11 +29,11 @@ def assemble_evidence_packet(
     clinvar_records: List[ClinVarRecord],
     pubmed_records: List[PubMedRecord],
     screening_classification: Optional[Any] = None,
-    custom_limitations: Optional[List[str]] = None
+    custom_limitations: Optional[List[str]] = None,
 ) -> EvidencePacket:
     """
     Constructs an inspectable, immutable scientific EvidencePacket.
-    This serves as the single source of truth for both report generation and AI synthesis.
+    Preserved for backward-compatibility with legacy routes and tests.
     """
     analysis_id = f"HBB-EXP-{uuid.uuid4().hex[:8].upper()}"
     timestamp = datetime.now(timezone.utc).isoformat()
@@ -57,7 +57,7 @@ def assemble_evidence_packet(
         "reference_source": ref_data.source,
         "reference_source_url": ref_data.source_url,
         "evidence_databases": ["NCBI ClinVar", "NCBI PubMed (E-utilities)"],
-        "nomenclature_standard": "HGVS Sequence Variant Nomenclature v20.05"
+        "nomenclature_standard": "HGVS Sequence Variant Nomenclature v20.05",
     }
 
     limitations = list(STANDARD_LIMITATIONS)
@@ -75,5 +75,5 @@ def assemble_evidence_packet(
         pubmed_records=pubmed_records,
         screening_classification=screening_classification,
         limitations=limitations,
-        source_metadata=source_meta
+        source_metadata=source_meta,
     )

@@ -1,0 +1,108 @@
+{
+  "summary": {
+    "split": "test",
+    "mode": "offline",
+    "total_variants": 36,
+    "concordant_variants": 36,
+    "exact_matches": 33,
+    "concordance_rate": 1.0,
+    "exact_match_rate": 0.9167,
+    "sensitivity": 1.0,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "f1_score": 1.0,
+    "discrepancy_count": 0,
+    "discrepancies_formatted": ""
+  },
+  "confusion_metrics": {
+    "true_positives": 24,
+    "false_positives": 0,
+    "true_negatives": 12,
+    "false_negatives": 0,
+    "sensitivity": 1.0,
+    "recall": 1.0,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "positive_predictive_value": 1.0,
+    "negative_predictive_value": 1.0,
+    "accuracy": 1.0,
+    "f1_score": 1.0
+  },
+  "multiclass_metrics": {
+    "overall_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "per_class": {
+      "3' UTR": {
+        "support": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "5' UTR": {
+        "support": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Frameshift": {
+        "support": 5,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "In-frame Indel": {
+        "support": 1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Invalid / Rejected": {
+        "support": 12,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Missense": {
+        "support": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Nonsense": {
+        "support": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Splice Site": {
+        "support": 5,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Synonymous": {
+        "support": 3,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      }
+    }
+  },
+  "retrieval_metrics": {
+    "evaluated_clinvar_records": 13,
+    "hit_at_1": 1.0,
+    "hit_at_1_count": 13,
+    "recall_at_5": 1.0,
+    "recall_at_5_count": 13,
+    "false_matches": 0,
+    "false_match_rate": 0.0,
+    "mean_retrieved_records": 1.0
+  },
+  "latency_metrics": {
+    "mean_ms": 702.74,
+    "median_ms": 0.14,
+    "p95_ms": 2408.59,
+    "min_ms": 0.02,
+    "max_ms": 2559.0
+  }
+}

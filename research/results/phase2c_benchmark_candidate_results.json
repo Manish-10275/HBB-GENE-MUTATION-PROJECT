@@ -1,0 +1,2807 @@
+[
+  {
+    "candidate_id": "HBB-CP2-016",
+    "class_id": "C01",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Asn109Lys",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Missense",
+      "external_protein": "N109K",
+      "star_rating": 2,
+      "variation_id": "3336287"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "N109K",
+    "external_protein_annotation_raw": "N109K",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Asn109Lys"
+    },
+    "hgvs": "c.327C>G",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "N109K",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Asn109Lys"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Asn109Lys"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Asn109Lys",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-017",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Val134Leu",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "V134L",
+      "star_rating": 2,
+      "variation_id": "3251803"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "V134L",
+    "external_protein_annotation_raw": "V134L",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Val134Leu"
+    },
+    "hgvs": "c.400G>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "V134L",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Val134Leu"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Val134Leu"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Val134Leu",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-018",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Ala129Thr",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "A129T",
+      "star_rating": 2,
+      "variation_id": "3235090"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "A129T",
+    "external_protein_annotation_raw": "A129T",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Ala129Thr"
+    },
+    "hgvs": "c.385G>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "A129T",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Ala129Thr"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Ala129Thr"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Ala129Thr",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-019",
+    "class_id": "C01",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Gly108Asp",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Missense",
+      "external_protein": "G108D",
+      "star_rating": 2,
+      "variation_id": "2735520"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "G108D",
+    "external_protein_annotation_raw": "G108D",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Gly108Asp"
+    },
+    "hgvs": "c.323G>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "G108D",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Gly108Asp"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Gly108Asp"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Gly108Asp",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-023",
+    "class_id": "C01",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Arg31Gly",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Missense",
+      "external_protein": "R31G",
+      "star_rating": 2,
+      "variation_id": "869243"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "R31G",
+    "external_protein_annotation_raw": "R31G",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Arg31Gly"
+    },
+    "hgvs": "c.91A>G",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "R31G",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Arg31Gly"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Arg31Gly"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Arg31Gly",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-026",
+    "class_id": "C01",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.His98Gln",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Missense",
+      "external_protein": "H98Q",
+      "star_rating": 2,
+      "variation_id": "801186"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "H98Q",
+    "external_protein_annotation_raw": "H98Q",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.His98Gln"
+    },
+    "hgvs": "c.294C>G",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "H98Q",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.His98Gln"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.His98Gln"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.His98Gln",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-027",
+    "class_id": "C01",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.His64Asn",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Missense",
+      "external_protein": "H64N",
+      "star_rating": 2,
+      "variation_id": "694445"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "H64N",
+    "external_protein_annotation_raw": "H64N",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.His64Asn"
+    },
+    "hgvs": "c.190C>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "H64N",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.His64Asn"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.His64Asn"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.His64Asn",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-028",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Ala14Val",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "A14V",
+      "star_rating": 2,
+      "variation_id": "619858"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "A14V",
+    "external_protein_annotation_raw": "A14V",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Ala14Val"
+    },
+    "hgvs": "c.41C>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "A14V",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Ala14Val"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Ala14Val"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Ala14Val",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-031",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Thr51Ser",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "T51S",
+      "star_rating": 2,
+      "variation_id": "495980"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "T51S",
+    "external_protein_annotation_raw": "T51S",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Thr51Ser"
+    },
+    "hgvs": "c.151A>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "T51S",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Thr51Ser"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Thr51Ser"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Thr51Ser",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-036",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Leu4Gln",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "L4Q",
+      "star_rating": 2,
+      "variation_id": "439132"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "L4Q",
+    "external_protein_annotation_raw": "L4Q",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Leu4Gln"
+    },
+    "hgvs": "c.11T>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "L4Q",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Leu4Gln"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Leu4Gln"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Leu4Gln",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-038",
+    "class_id": "C01",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Arg31Lys",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Missense",
+      "external_protein": "R31K",
+      "star_rating": 2,
+      "variation_id": "36337"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "R31K",
+    "external_protein_annotation_raw": "R31K",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Arg31Lys"
+    },
+    "hgvs": "c.92G>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "R31K",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Arg31Lys"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Arg31Lys"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Arg31Lys",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-058",
+    "class_id": "C04",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Glu7ArgfsTer13",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "E7fs",
+      "star_rating": 2,
+      "variation_id": "3068889"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "E7fs",
+    "external_protein_annotation_raw": "E7fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Glu7ArgfsTer13"
+    },
+    "hgvs": "c.19del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "E7fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Glu7ArgfsTer13"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Glu7ArgfsTer13"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Glu7ArgfsTer13",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-063",
+    "class_id": "C02",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Nonsense",
+    "expected_protein_consequence": "p.Gln128Ter",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Nonsense",
+      "external_protein": "Q128*",
+      "star_rating": 2,
+      "variation_id": "1705074"
+    },
+    "external_molecular_annotation_normalized": "Nonsense",
+    "external_molecular_annotation_raw": "Nonsense",
+    "external_protein_annotation_normalized": "Q128*",
+    "external_protein_annotation_raw": "Q128*",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Nonsense",
+      "expected_protein": "p.Gln128Ter"
+    },
+    "hgvs": "c.382C>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Nonsense",
+      "external_protein_normalized": "Q128*",
+      "runtime_molecular_normalized": "Nonsense",
+      "runtime_protein_normalized": "p.Gln128Ter"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Nonsense",
+      "protein_consequence": "p.Gln128Ter"
+    },
+    "runtime_molecular_consequence": "Nonsense",
+    "runtime_protein_consequence": "p.Gln128Ter",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-064",
+    "class_id": "C04",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Val127GlufsTer8",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "V127fs",
+      "star_rating": 2,
+      "variation_id": "1459872"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "V127fs",
+    "external_protein_annotation_raw": "V127fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Val127GlufsTer8"
+    },
+    "hgvs": "c.380_396del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "V127fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Val127GlufsTer8"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Val127GlufsTer8"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Val127GlufsTer8",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-067",
+    "class_id": "C04",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.His78ProfsTer13",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "H78fs",
+      "star_rating": 2,
+      "variation_id": "1065151"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "H78fs",
+    "external_protein_annotation_raw": "H78fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.His78ProfsTer13"
+    },
+    "hgvs": "c.233_234del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "H78fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.His78ProfsTer13"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.His78ProfsTer13"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.His78ProfsTer13",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-069",
+    "class_id": "C04",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Lys133SerfsTer7",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "K133fs",
+      "star_rating": 2,
+      "variation_id": "928758"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "K133fs",
+    "external_protein_annotation_raw": "K133fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Lys133SerfsTer7"
+    },
+    "hgvs": "c.396_397del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "K133fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Lys133SerfsTer7"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Lys133SerfsTer7"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Lys133SerfsTer7",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-071",
+    "class_id": "C04",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Glu23ValfsTer37",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "E23fs",
+      "star_rating": 2,
+      "variation_id": "869360"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "E23fs",
+    "external_protein_annotation_raw": "E23fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Glu23ValfsTer37"
+    },
+    "hgvs": "c.68_74del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "E23fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Glu23ValfsTer37"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Glu23ValfsTer37"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Glu23ValfsTer37",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-072",
+    "class_id": "C02",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Nonsense",
+    "expected_protein_consequence": "p.Glu23Ter",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Nonsense",
+      "external_protein": "E23*",
+      "star_rating": 2,
+      "variation_id": "869359"
+    },
+    "external_molecular_annotation_normalized": "Nonsense",
+    "external_molecular_annotation_raw": "Nonsense",
+    "external_protein_annotation_normalized": "E23*",
+    "external_protein_annotation_raw": "E23*",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Nonsense",
+      "expected_protein": "p.Glu23Ter"
+    },
+    "hgvs": "c.67G>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Nonsense",
+      "external_protein_normalized": "E23*",
+      "runtime_molecular_normalized": "Nonsense",
+      "runtime_protein_normalized": "p.Glu23Ter"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Nonsense",
+      "protein_consequence": "p.Glu23Ter"
+    },
+    "runtime_molecular_consequence": "Nonsense",
+    "runtime_protein_consequence": "p.Glu23Ter",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-073",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Ala11CysfsTer13",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "A11fs",
+      "star_rating": 2,
+      "variation_id": "869352"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "A11fs",
+    "external_protein_annotation_raw": "A11fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Ala11CysfsTer13"
+    },
+    "hgvs": "c.30dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "A11fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Ala11CysfsTer13"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Ala11CysfsTer13"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Ala11CysfsTer13",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-074",
+    "class_id": "C04",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Phe46LeufsTer16",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "F46fs",
+      "star_rating": 2,
+      "variation_id": "869338"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "F46fs",
+    "external_protein_annotation_raw": "F46fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Phe46LeufsTer16"
+    },
+    "hgvs": "c.138del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "F46fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Phe46LeufsTer16"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Phe46LeufsTer16"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Phe46LeufsTer16",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-080",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Glu44Ter",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "E44*",
+      "star_rating": 2,
+      "variation_id": "869297"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "E44*",
+    "external_protein_annotation_raw": "E44*",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Glu44Ter"
+    },
+    "hgvs": "c.129dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "E44*",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Glu44Ter"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Glu44Ter"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Glu44Ter",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-085",
+    "class_id": "C03",
+    "clinical_significance": "Likely benign",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely benign",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Leu69=",
+      "star_rating": 2,
+      "variation_id": "3627289"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Leu69=",
+    "external_protein_annotation_raw": "p.Leu69=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.207C>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Leu69=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-090",
+    "class_id": "C03",
+    "clinical_significance": "Likely benign",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely benign",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Thr124=",
+      "star_rating": 2,
+      "variation_id": "2501083"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Thr124=",
+    "external_protein_annotation_raw": "p.Thr124=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.372C>G",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Thr124=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-091",
+    "class_id": "C03",
+    "clinical_significance": "Likely benign",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely benign",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Lys9=",
+      "star_rating": 2,
+      "variation_id": "1568873"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Lys9=",
+    "external_protein_annotation_raw": "p.Lys9=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.27G>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Lys9=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-092",
+    "class_id": "C03",
+    "clinical_significance": "Likely benign",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely benign",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Glu7=",
+      "star_rating": 2,
+      "variation_id": "933190"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Glu7=",
+    "external_protein_annotation_raw": "p.Glu7=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.21G>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Glu7=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-095",
+    "class_id": "C03",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Gly17=",
+      "star_rating": 2,
+      "variation_id": "811787"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Gly17=",
+    "external_protein_annotation_raw": "p.Gly17=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.51C>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Gly17=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-096",
+    "class_id": "C03",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Arg31=",
+      "star_rating": 2,
+      "variation_id": "590773"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Arg31=",
+    "external_protein_annotation_raw": "p.Arg31=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.91A>C",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Arg31=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-097",
+    "class_id": "C03",
+    "clinical_significance": "Likely benign",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely benign",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Asn109=",
+      "star_rating": 2,
+      "variation_id": "495997"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Asn109=",
+    "external_protein_annotation_raw": "p.Asn109=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.327C>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Asn109=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-098",
+    "class_id": "C03",
+    "clinical_significance": "Likely benign",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely benign",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Leu15=",
+      "star_rating": 2,
+      "variation_id": "440467"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Leu15=",
+    "external_protein_annotation_raw": "p.Leu15=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.45G>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Leu15=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-103",
+    "class_id": "C03",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.Gly25=",
+      "star_rating": 2,
+      "variation_id": "15459"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.Gly25=",
+    "external_protein_annotation_raw": "p.Gly25=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.75T>A",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.Gly25=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-159",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Leu76TrpfsTer17",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "L76fs",
+      "star_rating": 2,
+      "variation_id": "619856"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "L76fs",
+    "external_protein_annotation_raw": "L76fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Leu76TrpfsTer17"
+    },
+    "hgvs": "c.221_224dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "L76fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Leu76TrpfsTer17"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Leu76TrpfsTer17"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Leu76TrpfsTer17",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-160",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Val99AlafsTer5",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "V99fs",
+      "star_rating": 2,
+      "variation_id": "619685"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "V99fs",
+    "external_protein_annotation_raw": "V99fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Val99AlafsTer5"
+    },
+    "hgvs": "c.292_295dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "V99fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Val99AlafsTer5"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Val99AlafsTer5"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Val99AlafsTer5",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-161",
+    "class_id": "C06",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Asp22GlyfsTer2",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "D22fs",
+      "star_rating": 2,
+      "variation_id": "551389"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "D22fs",
+    "external_protein_annotation_raw": "D22fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Asp22GlyfsTer2"
+    },
+    "hgvs": "c.64dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "D22fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Asp22GlyfsTer2"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Asp22GlyfsTer2"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Asp22GlyfsTer2",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-164",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Asn109GlnfsTer32",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "N109fs",
+      "star_rating": 2,
+      "variation_id": "439153"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "N109fs",
+    "external_protein_annotation_raw": "N109fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Asn109GlnfsTer32"
+    },
+    "hgvs": "c.323dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "N109fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Asn109GlnfsTer32"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Asn109GlnfsTer32"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Asn109GlnfsTer32",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-165",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Thr51ValfsTer4",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "T51fs",
+      "star_rating": 2,
+      "variation_id": "439135"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "T51fs",
+    "external_protein_annotation_raw": "T51fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Thr51ValfsTer4"
+    },
+    "hgvs": "c.143_146dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "T51fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Thr51ValfsTer4"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Thr51ValfsTer4"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Thr51ValfsTer4",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-168",
+    "class_id": "C03",
+    "clinical_significance": "Benign/Likely benign",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Synonymous",
+    "expected_protein_consequence": "p.(=)",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Benign/Likely benign",
+      "external_molecular": "Synonymous",
+      "external_protein": "p.His144=",
+      "star_rating": 2,
+      "variation_id": "36329"
+    },
+    "external_molecular_annotation_normalized": "Synonymous",
+    "external_molecular_annotation_raw": "Synonymous",
+    "external_protein_annotation_normalized": "p.His144=",
+    "external_protein_annotation_raw": "p.His144=",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Synonymous",
+      "expected_protein": "p.(=)"
+    },
+    "hgvs": "c.432C>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Synonymous",
+      "external_protein_normalized": "p.His144=",
+      "runtime_molecular_normalized": "Synonymous",
+      "runtime_protein_normalized": "p.(=)"
+    },
+    "notes": "Standard HGVS nomenclature",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Synonymous",
+      "protein_consequence": "p.(=)"
+    },
+    "runtime_molecular_consequence": "Synonymous",
+    "runtime_protein_consequence": "p.(=)",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-170",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Leu97AlafsTer6",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "L97fs",
+      "star_rating": 2,
+      "variation_id": "36309"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "L97fs",
+    "external_protein_annotation_raw": "L97fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Leu97AlafsTer6"
+    },
+    "hgvs": "c.287dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "L97fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Leu97AlafsTer6"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Leu97AlafsTer6"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Leu97AlafsTer6",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-175",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Asp48GlufsTer6",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "D48fs",
+      "star_rating": 2,
+      "variation_id": "15485"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "D48fs",
+    "external_protein_annotation_raw": "D48fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Asp48GlufsTer6"
+    },
+    "hgvs": "c.143dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "D48fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Asp48GlufsTer6"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Asp48GlufsTer6"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Asp48GlufsTer6",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-182",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Leu29ProfsTer16",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "L29fs",
+      "star_rating": 2,
+      "variation_id": "15432"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "L29fs",
+    "external_protein_annotation_raw": "L29fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Leu29ProfsTer16"
+    },
+    "hgvs": "c.85dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "L29fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Leu29ProfsTer16"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Leu29ProfsTer16"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Leu29ProfsTer16",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-183",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Trp16ValfsTer8",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "W16fs",
+      "star_rating": 2,
+      "variation_id": "15426"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "W16fs",
+    "external_protein_annotation_raw": "W16fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Trp16ValfsTer8"
+    },
+    "hgvs": "c.45dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "W16fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Trp16ValfsTer8"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Trp16ValfsTer8"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Trp16ValfsTer8",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-184",
+    "class_id": "C06",
+    "clinical_significance": "Pathogenic/Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Ser73LysfsTer2",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic/Likely pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "S73fs",
+      "star_rating": 2,
+      "variation_id": "15419"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "S73fs",
+    "external_protein_annotation_raw": "S73fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Ser73LysfsTer2"
+    },
+    "hgvs": "c.217dup",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "S73fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Ser73LysfsTer2"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Ser73LysfsTer2"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Ser73LysfsTer2",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-185",
+    "class_id": "C04",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Glu7GlyfsTer13",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "E7fs",
+      "star_rating": 2,
+      "variation_id": "15418"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "E7fs",
+    "external_protein_annotation_raw": "E7fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Glu7GlyfsTer13"
+    },
+    "hgvs": "c.20del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "E7fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Glu7GlyfsTer13"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Glu7GlyfsTer13"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Glu7GlyfsTer13",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-187",
+    "class_id": "C04",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Lys18ArgfsTer2",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "K18fs",
+      "star_rating": 2,
+      "variation_id": "15414"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "K18fs",
+    "external_protein_annotation_raw": "K18fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Lys18ArgfsTer2"
+    },
+    "hgvs": "c.51del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "K18fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Lys18ArgfsTer2"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Lys18ArgfsTer2"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Lys18ArgfsTer2",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-188",
+    "class_id": "C04",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Frameshift",
+    "expected_protein_consequence": "p.Lys9ValfsTer14",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Frameshift",
+      "external_protein": "K9fs",
+      "star_rating": 2,
+      "variation_id": "15413"
+    },
+    "external_molecular_annotation_normalized": "Frameshift",
+    "external_molecular_annotation_raw": "Frameshift",
+    "external_protein_annotation_normalized": "K9fs",
+    "external_protein_annotation_raw": "K9fs",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Frameshift",
+      "expected_protein": "p.Lys9ValfsTer14"
+    },
+    "hgvs": "c.25_26del",
+    "normalized_representations": {
+      "external_molecular_normalized": "Frameshift",
+      "external_protein_normalized": "K9fs",
+      "runtime_molecular_normalized": "Frameshift",
+      "runtime_protein_normalized": "p.Lys9ValfsTer14"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "DISCREPANCY",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Frameshift",
+      "protein_consequence": "p.Lys9ValfsTer14"
+    },
+    "runtime_molecular_consequence": "Frameshift",
+    "runtime_protein_consequence": "p.Lys9ValfsTer14",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-214",
+    "class_id": "C02",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Nonsense",
+    "expected_protein_consequence": "p.Glu122Ter",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Nonsense",
+      "external_protein": "E122*",
+      "star_rating": 2,
+      "variation_id": "15404"
+    },
+    "external_molecular_annotation_normalized": "Nonsense",
+    "external_molecular_annotation_raw": "Nonsense",
+    "external_protein_annotation_normalized": "E122*",
+    "external_protein_annotation_raw": "E122*",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Nonsense",
+      "expected_protein": "p.Glu122Ter"
+    },
+    "hgvs": "c.364G>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Nonsense",
+      "external_protein_normalized": "E122*",
+      "runtime_molecular_normalized": "Nonsense",
+      "runtime_protein_normalized": "p.Glu122Ter"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Nonsense",
+      "protein_consequence": "p.Glu122Ter"
+    },
+    "runtime_molecular_consequence": "Nonsense",
+    "runtime_protein_consequence": "p.Glu122Ter",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-241",
+    "class_id": "C09",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXTERNAL_ANNOTATION_INCOMPLETE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Splice Site Disruption",
+    "expected_protein_consequence": "p.?",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Splice Site Disruption",
+      "external_protein": "",
+      "star_rating": 2,
+      "variation_id": "439166"
+    },
+    "external_molecular_annotation_normalized": "Splice Site Disruption",
+    "external_molecular_annotation_raw": "Splice Site Disruption",
+    "external_protein_annotation_normalized": null,
+    "external_protein_annotation_raw": "",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Splice Site Disruption",
+      "expected_protein": "p.?"
+    },
+    "hgvs": "c.93-1G>C",
+    "normalized_representations": {
+      "external_molecular_normalized": "Splice Site Disruption",
+      "external_protein_normalized": null,
+      "runtime_molecular_normalized": "Splice Site Disruption",
+      "runtime_protein_normalized": "p.?"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "INCOMPLETE",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Splice Site Disruption",
+      "protein_consequence": "p.?"
+    },
+    "runtime_molecular_consequence": "Splice Site Disruption",
+    "runtime_protein_consequence": "p.?",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-244",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Arg105Ser",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "R105S",
+      "star_rating": 2,
+      "variation_id": "15525"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "R105S",
+    "external_protein_annotation_raw": "R105S",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Arg105Ser"
+    },
+    "hgvs": "c.315G>C",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "R105S",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Arg105Ser"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Arg105Ser"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Arg105Ser",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-245",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Val127Gly",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "V127G",
+      "star_rating": 3,
+      "variation_id": "15483"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "V127G",
+    "external_protein_annotation_raw": "V127G",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Val127Gly"
+    },
+    "hgvs": "c.380T>G",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "V127G",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Val127Gly"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Val127Gly"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Val127Gly",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-253",
+    "class_id": "C09",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXTERNAL_ANNOTATION_INCOMPLETE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Splice Site Disruption",
+    "expected_protein_consequence": "p.?",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Splice Site Disruption",
+      "external_protein": "",
+      "star_rating": 2,
+      "variation_id": "439167"
+    },
+    "external_molecular_annotation_normalized": "Splice Site Disruption",
+    "external_molecular_annotation_raw": "Splice Site Disruption",
+    "external_protein_annotation_normalized": null,
+    "external_protein_annotation_raw": "",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Splice Site Disruption",
+      "expected_protein": "p.?"
+    },
+    "hgvs": "c.93-2A>C",
+    "normalized_representations": {
+      "external_molecular_normalized": "Splice Site Disruption",
+      "external_protein_normalized": null,
+      "runtime_molecular_normalized": "Splice Site Disruption",
+      "runtime_protein_normalized": "p.?"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "INCOMPLETE",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Splice Site Disruption",
+      "protein_consequence": "p.?"
+    },
+    "runtime_molecular_consequence": "Splice Site Disruption",
+    "runtime_protein_consequence": "p.?",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-254",
+    "class_id": "C09",
+    "clinical_significance": "Likely pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXTERNAL_ANNOTATION_INCOMPLETE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Splice Site Disruption",
+    "expected_protein_consequence": "p.?",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Likely pathogenic",
+      "external_molecular": "Splice Site Disruption",
+      "external_protein": "",
+      "star_rating": 2,
+      "variation_id": "38671"
+    },
+    "external_molecular_annotation_normalized": "Splice Site Disruption",
+    "external_molecular_annotation_raw": "Splice Site Disruption",
+    "external_protein_annotation_normalized": null,
+    "external_protein_annotation_raw": "",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Splice Site Disruption",
+      "expected_protein": "p.?"
+    },
+    "hgvs": "c.316-1G>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Splice Site Disruption",
+      "external_protein_normalized": null,
+      "runtime_molecular_normalized": "Splice Site Disruption",
+      "runtime_protein_normalized": "p.?"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "INCOMPLETE",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Splice Site Disruption",
+      "protein_consequence": "p.?"
+    },
+    "runtime_molecular_consequence": "Splice Site Disruption",
+    "runtime_protein_consequence": "p.?",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-256",
+    "class_id": "C09",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXTERNAL_ANNOTATION_INCOMPLETE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Splice Site Disruption",
+    "expected_protein_consequence": "p.?",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Splice Site Disruption",
+      "external_protein": "",
+      "star_rating": 2,
+      "variation_id": "21190"
+    },
+    "external_molecular_annotation_normalized": "Splice Site Disruption",
+    "external_molecular_annotation_raw": "Splice Site Disruption",
+    "external_protein_annotation_normalized": null,
+    "external_protein_annotation_raw": "",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Splice Site Disruption",
+      "expected_protein": "p.?"
+    },
+    "hgvs": "c.316-2A>C",
+    "normalized_representations": {
+      "external_molecular_normalized": "Splice Site Disruption",
+      "external_protein_normalized": null,
+      "runtime_molecular_normalized": "Splice Site Disruption",
+      "runtime_protein_normalized": "p.?"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "INCOMPLETE",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Splice Site Disruption",
+      "protein_consequence": "p.?"
+    },
+    "runtime_molecular_consequence": "Splice Site Disruption",
+    "runtime_protein_consequence": "p.?",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-257",
+    "class_id": "C09",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXTERNAL_ANNOTATION_INCOMPLETE",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Splice Site Disruption",
+    "expected_protein_consequence": "p.?",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "Splice Site Disruption",
+      "external_protein": "",
+      "star_rating": 2,
+      "variation_id": "15562"
+    },
+    "external_molecular_annotation_normalized": "Splice Site Disruption",
+    "external_molecular_annotation_raw": "Splice Site Disruption",
+    "external_protein_annotation_normalized": null,
+    "external_protein_annotation_raw": "",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Splice Site Disruption",
+      "expected_protein": "p.?"
+    },
+    "hgvs": "c.93-2A>G",
+    "normalized_representations": {
+      "external_molecular_normalized": "Splice Site Disruption",
+      "external_protein_normalized": null,
+      "runtime_molecular_normalized": "Splice Site Disruption",
+      "runtime_protein_normalized": "p.?"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "INCOMPLETE",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Splice Site Disruption",
+      "protein_consequence": "p.?"
+    },
+    "runtime_molecular_consequence": "Splice Site Disruption",
+    "runtime_protein_consequence": "p.?",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-262",
+    "class_id": "C01",
+    "clinical_significance": "Uncertain significance",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "Missense",
+    "expected_protein_consequence": "p.Arg31Ser",
+    "external_clinvar_evidence": {
+      "clinical_significance": "Uncertain significance",
+      "external_molecular": "Missense",
+      "external_protein": "R31S",
+      "star_rating": 2,
+      "variation_id": "15368"
+    },
+    "external_molecular_annotation_normalized": "Missense",
+    "external_molecular_annotation_raw": "Missense",
+    "external_protein_annotation_normalized": "R31S",
+    "external_protein_annotation_raw": "R31S",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "Missense",
+      "expected_protein": "p.Arg31Ser"
+    },
+    "hgvs": "c.93G>T",
+    "normalized_representations": {
+      "external_molecular_normalized": "Missense",
+      "external_protein_normalized": "R31S",
+      "runtime_molecular_normalized": "Missense",
+      "runtime_protein_normalized": "p.Arg31Ser"
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "MATCH",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "Missense",
+      "protein_consequence": "p.Arg31Ser"
+    },
+    "runtime_molecular_consequence": "Missense",
+    "runtime_protein_consequence": "p.Arg31Ser",
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-265",
+    "class_id": "C11",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "3' UTR Regulatory",
+    "expected_protein_consequence": null,
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "3' UTR Regulatory",
+      "external_protein": "",
+      "star_rating": 2,
+      "variation_id": "36332"
+    },
+    "external_molecular_annotation_normalized": "3' UTR Regulatory",
+    "external_molecular_annotation_raw": "3' UTR Regulatory",
+    "external_protein_annotation_normalized": null,
+    "external_protein_annotation_raw": "",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "3' UTR Regulatory",
+      "expected_protein": null
+    },
+    "hgvs": "c.*110T>C",
+    "normalized_representations": {
+      "external_molecular_normalized": "3' UTR Regulatory",
+      "external_protein_normalized": null,
+      "runtime_molecular_normalized": "3' UTR Regulatory",
+      "runtime_protein_normalized": null
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "NOT_APPLICABLE",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "3' UTR Regulatory",
+      "protein_consequence": null
+    },
+    "runtime_molecular_consequence": "3' UTR Regulatory",
+    "runtime_protein_consequence": null,
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  },
+  {
+    "candidate_id": "HBB-CP2-268",
+    "class_id": "C11",
+    "clinical_significance": "Pathogenic",
+    "clinical_significance_status": "NO_CONFLICT",
+    "comparison_category": "EXACT_MOLECULAR_AGREEMENT",
+    "error_details": null,
+    "execution_status": "SUCCESS",
+    "expected_molecular_consequence": "3' UTR Regulatory",
+    "expected_protein_consequence": null,
+    "external_clinvar_evidence": {
+      "clinical_significance": "Pathogenic",
+      "external_molecular": "3' UTR Regulatory",
+      "external_protein": "",
+      "star_rating": 2,
+      "variation_id": "15473"
+    },
+    "external_molecular_annotation_normalized": "3' UTR Regulatory",
+    "external_molecular_annotation_raw": "3' UTR Regulatory",
+    "external_protein_annotation_normalized": null,
+    "external_protein_annotation_raw": "",
+    "frozen_expected_deterministic": {
+      "expected_molecular": "3' UTR Regulatory",
+      "expected_protein": null
+    },
+    "hgvs": "c.*113A>G",
+    "normalized_representations": {
+      "external_molecular_normalized": "3' UTR Regulatory",
+      "external_protein_normalized": null,
+      "runtime_molecular_normalized": "3' UTR Regulatory",
+      "runtime_protein_normalized": null
+    },
+    "notes": "Legacy notation documented",
+    "primary_endpoint_status": "MATCH",
+    "protein_endpoint_status": "NOT_APPLICABLE",
+    "reference_transcript": "NM_000518.5",
+    "regression_concordant": true,
+    "runtime_engine_output": {
+      "engine_error": null,
+      "execution_status": "SUCCESS",
+      "molecular_consequence": "3' UTR Regulatory",
+      "protein_consequence": null
+    },
+    "runtime_molecular_consequence": "3' UTR Regulatory",
+    "runtime_protein_consequence": null,
+    "software_regression_check": {
+      "molecular_reproduced": true,
+      "protein_reproduced": true,
+      "regression_concordant": true
+    }
+  }
+]

@@ -1,0 +1,200 @@
+{
+  "class_stratification": {
+    "C01": {
+      "ci_95": [
+        76.84,
+        100.0
+      ],
+      "discrepancies": 0,
+      "k": 14,
+      "n": 14,
+      "name": "Missense SNVs",
+      "percentage": 100.0,
+      "status": "REPRESENTED"
+    },
+    "C02": {
+      "ci_95": [
+        29.24,
+        100.0
+      ],
+      "discrepancies": 0,
+      "k": 3,
+      "n": 3,
+      "name": "Nonsense (Stop-Gain)",
+      "percentage": 100.0,
+      "status": "REPRESENTED"
+    },
+    "C03": {
+      "ci_95": [
+        69.15,
+        100.0
+      ],
+      "discrepancies": 0,
+      "k": 10,
+      "n": 10,
+      "name": "Synonymous (Silent)",
+      "percentage": 100.0,
+      "status": "REPRESENTED"
+    },
+    "C04": {
+      "ci_95": [
+        66.37,
+        100.0
+      ],
+      "discrepancies": 0,
+      "k": 9,
+      "n": 9,
+      "name": "Frameshift Deletions",
+      "percentage": 100.0,
+      "status": "REPRESENTED"
+    },
+    "C05": {
+      "ci_95": null,
+      "discrepancies": 0,
+      "k": 0,
+      "n": 0,
+      "name": "In-Frame Indels / Deletions",
+      "percentage": null,
+      "status": "NOT_REPRESENTED_IN_PRIMARY_COHORT"
+    },
+    "C06": {
+      "ci_95": [
+        73.54,
+        100.0
+      ],
+      "discrepancies": 0,
+      "k": 12,
+      "n": 12,
+      "name": "Frameshift Duplications / Insertions",
+      "percentage": 100.0,
+      "status": "REPRESENTED"
+    },
+    "C07": {
+      "ci_95": null,
+      "discrepancies": 0,
+      "k": 0,
+      "n": 0,
+      "name": "In-Frame Insertions / Duplications",
+      "percentage": null,
+      "status": "NOT_REPRESENTED_IN_PRIMARY_COHORT"
+    },
+    "C08": {
+      "ci_95": null,
+      "discrepancies": 0,
+      "k": 0,
+      "n": 0,
+      "name": "Splice Donor Disruptions",
+      "percentage": null,
+      "status": "NOT_REPRESENTED_IN_PRIMARY_COHORT"
+    },
+    "C09": {
+      "ci_95": [
+        47.82,
+        100.0
+      ],
+      "discrepancies": 0,
+      "k": 5,
+      "n": 5,
+      "name": "Splice Acceptor Disruptions",
+      "percentage": 100.0,
+      "status": "REPRESENTED"
+    },
+    "C10": {
+      "ci_95": null,
+      "discrepancies": 0,
+      "k": 0,
+      "n": 0,
+      "name": "5' UTR Regulatory Variants",
+      "percentage": null,
+      "status": "NOT_REPRESENTED_IN_PRIMARY_COHORT"
+    },
+    "C11": {
+      "ci_95": [
+        15.81,
+        100.0
+      ],
+      "discrepancies": 0,
+      "k": 2,
+      "n": 2,
+      "name": "3' UTR Regulatory Variants",
+      "percentage": 100.0,
+      "status": "REPRESENTED"
+    }
+  },
+  "metadata": {
+    "cohort_counts": {
+      "conditional_n": 64,
+      "primary_n": 55,
+      "robustness_n": 18
+    },
+    "dataset_sha256": "39eb60de0e60dea8a76f2290912905b197fb1a04b738f72b0493bcdab2e0eb96",
+    "engine_commit": "845f595cc039e006d74237945450c7b4a9569ee6",
+    "environment": {
+      "operating_system": "Windows 10",
+      "python_version": "3.14.7"
+    },
+    "execution_timestamp": "2026-10-08T17:28:01.897905+00:00",
+    "protocol_sha256": "e4bad0a095cdfa8112a649f3d8a0794cf0078d218611bb965020b100ba368969",
+    "protocol_stage": "BENCHMARK_EXECUTION",
+    "title": "Phase 2C Primary Benchmark Execution Summary"
+  },
+  "primary_endpoint": {
+    "ci_95_clopper_pearson": [
+      93.51,
+      100.0
+    ],
+    "discrepancies": 0,
+    "k": 55,
+    "metric_name": "Molecular Consequence Concordance Against Frozen External Annotations",
+    "n": 55,
+    "percentage": 100.0
+  },
+  "robustness_experiment": {
+    "ci_95_clopper_pearson": [
+      81.47,
+      100.0
+    ],
+    "cohort_name": "C12 Synthetic Negative Controls",
+    "gracefully_rejected_k": 18,
+    "n": 18,
+    "rejection_percentage": 100.0
+  },
+  "secondary_endpoints": {
+    "error_category_distribution": {
+      "ENGINE_ERROR": 0,
+      "ENGINE_UNSUPPORTED": 0,
+      "EXACT_MOLECULAR_AGREEMENT": 30,
+      "EXTERNAL_ANNOTATION_INCOMPLETE": 5,
+      "EXTERNAL_CONFLICT": 0,
+      "HGVS_AMBIGUITY": 0,
+      "MOLECULAR_AGREEMENT_PROTEIN_DIFFERENCE": 20,
+      "PROTEIN_AGREEMENT_CLASS_DIFFERENCE": 0,
+      "REFERENCE_MISMATCH": 0,
+      "UNRESOLVED": 0
+    },
+    "execution_failures": 0,
+    "protein_consequence_concordance": {
+      "ci_95_clopper_pearson": [
+        37.07,
+        64.65
+      ],
+      "k": 28,
+      "n": 55,
+      "percentage": 50.91,
+      "status_breakdown": {
+        "DISCREPANCY": 20,
+        "INCOMPLETE": 5,
+        "MATCH": 28,
+        "NOT_APPLICABLE": 2
+      }
+    },
+    "unsupported_variants": 0
+  },
+  "software_regression_metadata": {
+    "k": 55,
+    "metric_name": "Isolated Software Regression Check against Field B",
+    "n": 55,
+    "note": "Software self-consistency metadata only; does not participate in biological concordance.",
+    "percentage": 100.0
+  }
+}

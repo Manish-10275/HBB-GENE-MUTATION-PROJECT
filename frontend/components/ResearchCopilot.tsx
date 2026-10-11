@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { Send, Loader2, Database, BookOpen, Dna, HelpCircle, Cpu, AlertCircle, CheckCircle2 } from "lucide-react";
-import { askCopilot, fetchHealth } from "../lib/api";
-import { AiSynthesisStatus, CopilotChatMessage, EvidencePacket } from "../lib/types";
+import { askCopilot, fetchHealth, synthesizeCopilotV2 } from "../lib/api";
+import { AiSynthesisStatus, CopilotChatMessage, CopilotResponse, CopilotResponseDTO, EvidencePacket } from "../lib/types";
 
 interface ResearchCopilotProps {
   evidencePacket: EvidencePacket | null;
@@ -160,8 +160,24 @@ export const ResearchCopilot: React.FC<ResearchCopilotProps> = ({
     setLoading(true);
 
     try {
-      const res = await askCopilot(q, evidencePacket, updatedMessages);
-      setCopilotStatus(res.status);
+      let res: CopilotResponse | CopilotResponseDTO;
+      const primaryV = evidencePacket.variants[0];
+      if (primaryV?.hgvs_c) {
+        try {
+          res = await synthesizeCopilotV2({
+            query: primaryV.hgvs_c,
+            question: q,
+            include_evidence: true,
+            include_literature: true,
+          });
+        } catch {
+          res = await askCopilot(q, evidencePacket, updatedMessages);
+        }
+      } else {
+        res = await askCopilot(q, evidencePacket, updatedMessages);
+      }
+
+      setCopilotStatus(res.status as any);
       setIsFallback(!!res.fallback);
       const assistantMsg: CopilotChatMessage = {
         role: "assistant",

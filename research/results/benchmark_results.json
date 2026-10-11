@@ -1,0 +1,1125 @@
+{
+  "summary": {
+    "split": "test",
+    "mode": "offline",
+    "total_variants": 36,
+    "concordant_variants": 36,
+    "exact_matches": 33,
+    "concordance_rate": 1.0,
+    "exact_match_rate": 0.9167,
+    "sensitivity": 1.0,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "f1_score": 1.0,
+    "discrepancy_count": 0,
+    "discrepancies_formatted": ""
+  },
+  "confusion_metrics": {
+    "true_positives": 24,
+    "false_positives": 0,
+    "true_negatives": 12,
+    "false_negatives": 0,
+    "sensitivity": 1.0,
+    "recall": 1.0,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "positive_predictive_value": 1.0,
+    "negative_predictive_value": 1.0,
+    "accuracy": 1.0,
+    "f1_score": 1.0
+  },
+  "multiclass_metrics": {
+    "overall_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "per_class": {
+      "3' UTR": {
+        "support": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "5' UTR": {
+        "support": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Frameshift": {
+        "support": 5,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "In-frame Indel": {
+        "support": 1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Invalid / Rejected": {
+        "support": 12,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Missense": {
+        "support": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Nonsense": {
+        "support": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Splice Site": {
+        "support": 5,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "Synonymous": {
+        "support": 3,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      }
+    }
+  },
+  "retrieval_metrics": {
+    "evaluated_clinvar_records": 13,
+    "hit_at_1": 1.0,
+    "hit_at_1_count": 13,
+    "recall_at_5": 1.0,
+    "recall_at_5_count": 13,
+    "false_matches": 0,
+    "false_match_rate": 0.0,
+    "mean_retrieved_records": 1.0
+  },
+  "latency_metrics": {
+    "mean_ms": 702.74,
+    "median_ms": 0.14,
+    "p95_ms": 2408.59,
+    "min_ms": 0.02,
+    "max_ms": 2559.0
+  },
+  "variants": [
+    {
+      "id": "HBB-BM-003",
+      "name": "Codon 43 (G>T) Nonsense",
+      "query": "c.130G>T",
+      "variant_class": "substitution",
+      "expected_p": "p.Glu44Ter",
+      "predicted_p": "p.Glu44Ter",
+      "expected_impact": "Nonsense",
+      "predicted_impact": "Nonsense",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Glu44Ter",
+        "predicted_p": "p.Glu44Ter",
+        "expected_impact": "Nonsense",
+        "predicted_impact": "Nonsense"
+      },
+      "expected_clinvar_id": "15406",
+      "retrieved_clinvar_ids": [
+        "15406"
+      ],
+      "exact_match_clinvar_ids": [
+        "15406"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 1662.77
+    },
+    {
+      "id": "HBB-BM-004",
+      "name": "Codon 15 (G>A) Nonsense (HGVS Codon 16)",
+      "query": "c.47G>A",
+      "variant_class": "substitution",
+      "expected_p": "p.Trp16Ter",
+      "predicted_p": "p.Trp16Ter",
+      "expected_impact": "Nonsense",
+      "predicted_impact": "Nonsense",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Trp16Ter",
+        "predicted_p": "p.Trp16Ter",
+        "expected_impact": "Nonsense",
+        "predicted_impact": "Nonsense"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.12
+    },
+    {
+      "id": "HBB-BM-006",
+      "name": "Codon 4 (CTG>TGA) Deletion PTC",
+      "query": "c.9del",
+      "variant_class": "deletion",
+      "expected_p": "p.Leu4Ter",
+      "predicted_p": "p.Leu4Ter",
+      "expected_impact": "Frameshift",
+      "predicted_impact": "Frameshift Deletion (Immediate Termination)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Leu4Ter",
+        "predicted_p": "p.Leu4Ter",
+        "expected_impact": "Frameshift",
+        "predicted_impact": "Frameshift Deletion (Immediate Termination)"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 1.09
+    },
+    {
+      "id": "HBB-BM-011",
+      "name": "Hemoglobin D-Los Angeles / D-Punjab",
+      "query": "c.364G>C",
+      "variant_class": "substitution",
+      "expected_p": "p.Glu122Gln",
+      "predicted_p": "p.Glu122Gln",
+      "expected_impact": "Missense",
+      "predicted_impact": "Missense",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Glu122Gln",
+        "predicted_p": "p.Glu122Gln",
+        "expected_impact": "Missense",
+        "predicted_impact": "Missense"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.07
+    },
+    {
+      "id": "HBB-BM-012",
+      "name": "Hemoglobin Richmond",
+      "query": "c.307A>C",
+      "variant_class": "substitution",
+      "expected_p": "p.Asn103His",
+      "predicted_p": "p.Asn103His",
+      "expected_impact": "Missense",
+      "predicted_impact": "Missense",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Asn103His",
+        "predicted_p": "p.Asn103His",
+        "expected_impact": "Missense",
+        "predicted_impact": "Missense"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.07
+    },
+    {
+      "id": "HBB-BM-013",
+      "name": "Codon 3 Synonymous Variant",
+      "query": "c.9T>C",
+      "variant_class": "substitution",
+      "expected_p": "p.(=)",
+      "predicted_p": "p.(=)",
+      "expected_impact": "Synonymous",
+      "predicted_impact": "Synonymous",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.(=)",
+        "predicted_p": "p.(=)",
+        "expected_impact": "Synonymous",
+        "predicted_impact": "Synonymous"
+      },
+      "expected_clinvar_id": "193106",
+      "retrieved_clinvar_ids": [
+        "193106"
+      ],
+      "exact_match_clinvar_ids": [
+        "193106"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2085.36
+    },
+    {
+      "id": "HBB-BM-014",
+      "name": "Codon 5 Synonymous Variant",
+      "query": "c.15T>A",
+      "variant_class": "substitution",
+      "expected_p": "p.(=)",
+      "predicted_p": "p.(=)",
+      "expected_impact": "Synonymous",
+      "predicted_impact": "Synonymous",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.(=)",
+        "predicted_p": "p.(=)",
+        "expected_impact": "Synonymous",
+        "predicted_impact": "Synonymous"
+      },
+      "expected_clinvar_id": "3572117",
+      "retrieved_clinvar_ids": [
+        "3572117"
+      ],
+      "exact_match_clinvar_ids": [
+        "3572117"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 1534.97
+    },
+    {
+      "id": "HBB-BM-016",
+      "name": "Codon 59 Synonymous In Silico Control",
+      "query": "c.177T>C",
+      "variant_class": "substitution",
+      "expected_p": "p.(=)",
+      "predicted_p": "p.(=)",
+      "expected_impact": "Synonymous",
+      "predicted_impact": "Synonymous",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.(=)",
+        "predicted_p": "p.(=)",
+        "expected_impact": "Synonymous",
+        "predicted_impact": "Synonymous"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.17
+    },
+    {
+      "id": "HBB-BM-020",
+      "name": "Codon 40 Single Base Deletion",
+      "query": "c.118del",
+      "variant_class": "deletion",
+      "expected_p": "p.Gln40ArgfsTer21",
+      "predicted_p": "p.Gln40ArgfsTer22",
+      "expected_impact": "Frameshift Deletion",
+      "predicted_impact": "Frameshift Deletion",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": false,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": false,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Gln40ArgfsTer21",
+        "predicted_p": "p.Gln40ArgfsTer22",
+        "expected_impact": "Frameshift Deletion",
+        "predicted_impact": "Frameshift Deletion"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.47
+    },
+    {
+      "id": "HBB-BM-021",
+      "name": "Codons 15/16 (-TG) Frameshift",
+      "query": "c.46_47del",
+      "variant_class": "deletion",
+      "expected_p": "p.Trp16GlyfsTer7",
+      "predicted_p": "p.Trp16GlyfsTer7",
+      "expected_impact": "Frameshift Deletion",
+      "predicted_impact": "Frameshift Deletion",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Trp16GlyfsTer7",
+        "predicted_p": "p.Trp16GlyfsTer7",
+        "expected_impact": "Frameshift Deletion",
+        "predicted_impact": "Frameshift Deletion"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.14
+    },
+    {
+      "id": "HBB-BM-022",
+      "name": "Codon 18 In-Frame Deletion",
+      "query": "c.52_54del",
+      "variant_class": "deletion",
+      "expected_p": "p.Lys18del",
+      "predicted_p": "p.Lys18del",
+      "expected_impact": "In-frame Deletion",
+      "predicted_impact": "In-frame Deletion",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": true,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Lys18del",
+        "predicted_p": "p.Lys18del",
+        "expected_impact": "In-frame Deletion",
+        "predicted_impact": "In-frame Deletion"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.11
+    },
+    {
+      "id": "HBB-BM-025",
+      "name": "Codon 122 Frameshift Duplication",
+      "query": "c.363dup",
+      "variant_class": "duplication",
+      "expected_p": "p.Glu122fs",
+      "predicted_p": "p.Glu122ArgfsTer19",
+      "expected_impact": "Frameshift Duplication",
+      "predicted_impact": "Frameshift Duplication",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": false,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": false,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Glu122fs",
+        "predicted_p": "p.Glu122ArgfsTer19",
+        "expected_impact": "Frameshift Duplication",
+        "predicted_impact": "Frameshift Duplication"
+      },
+      "expected_clinvar_id": "3572119",
+      "retrieved_clinvar_ids": [
+        "3572119"
+      ],
+      "exact_match_clinvar_ids": [
+        "3572119"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2293.32
+    },
+    {
+      "id": "HBB-BM-027",
+      "name": "Codon 39/40 Flanked Insertion",
+      "query": "c.117_118insA",
+      "variant_class": "insertion",
+      "expected_p": "p.Gln40fs",
+      "predicted_p": "p.Gln40ThrfsTer5",
+      "expected_impact": "Frameshift Insertion",
+      "predicted_impact": "Frameshift Insertion",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": false,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "coding_consequence",
+        "exact_protein_match": false,
+        "concordant_protein_match": true,
+        "impact_match": true,
+        "expected_p": "p.Gln40fs",
+        "predicted_p": "p.Gln40ThrfsTer5",
+        "expected_impact": "Frameshift Insertion",
+        "predicted_impact": "Frameshift Insertion"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 1.27
+    },
+    {
+      "id": "HBB-BM-029",
+      "name": "IVS1-1 (G>T) Invariant Donor Splice Disruption",
+      "query": "c.92+1G>T",
+      "variant_class": "splice_donor",
+      "expected_p": "p.?",
+      "predicted_p": "p.?",
+      "expected_impact": "Splice Site Disruption",
+      "predicted_impact": "Splice Site Disruption (Intron 1 donor invariant GT dinucleotide)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": "p.?",
+        "predicted_p": "p.?"
+      },
+      "expected_clinvar_id": "15437",
+      "retrieved_clinvar_ids": [
+        "15437"
+      ],
+      "exact_match_clinvar_ids": [
+        "15437"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 920.27
+    },
+    {
+      "id": "HBB-BM-030",
+      "name": "IVS1-2 (T>C) Invariant Donor Splice Disruption",
+      "query": "c.92+2T>C",
+      "variant_class": "splice_donor",
+      "expected_p": "p.?",
+      "predicted_p": "p.?",
+      "expected_impact": "Splice Site Disruption",
+      "predicted_impact": "Splice Site Disruption (Intron 1 donor invariant GT dinucleotide)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": "p.?",
+        "predicted_p": "p.?"
+      },
+      "expected_clinvar_id": "36334",
+      "retrieved_clinvar_ids": [
+        "36334"
+      ],
+      "exact_match_clinvar_ids": [
+        "36334"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2087.7
+    },
+    {
+      "id": "HBB-BM-032",
+      "name": "IVS2-2 (T>C) Invariant Donor Splice Disruption",
+      "query": "c.315+2T>C",
+      "variant_class": "splice_donor",
+      "expected_p": "p.?",
+      "predicted_p": "p.?",
+      "expected_impact": "Splice Site Disruption",
+      "predicted_impact": "Splice Site Disruption (Intron 2 donor invariant GT dinucleotide)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": "p.?",
+        "predicted_p": "p.?"
+      },
+      "expected_clinvar_id": "869355",
+      "retrieved_clinvar_ids": [
+        "869355"
+      ],
+      "exact_match_clinvar_ids": [
+        "869355"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2071.69
+    },
+    {
+      "id": "HBB-BM-033",
+      "name": "IVS1 Acceptor (-1 G>A) Disruption",
+      "query": "c.93-1G>A",
+      "variant_class": "splice_acceptor",
+      "expected_p": "p.?",
+      "predicted_p": "p.?",
+      "expected_impact": "Splice Site Disruption",
+      "predicted_impact": "Splice Site Disruption (Intron 1 acceptor invariant AG dinucleotide)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": "p.?",
+        "predicted_p": "p.?"
+      },
+      "expected_clinvar_id": "15446",
+      "retrieved_clinvar_ids": [
+        "15446"
+      ],
+      "exact_match_clinvar_ids": [
+        "15446"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2408.59
+    },
+    {
+      "id": "HBB-BM-034",
+      "name": "IVS2 Acceptor (-1 G>A) Disruption",
+      "query": "c.316-1G>A",
+      "variant_class": "splice_acceptor",
+      "expected_p": "p.?",
+      "predicted_p": "p.?",
+      "expected_impact": "Splice Site Disruption",
+      "predicted_impact": "Splice Site Disruption (Intron 2 acceptor invariant AG dinucleotide)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": "p.?",
+        "predicted_p": "p.?"
+      },
+      "expected_clinvar_id": "552712",
+      "retrieved_clinvar_ids": [
+        "552712"
+      ],
+      "exact_match_clinvar_ids": [
+        "552712"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 1002.11
+    },
+    {
+      "id": "HBB-BM-037",
+      "name": "Cap Site (+1 A>C) Mutation",
+      "query": "c.-50A>C",
+      "variant_class": "5_utr",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "5' UTR (Non-coding)",
+      "predicted_impact": "5' UTR (Non-coding)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": null,
+        "predicted_p": null
+      },
+      "expected_clinvar_id": "36292",
+      "retrieved_clinvar_ids": [
+        "36292"
+      ],
+      "exact_match_clinvar_ids": [
+        "36292"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2201.9
+    },
+    {
+      "id": "HBB-BM-038",
+      "name": "5' UTR In Silico Substitution",
+      "query": "c.-5A>G",
+      "variant_class": "5_utr",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "5' UTR (Non-coding)",
+      "predicted_impact": "5' UTR (Non-coding)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": null,
+        "predicted_p": null
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.14
+    },
+    {
+      "id": "HBB-BM-039",
+      "name": "PolyA Signal Variant (AATAAA->AATGAA)",
+      "query": "c.*112A>G",
+      "variant_class": "3_utr",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "3' UTR (Non-coding)",
+      "predicted_impact": "3' UTR (Non-coding)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": null,
+        "predicted_p": null
+      },
+      "expected_clinvar_id": "15476",
+      "retrieved_clinvar_ids": [
+        "15476"
+      ],
+      "exact_match_clinvar_ids": [
+        "15476"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2076.36
+    },
+    {
+      "id": "HBB-BM-042",
+      "name": "3' UTR Non-coding Substitution (*10C>T)",
+      "query": "c.*10C>T",
+      "variant_class": "3_utr",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "3' UTR (Non-coding)",
+      "predicted_impact": "3' UTR (Non-coding)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": null,
+        "predicted_p": null
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.12
+    },
+    {
+      "id": "HBB-BM-043",
+      "name": "3' UTR Non-coding Substitution (*102C>T)",
+      "query": "c.*102C>T",
+      "variant_class": "3_utr",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "3' UTR (Non-coding)",
+      "predicted_impact": "3' UTR (Non-coding)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": null,
+        "predicted_p": null
+      },
+      "expected_clinvar_id": "495966",
+      "retrieved_clinvar_ids": [
+        "495966"
+      ],
+      "exact_match_clinvar_ids": [
+        "495966"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2559.0
+    },
+    {
+      "id": "HBB-BM-044",
+      "name": "3' UTR Non-coding Substitution (*129T>C)",
+      "query": "c.*129T>C",
+      "variant_class": "3_utr",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "3' UTR (Non-coding)",
+      "predicted_impact": "3' UTR (Non-coding)",
+      "is_rejected": false,
+      "parse_error": null,
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "non_coding_or_splice",
+        "impact_match": true,
+        "protein_match": true,
+        "expected_p": null,
+        "predicted_p": null
+      },
+      "expected_clinvar_id": "3599779",
+      "retrieved_clinvar_ids": [
+        "3599779"
+      ],
+      "exact_match_clinvar_ids": [
+        "3599779"
+      ],
+      "rank_0_is_exact": true,
+      "latency_ms": 2390.3
+    },
+    {
+      "id": "HBB-BM-NEG-001",
+      "name": "Inverted Deletion Coordinates",
+      "query": "c.129_126del",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Invalid coordinate range in 'c.129_126del': start coordinate must precede end coordinate.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.08
+    },
+    {
+      "id": "HBB-BM-NEG-002",
+      "name": "Non-consecutive Insertion Coordinates",
+      "query": "c.25_28insG",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Invalid insertion coordinates 'c.25_28ins': HGVS insertion coordinates must be two consecutive flanking positions.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.08
+    },
+    {
+      "id": "HBB-BM-NEG-003",
+      "name": "Transcript Out-of-Bounds Deletion",
+      "query": "c.999del",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Deletion coordinate 'c.999' is out of bounds for reference NM_000518.5.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.05
+    },
+    {
+      "id": "HBB-BM-NEG-004",
+      "name": "Transcript Out-of-Bounds Substitution",
+      "query": "c.999C>T",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "c. position '999' is out of bounds for reference NM_000518.5 (length 628 bp).",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.04
+    },
+    {
+      "id": "HBB-BM-NEG-005",
+      "name": "Reference Base Mismatch at c.9 (Expected T, got A)",
+      "query": "c.9delA",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Reference base mismatch at c.9: query states 'A', but reference NM_000518.5 has 'T'.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.06
+    },
+    {
+      "id": "HBB-BM-NEG-006",
+      "name": "Reference Base Mismatch at c.118 (Expected C, got A)",
+      "query": "c.118A>T",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Reference base mismatch at c.118: input states 'A', but reference NM_000518.5 has 'C'.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.04
+    },
+    {
+      "id": "HBB-BM-NEG-007",
+      "name": "Reference Base Mismatch at c.20 (Expected A, got G)",
+      "query": "c.20G>T",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Reference base mismatch at c.20: input states 'G', but reference NM_000518.5 has 'A'.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.04
+    },
+    {
+      "id": "HBB-BM-NEG-008",
+      "name": "Reference Base Mismatch at c.19 (Expected G, got A)",
+      "query": "c.19A>G",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Reference base mismatch at c.19: input states 'A', but reference NM_000518.5 has 'G'.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.02
+    },
+    {
+      "id": "HBB-BM-NEG-009",
+      "name": "Reference Base Mismatch at c.92+5 (Expected G, got A)",
+      "query": "c.92+5A>C",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Reference base mismatch at c.92+5: input states 'A', but genomic reference NG_000007.3 has 'G'.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.03
+    },
+    {
+      "id": "HBB-BM-NEG-010",
+      "name": "Reference Base Mismatch at c.315+1 (Expected G, got A)",
+      "query": "c.315+1A>G",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Reference base mismatch at c.315+1: input states 'A', but genomic reference NG_000007.3 has 'G'.",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.03
+    },
+    {
+      "id": "HBB-BM-NEG-015",
+      "name": "Out-of-Bounds Intron 1 Offset",
+      "query": "c.92+999G>A",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Intronic coordinate 'c.92+999' is outside supported HBB gene boundaries or introns (supported: Intron 1 c.92+1..c.92+130 / c.93-1..c.93-130; Intron 2 c.315+1..c.315+850 / c.316-1..c.316-850).",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.04
+    },
+    {
+      "id": "HBB-BM-NEG-016",
+      "name": "Out-of-Bounds Intron 2 Offset",
+      "query": "c.315+999G>A",
+      "variant_class": "negative_control",
+      "expected_p": null,
+      "predicted_p": null,
+      "expected_impact": "Invalid / Rejected",
+      "predicted_impact": null,
+      "is_rejected": true,
+      "parse_error": "Intronic coordinate 'c.315+999' is outside supported HBB gene boundaries or introns (supported: Intron 1 c.92+1..c.92+130 / c.93-1..c.93-130; Intron 2 c.315+1..c.315+850 / c.316-1..c.316-850).",
+      "is_exact_protein_match": true,
+      "is_concordant": true,
+      "comparison_details": {
+        "mode": "negative_control",
+        "correctly_rejected": true,
+        "expected_impact": "Invalid / Rejected",
+        "predicted_impact": "Rejected"
+      },
+      "expected_clinvar_id": null,
+      "retrieved_clinvar_ids": [],
+      "exact_match_clinvar_ids": [],
+      "rank_0_is_exact": false,
+      "latency_ms": 0.03
+    }
+  ]
+}

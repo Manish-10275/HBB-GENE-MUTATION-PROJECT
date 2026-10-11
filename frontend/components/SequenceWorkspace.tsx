@@ -172,9 +172,9 @@ export const SequenceWorkspace: React.FC<SequenceWorkspaceProps> = ({
                 handleLoadExample(valCase);
               }}
               className="text-xs px-2.5 py-1 rounded font-mono font-semibold transition-all border bg-amber-100 text-amber-900 border-amber-300 hover:bg-amber-200 shadow-2xs"
-              title="Controlled validation benchmark: c.118C>T (p.Gln40Ter)"
+              title="Standard reference case: c.118C>T (p.Gln40Ter)"
             >
-              ★ Benchmark c.118C&gt;T
+              ★ Reference Case c.118C&gt;T
             </button>
           )}
         </div>

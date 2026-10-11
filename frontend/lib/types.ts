@@ -1,5 +1,154 @@
 /** Type definitions for HBB Mutation Analyzer */
 
+// ==========================================
+// V2 API DTO Interfaces (Architecture Rewrite)
+// ==========================================
+
+export interface CodonChangeDTO {
+  codon_number: number;
+  c_start: number;
+  c_end: number;
+  ref_codon: string;
+  sample_codon: string;
+  ref_aa: string;
+  sample_aa: string;
+  is_stop_gain: boolean;
+  is_stop_loss: boolean;
+  is_synonymous: boolean;
+}
+
+export interface DiscrepancyDTO {
+  field_name: string;
+  deterministic_value: string;
+  evidence_value: string;
+  description: string;
+}
+
+export interface ProvenanceDTO {
+  source: string;
+  provider: string;
+  mode: string;
+  retrieval_status: string;
+  external_identifier?: string | null;
+  is_fixture: boolean;
+  retrieval_timestamp?: string | null;
+}
+
+export interface ClinVarRecordDTO {
+  variation_id: string;
+  accession: string;
+  title: string;
+  clinical_significance: string;
+  review_status: string;
+  conditions: string[];
+  url: string;
+  is_exact_match: boolean;
+  retrieval_rank: number;
+  provenance?: ProvenanceDTO | null;
+}
+
+export interface ClinVarEvidenceResponseDTO {
+  query: string;
+  status: string;
+  records: ClinVarRecordDTO[];
+  primary_record?: ClinVarRecordDTO | null;
+  discrepancies: DiscrepancyDTO[];
+  error_message?: string | null;
+  provenance?: ProvenanceDTO | null;
+}
+
+export interface VariantAnalysisRequestDTO {
+  query: string;
+  include_evidence?: boolean;
+}
+
+export interface VariantAnalysisResponseDTO {
+  input_query: string;
+  normalized_hgvs_c: string;
+  transcript_accession: string;
+  c_position: string;
+  variant_type: string;
+  region: string;
+  ref_allele: string;
+  alt_allele: string;
+  mrna_position?: number | null;
+  genomic_accession?: string | null;
+  genomic_coordinate?: number | null;
+  hgvs_p?: string | null;
+  molecular_impact: string;
+  codon_change?: CodonChangeDTO | null;
+  ptc_coordinate?: number | null;
+  confidence: string;
+  equivalent_nomenclature: string[];
+  nomenclature_notes?: string | null;
+  evidence_status?: string | null;
+  clinvar_evidence?: ClinVarEvidenceResponseDTO | null;
+  discrepancies: DiscrepancyDTO[];
+}
+
+export interface PubMedArticleDTO {
+  pmid: string;
+  title: string;
+  journal?: string | null;
+  pub_date?: string | null;
+  authors: string[];
+  url: string;
+  provenance?: ProvenanceDTO | null;
+}
+
+export interface PubMedEvidenceResponseDTO {
+  query: string;
+  status: string;
+  articles: PubMedArticleDTO[];
+  error_message?: string | null;
+  provenance?: ProvenanceDTO | null;
+}
+
+export interface CopilotSynthesisRequestDTO {
+  query: string;
+  question?: string | null;
+  include_evidence?: boolean;
+  include_literature?: boolean;
+}
+
+export interface CopilotResponseDTO {
+  answer: string;
+  evidence_used: string[];
+  limitations_cited: string[];
+  status: string;
+  provider: string;
+  model: string;
+  fallback: boolean;
+  provenance_sections: string[];
+  provenance_label: string;
+}
+
+export interface HealthDiagnosticsResponseDTO {
+  status: string;
+  service: string;
+  version: string;
+  reference_availability: Record<string, boolean>;
+  evidence_provider_mode: string;
+  fixture_availability: Record<string, boolean>;
+}
+
+export interface AnalysisErrorDTO {
+  error_code: string;
+  message: string;
+  details?: Record<string, any>;
+}
+
+/** Tri-state categorization for evidence retrieval availability */
+export type EvidenceAvailabilityStatus =
+  | "available"
+  | "not_found"              // "No evidence found"
+  | "unretrievable"          // "Evidence could not be retrieved"
+  | "fixture_unavailable";   // "Offline fixture unavailable"
+
+// ==========================================
+// Alignment & Legacy Models (Retained for UI)
+// ==========================================
+
 export interface AlignmentBlock {
   block_index: number;
   ref_start: number;

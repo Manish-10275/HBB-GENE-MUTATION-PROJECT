@@ -1,0 +1,1337 @@
+{
+  "excluded_clinvar_variation_ids": [
+    "15126",
+    "15161",
+    "15333",
+    "15401",
+    "15402",
+    "15405",
+    "15406",
+    "15417",
+    "15437",
+    "15438",
+    "1544548",
+    "15446",
+    "15447",
+    "15470",
+    "15476",
+    "15488",
+    "193106",
+    "21191",
+    "3572117",
+    "3572119",
+    "3599779",
+    "36292",
+    "36308",
+    "36334",
+    "393702",
+    "393707",
+    "446748",
+    "495966",
+    "495970",
+    "552712",
+    "869321",
+    "869355"
+  ],
+  "excluded_variant_patterns": [
+    "C.*102C>T",
+    "C.*10C>T",
+    "C.*10T>C",
+    "C.*111A>G",
+    "C.*112A>G",
+    "C.*129T>C",
+    "C.*25T>C",
+    "C.*67G>T",
+    "C.*6C>G",
+    "C.-12A>G",
+    "C.-29A>G",
+    "C.-29G>A",
+    "C.-50A>C",
+    "C.-50A>G",
+    "C.-5A>G",
+    "C.-78A>C",
+    "C.0C>T",
+    "C.100A>G",
+    "C.108C>T",
+    "C.114G>A",
+    "C.117C>T",
+    "C.117_118INSA",
+    "C.118",
+    "C.118A>T",
+    "C.118C>A",
+    "C.118C>T",
+    "C.118C>X",
+    "C.118C>Z",
+    "C.118DEL",
+    "C.118DELC",
+    "C.118DELINS",
+    "C.118_119",
+    "C.118_119INSTTTT",
+    "C.118_120DEL3",
+    "C.124_127DEL",
+    "C.126_129DEL",
+    "C.126_129DELAAAA",
+    "C.126_129DELCTTT",
+    "C.126_129DELTCTT",
+    "C.127_129DEL",
+    "C.127_129DELTTT",
+    "C.129_126DEL",
+    "C.130G>T",
+    "C.15DEL",
+    "C.15DELT",
+    "C.15T>A",
+    "C.177T>C",
+    "C.19A>G",
+    "C.19G>A",
+    "C.200_150DEL",
+    "C.20A>T",
+    "C.20G>T",
+    "C.20_22DEL",
+    "C.20_23DUP",
+    "C.25_28INSG",
+    "C.26_27INSG",
+    "C.26_28INSG",
+    "C.27DUP",
+    "C.27DUPG",
+    "C.27_28INSG",
+    "C.28_30DEL",
+    "C.2T>C",
+    "C.307A>C",
+    "C.315+1A>G",
+    "C.315+1G>A",
+    "C.315+2T>C",
+    "C.315+999G>A",
+    "C.315G>A",
+    "C.316-1G>A",
+    "C.316-2A>G",
+    "C.363DUP",
+    "C.364G>C",
+    "C.435_436INSGCC",
+    "C.46_47DEL",
+    "C.47G>A",
+    "C.52A>T",
+    "C.52_54DEL",
+    "C.52_57DEL",
+    "C.53_54INSTTT",
+    "C.53_55DEL",
+    "C.54_55INSGCC",
+    "C.54_55INSGCCGCT",
+    "C.5_7DEL",
+    "C.79G>A",
+    "C.8DEL",
+    "C.8DELA",
+    "C.92+1G>T",
+    "C.92+2T>C",
+    "C.92+5A>C",
+    "C.92+5G>C",
+    "C.92+999G>A",
+    "C.93-1G>A",
+    "C.93G>C",
+    "C.9999A>G",
+    "C.999C>T",
+    "C.999DEL",
+    "C.9A>G",
+    "C.9C>T",
+    "C.9DEL",
+    "C.9DELA",
+    "C.9DELT",
+    "C.9T>C",
+    "G.5227002C>T",
+    "INVALID_SYNTAX_123"
+  ],
+  "generated_timestamp": "2026-10-08T00:46:00Z",
+  "known_historical_aliases": {
+    "codon 15": [
+      "c.47G>A",
+      "p.Trp16Ter",
+      "Trp15Ter"
+    ],
+    "codon 16": [
+      "c.51delC",
+      "c.51del",
+      "CD 16 (-C)"
+    ],
+    "codon 30": [
+      "c.93G>A",
+      "c.93G>C",
+      "CD 30"
+    ],
+    "codon 39": [
+      "c.118C>T",
+      "NM_000518.5:c.118C>T",
+      "p.Gln40Ter",
+      "Gln39Ter"
+    ],
+    "codon 41/42": [
+      "c.126_129del",
+      "c.124_127del",
+      "NM_000518.5:c.126_129del",
+      "fs 41/42"
+    ],
+    "codon 43": [
+      "c.130G>T",
+      "p.Glu44Ter",
+      "Glu43Ter"
+    ],
+    "codon 8": [
+      "c.25_26delAA",
+      "CD 8 (-AA)"
+    ],
+    "codon 8/9": [
+      "c.27dup",
+      "c.27_28insG",
+      "c.26_27insG",
+      "CD 8/9"
+    ],
+    "hb c": [
+      "c.19G>A",
+      "NM_000518.5:c.19G>A",
+      "p.Glu7Lys",
+      "Glu6Lys"
+    ],
+    "hb d-los angeles": [
+      "c.364G>C",
+      "NM_000518.5:c.364G>C",
+      "p.Glu122Gln",
+      "Glu121Gln"
+    ],
+    "hb d-punjab": [
+      "c.364G>C",
+      "NM_000518.5:c.364G>C",
+      "p.Glu122Gln",
+      "Glu121Gln"
+    ],
+    "hb e": [
+      "c.79G>A",
+      "NM_000518.5:c.79G>A",
+      "p.Glu27Lys",
+      "Glu26Lys"
+    ],
+    "hb o-arab": [
+      "c.307A>C",
+      "NM_000518.5:c.307A>C",
+      "p.Lys103Asn",
+      "Lys102Asn"
+    ],
+    "hb s": [
+      "c.20A>T",
+      "NM_000518.5:c.20A>T",
+      "p.Glu7Val",
+      "Glu6Val"
+    ],
+    "ivs-i-1": [
+      "c.92+1G>A",
+      "c.92+1G>T",
+      "NM_000518.5:c.92+1G>A",
+      "NM_000518.5:c.92+1G>T"
+    ],
+    "ivs-i-5": [
+      "c.92+5G>C",
+      "NM_000518.5:c.92+5G>C"
+    ],
+    "ivs-ii-1": [
+      "c.315+1G>A",
+      "NM_000518.5:c.315+1G>A"
+    ],
+    "ivs-ii-654": [
+      "c.316-197C>T"
+    ]
+  },
+  "manifest_entries": [
+    {
+      "clinvar_id": "15402",
+      "hgvs_canonical": "NM_000518.5:c.118C>T",
+      "hgvs_input": "c.118C>T",
+      "id": "HBB-BM-001",
+      "name": "Codon 39 (C>T) / Mediterranean beta-zero",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "15333",
+      "hgvs_canonical": "NM_000518.5:c.20A>T",
+      "hgvs_input": "c.20A>T",
+      "id": "HBB-BM-007",
+      "name": "Sickle Cell Disease (HbS)",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "15126",
+      "hgvs_canonical": "NM_000518.5:c.19G>A",
+      "hgvs_input": "c.19G>A",
+      "id": "HBB-BM-008",
+      "name": "Hemoglobin C (HbC)",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "869321",
+      "hgvs_canonical": "NM_000518.5:c.93G>C",
+      "hgvs_input": "c.93G>C",
+      "id": "HBB-BM-010",
+      "name": "Codon 30 (G>C) Boundary Missense",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "15417",
+      "hgvs_canonical": "NM_000518.5:c.126_129del",
+      "hgvs_input": "c.126_129del",
+      "id": "HBB-BM-018",
+      "name": "Codons 41/42 (-TCTT) Frameshift",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "36308",
+      "hgvs_canonical": "NM_000518.5:c.27dup",
+      "hgvs_input": "c.27dup",
+      "id": "HBB-BM-024",
+      "name": "Codons 8/9 (+G) Frameshift Duplication",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "15447",
+      "hgvs_canonical": "NM_000518.5:c.92+5G>C",
+      "hgvs_input": "c.92+5G>C",
+      "id": "HBB-BM-028",
+      "name": "IVS1-5 (G>C) Indian Beta-Plus Thalassemia",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "393702",
+      "hgvs_canonical": "NM_000518.5:c.-29G>A",
+      "hgvs_input": "c.-29G>A",
+      "id": "HBB-BM-036",
+      "name": "5' UTR (-29 G>A) Pathogenic Mutation",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "15488",
+      "hgvs_canonical": "NM_000518.5:c.*111A>G",
+      "hgvs_input": "c.*111A>G",
+      "id": "HBB-BM-040",
+      "name": "PolyA Signal Variant (*111A>G)",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "invalid_syntax_123",
+      "id": "HBB-BM-NEG-011",
+      "name": "Garbage Non-HGVS String",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.0C>T",
+      "id": "HBB-BM-NEG-017",
+      "name": "Illegal Coordinate Zero in HGVS",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118delins",
+      "id": "HBB-BM-NEG-020",
+      "name": "Empty Delins Sequence",
+      "source": "manifest:development.json"
+    },
+    {
+      "clinvar_id": "15406",
+      "hgvs_canonical": "NM_000518.5:c.130G>T",
+      "hgvs_input": "c.130G>T",
+      "id": "HBB-BM-003",
+      "name": "Codon 43 (G>T) Nonsense",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.47G>A",
+      "hgvs_input": "c.47G>A",
+      "id": "HBB-BM-004",
+      "name": "Codon 15 (G>A) Nonsense (HGVS Codon 16)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.9del",
+      "hgvs_input": "c.9del",
+      "id": "HBB-BM-006",
+      "name": "Codon 4 (CTG>TGA) Deletion PTC",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.364G>C",
+      "hgvs_input": "c.364G>C",
+      "id": "HBB-BM-011",
+      "name": "Hemoglobin D-Los Angeles / D-Punjab",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.307A>C",
+      "hgvs_input": "c.307A>C",
+      "id": "HBB-BM-012",
+      "name": "Hemoglobin Richmond",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "193106",
+      "hgvs_canonical": "NM_000518.5:c.9T>C",
+      "hgvs_input": "c.9T>C",
+      "id": "HBB-BM-013",
+      "name": "Codon 3 Synonymous Variant",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "3572117",
+      "hgvs_canonical": "NM_000518.5:c.15T>A",
+      "hgvs_input": "c.15T>A",
+      "id": "HBB-BM-014",
+      "name": "Codon 5 Synonymous Variant",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.177T>C",
+      "hgvs_input": "c.177T>C",
+      "id": "HBB-BM-016",
+      "name": "Codon 59 Synonymous In Silico Control",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.118del",
+      "hgvs_input": "c.118del",
+      "id": "HBB-BM-020",
+      "name": "Codon 40 Single Base Deletion",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.46_47del",
+      "hgvs_input": "c.46_47del",
+      "id": "HBB-BM-021",
+      "name": "Codons 15/16 (-TG) Frameshift",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.52_54del",
+      "hgvs_input": "c.52_54del",
+      "id": "HBB-BM-022",
+      "name": "Codon 18 In-Frame Deletion",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "3572119",
+      "hgvs_canonical": "NM_000518.5:c.363dup",
+      "hgvs_input": "c.363dup",
+      "id": "HBB-BM-025",
+      "name": "Codon 122 Frameshift Duplication",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.117_118insA",
+      "hgvs_input": "c.117_118insA",
+      "id": "HBB-BM-027",
+      "name": "Codon 39/40 Flanked Insertion",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "15437",
+      "hgvs_canonical": "NM_000518.5:c.92+1G>T",
+      "hgvs_input": "c.92+1G>T",
+      "id": "HBB-BM-029",
+      "name": "IVS1-1 (G>T) Invariant Donor Splice Disruption",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "36334",
+      "hgvs_canonical": "NM_000518.5:c.92+2T>C",
+      "hgvs_input": "c.92+2T>C",
+      "id": "HBB-BM-030",
+      "name": "IVS1-2 (T>C) Invariant Donor Splice Disruption",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "869355",
+      "hgvs_canonical": "NM_000518.5:c.315+2T>C",
+      "hgvs_input": "c.315+2T>C",
+      "id": "HBB-BM-032",
+      "name": "IVS2-2 (T>C) Invariant Donor Splice Disruption",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "15446",
+      "hgvs_canonical": "NM_000518.5:c.93-1G>A",
+      "hgvs_input": "c.93-1G>A",
+      "id": "HBB-BM-033",
+      "name": "IVS1 Acceptor (-1 G>A) Disruption",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "552712",
+      "hgvs_canonical": "NM_000518.5:c.316-1G>A",
+      "hgvs_input": "c.316-1G>A",
+      "id": "HBB-BM-034",
+      "name": "IVS2 Acceptor (-1 G>A) Disruption",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "36292",
+      "hgvs_canonical": "NM_000518.5:c.-50A>C",
+      "hgvs_input": "c.-50A>C",
+      "id": "HBB-BM-037",
+      "name": "Cap Site (+1 A>C) Mutation",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.-5A>G",
+      "hgvs_input": "c.-5A>G",
+      "id": "HBB-BM-038",
+      "name": "5' UTR In Silico Substitution",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "15476",
+      "hgvs_canonical": "NM_000518.5:c.*112A>G",
+      "hgvs_input": "c.*112A>G",
+      "id": "HBB-BM-039",
+      "name": "PolyA Signal Variant (AATAAA->AATGAA)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.*10C>T",
+      "hgvs_input": "c.*10C>T",
+      "id": "HBB-BM-042",
+      "name": "3' UTR Non-coding Substitution (*10C>T)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "495966",
+      "hgvs_canonical": "NM_000518.5:c.*102C>T",
+      "hgvs_input": "c.*102C>T",
+      "id": "HBB-BM-043",
+      "name": "3' UTR Non-coding Substitution (*102C>T)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "3599779",
+      "hgvs_canonical": "NM_000518.5:c.*129T>C",
+      "hgvs_input": "c.*129T>C",
+      "id": "HBB-BM-044",
+      "name": "3' UTR Non-coding Substitution (*129T>C)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.129_126del",
+      "id": "HBB-BM-NEG-001",
+      "name": "Inverted Deletion Coordinates",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.25_28insG",
+      "id": "HBB-BM-NEG-002",
+      "name": "Non-consecutive Insertion Coordinates",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.999del",
+      "id": "HBB-BM-NEG-003",
+      "name": "Transcript Out-of-Bounds Deletion",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.999C>T",
+      "id": "HBB-BM-NEG-004",
+      "name": "Transcript Out-of-Bounds Substitution",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.9delA",
+      "id": "HBB-BM-NEG-005",
+      "name": "Reference Base Mismatch at c.9 (Expected T, got A)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118A>T",
+      "id": "HBB-BM-NEG-006",
+      "name": "Reference Base Mismatch at c.118 (Expected C, got A)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.20G>T",
+      "id": "HBB-BM-NEG-007",
+      "name": "Reference Base Mismatch at c.20 (Expected A, got G)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.19A>G",
+      "id": "HBB-BM-NEG-008",
+      "name": "Reference Base Mismatch at c.19 (Expected G, got A)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.92+5A>C",
+      "id": "HBB-BM-NEG-009",
+      "name": "Reference Base Mismatch at c.92+5 (Expected G, got A)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.315+1A>G",
+      "id": "HBB-BM-NEG-010",
+      "name": "Reference Base Mismatch at c.315+1 (Expected G, got A)",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.92+999G>A",
+      "id": "HBB-BM-NEG-015",
+      "name": "Out-of-Bounds Intron 1 Offset",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.315+999G>A",
+      "id": "HBB-BM-NEG-016",
+      "name": "Out-of-Bounds Intron 2 Offset",
+      "source": "manifest:frozen_test.json"
+    },
+    {
+      "clinvar_id": "15402",
+      "hgvs_canonical": "NM_000518.5:c.118C>T",
+      "hgvs_input": "c.118C>T",
+      "id": "HBB-BM-001",
+      "name": "Codon 39 (C>T) / Mediterranean beta-zero",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15405",
+      "hgvs_canonical": "NM_000518.5:c.114G>A",
+      "hgvs_input": "c.114G>A",
+      "id": "HBB-BM-002",
+      "name": "Codon 37 (G>A) Nonsense",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15406",
+      "hgvs_canonical": "NM_000518.5:c.130G>T",
+      "hgvs_input": "c.130G>T",
+      "id": "HBB-BM-003",
+      "name": "Codon 43 (G>T) Nonsense",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.47G>A",
+      "hgvs_input": "c.47G>A",
+      "id": "HBB-BM-004",
+      "name": "Codon 15 (G>A) Nonsense (HGVS Codon 16)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15401",
+      "hgvs_canonical": "NM_000518.5:c.52A>T",
+      "hgvs_input": "c.52A>T",
+      "id": "HBB-BM-005",
+      "name": "Codon 18 (legacy Cd17 A>T) Nonsense",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.9del",
+      "hgvs_input": "c.9del",
+      "id": "HBB-BM-006",
+      "name": "Codon 4 (CTG>TGA) Deletion PTC",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15333",
+      "hgvs_canonical": "NM_000518.5:c.20A>T",
+      "hgvs_input": "c.20A>T",
+      "id": "HBB-BM-007",
+      "name": "Sickle Cell Disease (HbS)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15126",
+      "hgvs_canonical": "NM_000518.5:c.19G>A",
+      "hgvs_input": "c.19G>A",
+      "id": "HBB-BM-008",
+      "name": "Hemoglobin C (HbC)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15161",
+      "hgvs_canonical": "NM_000518.5:c.79G>A",
+      "hgvs_input": "c.79G>A",
+      "id": "HBB-BM-009",
+      "name": "Hemoglobin E (HbE)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "869321",
+      "hgvs_canonical": "NM_000518.5:c.93G>C",
+      "hgvs_input": "c.93G>C",
+      "id": "HBB-BM-010",
+      "name": "Codon 30 (G>C) Boundary Missense",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.364G>C",
+      "hgvs_input": "c.364G>C",
+      "id": "HBB-BM-011",
+      "name": "Hemoglobin D-Los Angeles / D-Punjab",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.307A>C",
+      "hgvs_input": "c.307A>C",
+      "id": "HBB-BM-012",
+      "name": "Hemoglobin Richmond",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "193106",
+      "hgvs_canonical": "NM_000518.5:c.9T>C",
+      "hgvs_input": "c.9T>C",
+      "id": "HBB-BM-013",
+      "name": "Codon 3 Synonymous Variant",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "3572117",
+      "hgvs_canonical": "NM_000518.5:c.15T>A",
+      "hgvs_input": "c.15T>A",
+      "id": "HBB-BM-014",
+      "name": "Codon 5 Synonymous Variant",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "1544548",
+      "hgvs_canonical": "NM_000518.5:c.108C>T",
+      "hgvs_input": "c.108C>T",
+      "id": "HBB-BM-015",
+      "name": "Codon 36 Synonymous Variant",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.177T>C",
+      "hgvs_input": "c.177T>C",
+      "id": "HBB-BM-016",
+      "name": "Codon 59 Synonymous In Silico Control",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.315G>A",
+      "hgvs_input": "c.315G>A",
+      "id": "HBB-BM-017",
+      "name": "Codon 105 Synonymous Boundary Control",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15417",
+      "hgvs_canonical": "NM_000518.5:c.126_129del",
+      "hgvs_input": "c.126_129del",
+      "id": "HBB-BM-018",
+      "name": "Codons 41/42 (-TCTT) Frameshift",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15417",
+      "hgvs_canonical": "NM_000518.5:c.126_129del",
+      "hgvs_input": "c.124_127del",
+      "id": "HBB-BM-019",
+      "name": "Codons 41/42 (-TCTT) 5'-Aligned Alias",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.118del",
+      "hgvs_input": "c.118del",
+      "id": "HBB-BM-020",
+      "name": "Codon 40 Single Base Deletion",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.46_47del",
+      "hgvs_input": "c.46_47del",
+      "id": "HBB-BM-021",
+      "name": "Codons 15/16 (-TG) Frameshift",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.52_54del",
+      "hgvs_input": "c.52_54del",
+      "id": "HBB-BM-022",
+      "name": "Codon 18 In-Frame Deletion",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.28_30del",
+      "hgvs_input": "c.28_30del",
+      "id": "HBB-BM-023",
+      "name": "Codon 10 In-Frame Deletion",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "36308",
+      "hgvs_canonical": "NM_000518.5:c.27dup",
+      "hgvs_input": "c.27dup",
+      "id": "HBB-BM-024",
+      "name": "Codons 8/9 (+G) Frameshift Duplication",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "3572119",
+      "hgvs_canonical": "NM_000518.5:c.363dup",
+      "hgvs_input": "c.363dup",
+      "id": "HBB-BM-025",
+      "name": "Codon 122 Frameshift Duplication",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "36308",
+      "hgvs_canonical": "NM_000518.5:c.27dup",
+      "hgvs_input": "c.27_28insG",
+      "id": "HBB-BM-026",
+      "name": "Codons 8/9 Flanked Insertion Alias",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.117_118insA",
+      "hgvs_input": "c.117_118insA",
+      "id": "HBB-BM-027",
+      "name": "Codon 39/40 Flanked Insertion",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15447",
+      "hgvs_canonical": "NM_000518.5:c.92+5G>C",
+      "hgvs_input": "c.92+5G>C",
+      "id": "HBB-BM-028",
+      "name": "IVS1-5 (G>C) Indian Beta-Plus Thalassemia",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15437",
+      "hgvs_canonical": "NM_000518.5:c.92+1G>T",
+      "hgvs_input": "c.92+1G>T",
+      "id": "HBB-BM-029",
+      "name": "IVS1-1 (G>T) Invariant Donor Splice Disruption",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "36334",
+      "hgvs_canonical": "NM_000518.5:c.92+2T>C",
+      "hgvs_input": "c.92+2T>C",
+      "id": "HBB-BM-030",
+      "name": "IVS1-2 (T>C) Invariant Donor Splice Disruption",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15438",
+      "hgvs_canonical": "NM_000518.5:c.315+1G>A",
+      "hgvs_input": "c.315+1G>A",
+      "id": "HBB-BM-031",
+      "name": "IVS2-1 (G>A) Invariant Donor Splice Disruption",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "869355",
+      "hgvs_canonical": "NM_000518.5:c.315+2T>C",
+      "hgvs_input": "c.315+2T>C",
+      "id": "HBB-BM-032",
+      "name": "IVS2-2 (T>C) Invariant Donor Splice Disruption",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15446",
+      "hgvs_canonical": "NM_000518.5:c.93-1G>A",
+      "hgvs_input": "c.93-1G>A",
+      "id": "HBB-BM-033",
+      "name": "IVS1 Acceptor (-1 G>A) Disruption",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "552712",
+      "hgvs_canonical": "NM_000518.5:c.316-1G>A",
+      "hgvs_input": "c.316-1G>A",
+      "id": "HBB-BM-034",
+      "name": "IVS2 Acceptor (-1 G>A) Disruption",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "21191",
+      "hgvs_canonical": "NM_000518.5:c.316-2A>G",
+      "hgvs_input": "c.316-2A>G",
+      "id": "HBB-BM-035",
+      "name": "IVS2 Acceptor (-2 A>G) Disruption",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "393702",
+      "hgvs_canonical": "NM_000518.5:c.-29G>A",
+      "hgvs_input": "c.-29G>A",
+      "id": "HBB-BM-036",
+      "name": "5' UTR (-29 G>A) Pathogenic Mutation",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "36292",
+      "hgvs_canonical": "NM_000518.5:c.-50A>C",
+      "hgvs_input": "c.-50A>C",
+      "id": "HBB-BM-037",
+      "name": "Cap Site (+1 A>C) Mutation",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.-5A>G",
+      "hgvs_input": "c.-5A>G",
+      "id": "HBB-BM-038",
+      "name": "5' UTR In Silico Substitution",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15476",
+      "hgvs_canonical": "NM_000518.5:c.*112A>G",
+      "hgvs_input": "c.*112A>G",
+      "id": "HBB-BM-039",
+      "name": "PolyA Signal Variant (AATAAA->AATGAA)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15488",
+      "hgvs_canonical": "NM_000518.5:c.*111A>G",
+      "hgvs_input": "c.*111A>G",
+      "id": "HBB-BM-040",
+      "name": "PolyA Signal Variant (*111A>G)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "393707",
+      "hgvs_canonical": "NM_000518.5:c.*6C>G",
+      "hgvs_input": "c.*6C>G",
+      "id": "HBB-BM-041",
+      "name": "3' UTR Non-coding Substitution (*6C>G)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.*10C>T",
+      "hgvs_input": "c.*10C>T",
+      "id": "HBB-BM-042",
+      "name": "3' UTR Non-coding Substitution (*10C>T)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "495966",
+      "hgvs_canonical": "NM_000518.5:c.*102C>T",
+      "hgvs_input": "c.*102C>T",
+      "id": "HBB-BM-043",
+      "name": "3' UTR Non-coding Substitution (*102C>T)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "3599779",
+      "hgvs_canonical": "NM_000518.5:c.*129T>C",
+      "hgvs_input": "c.*129T>C",
+      "id": "HBB-BM-044",
+      "name": "3' UTR Non-coding Substitution (*129T>C)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "495970",
+      "hgvs_canonical": "NM_000518.5:c.*67G>T",
+      "hgvs_input": "c.*67G>T",
+      "id": "HBB-BM-045",
+      "name": "3' UTR Non-coding Substitution (*67G>T)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.129_126del",
+      "id": "HBB-BM-NEG-001",
+      "name": "Inverted Deletion Coordinates",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.25_28insG",
+      "id": "HBB-BM-NEG-002",
+      "name": "Non-consecutive Insertion Coordinates",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.999del",
+      "id": "HBB-BM-NEG-003",
+      "name": "Transcript Out-of-Bounds Deletion",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.999C>T",
+      "id": "HBB-BM-NEG-004",
+      "name": "Transcript Out-of-Bounds Substitution",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.9delA",
+      "id": "HBB-BM-NEG-005",
+      "name": "Reference Base Mismatch at c.9 (Expected T, got A)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118A>T",
+      "id": "HBB-BM-NEG-006",
+      "name": "Reference Base Mismatch at c.118 (Expected C, got A)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.20G>T",
+      "id": "HBB-BM-NEG-007",
+      "name": "Reference Base Mismatch at c.20 (Expected A, got G)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.19A>G",
+      "id": "HBB-BM-NEG-008",
+      "name": "Reference Base Mismatch at c.19 (Expected G, got A)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.92+5A>C",
+      "id": "HBB-BM-NEG-009",
+      "name": "Reference Base Mismatch at c.92+5 (Expected G, got A)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.315+1A>G",
+      "id": "HBB-BM-NEG-010",
+      "name": "Reference Base Mismatch at c.315+1 (Expected G, got A)",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "invalid_syntax_123",
+      "id": "HBB-BM-NEG-011",
+      "name": "Garbage Non-HGVS String",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118",
+      "id": "HBB-BM-NEG-012",
+      "name": "Incomplete HGVS Missing Alteration",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118_119",
+      "id": "HBB-BM-NEG-013",
+      "name": "Incomplete Range Missing Operator",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118C>Z",
+      "id": "HBB-BM-NEG-014",
+      "name": "Non-Canonical Nucleotide Alphabet",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.92+999G>A",
+      "id": "HBB-BM-NEG-015",
+      "name": "Out-of-Bounds Intron 1 Offset",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.315+999G>A",
+      "id": "HBB-BM-NEG-016",
+      "name": "Out-of-Bounds Intron 2 Offset",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.0C>T",
+      "id": "HBB-BM-NEG-017",
+      "name": "Illegal Coordinate Zero in HGVS",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "chr11:g.5227002C>T",
+      "id": "HBB-BM-NEG-018",
+      "name": "Chromosome Prefix Without cDNA",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118_120del3",
+      "id": "HBB-BM-NEG-019",
+      "name": "Deprecated Numeric Deletion Length",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118delins",
+      "id": "HBB-BM-NEG-020",
+      "name": "Empty Delins Sequence",
+      "source": "manifest:hbb_benchmark_manifest.json"
+    },
+    {
+      "clinvar_id": "15405",
+      "hgvs_canonical": "NM_000518.5:c.114G>A",
+      "hgvs_input": "c.114G>A",
+      "id": "HBB-BM-002",
+      "name": "Codon 37 (G>A) Nonsense",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "15401",
+      "hgvs_canonical": "NM_000518.5:c.52A>T",
+      "hgvs_input": "c.52A>T",
+      "id": "HBB-BM-005",
+      "name": "Codon 18 (legacy Cd17 A>T) Nonsense",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "15161",
+      "hgvs_canonical": "NM_000518.5:c.79G>A",
+      "hgvs_input": "c.79G>A",
+      "id": "HBB-BM-009",
+      "name": "Hemoglobin E (HbE)",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "1544548",
+      "hgvs_canonical": "NM_000518.5:c.108C>T",
+      "hgvs_input": "c.108C>T",
+      "id": "HBB-BM-015",
+      "name": "Codon 36 Synonymous Variant",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.315G>A",
+      "hgvs_input": "c.315G>A",
+      "id": "HBB-BM-017",
+      "name": "Codon 105 Synonymous Boundary Control",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "15417",
+      "hgvs_canonical": "NM_000518.5:c.126_129del",
+      "hgvs_input": "c.124_127del",
+      "id": "HBB-BM-019",
+      "name": "Codons 41/42 (-TCTT) 5'-Aligned Alias",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": "NM_000518.5:c.28_30del",
+      "hgvs_input": "c.28_30del",
+      "id": "HBB-BM-023",
+      "name": "Codon 10 In-Frame Deletion",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "36308",
+      "hgvs_canonical": "NM_000518.5:c.27dup",
+      "hgvs_input": "c.27_28insG",
+      "id": "HBB-BM-026",
+      "name": "Codons 8/9 Flanked Insertion Alias",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "15438",
+      "hgvs_canonical": "NM_000518.5:c.315+1G>A",
+      "hgvs_input": "c.315+1G>A",
+      "id": "HBB-BM-031",
+      "name": "IVS2-1 (G>A) Invariant Donor Splice Disruption",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "21191",
+      "hgvs_canonical": "NM_000518.5:c.316-2A>G",
+      "hgvs_input": "c.316-2A>G",
+      "id": "HBB-BM-035",
+      "name": "IVS2 Acceptor (-2 A>G) Disruption",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "393707",
+      "hgvs_canonical": "NM_000518.5:c.*6C>G",
+      "hgvs_input": "c.*6C>G",
+      "id": "HBB-BM-041",
+      "name": "3' UTR Non-coding Substitution (*6C>G)",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": "495970",
+      "hgvs_canonical": "NM_000518.5:c.*67G>T",
+      "hgvs_input": "c.*67G>T",
+      "id": "HBB-BM-045",
+      "name": "3' UTR Non-coding Substitution (*67G>T)",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118",
+      "id": "HBB-BM-NEG-012",
+      "name": "Incomplete HGVS Missing Alteration",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118_119",
+      "id": "HBB-BM-NEG-013",
+      "name": "Incomplete Range Missing Operator",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118C>Z",
+      "id": "HBB-BM-NEG-014",
+      "name": "Non-Canonical Nucleotide Alphabet",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "chr11:g.5227002C>T",
+      "id": "HBB-BM-NEG-018",
+      "name": "Chromosome Prefix Without cDNA",
+      "source": "manifest:validation.json"
+    },
+    {
+      "clinvar_id": null,
+      "hgvs_canonical": null,
+      "hgvs_input": "c.118_120del3",
+      "id": "HBB-BM-NEG-019",
+      "name": "Deprecated Numeric Deletion Length",
+      "source": "manifest:validation.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.118C>T",
+      "source": "fixture:clinvar_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.20A>T",
+      "source": "fixture:clinvar_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.92+5G>C",
+      "source": "fixture:clinvar_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.126_129del",
+      "source": "fixture:clinvar_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.27dup",
+      "source": "fixture:clinvar_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.93G>C",
+      "source": "fixture:clinvar_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.19G>A",
+      "source": "fixture:clinvar_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.118C>T",
+      "source": "fixture:pubmed_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.20A>T",
+      "source": "fixture:pubmed_fixtures.json"
+    },
+    {
+      "details": "cache_key",
+      "hgvs_input": "c.19G>A",
+      "source": "fixture:pubmed_fixtures.json"
+    }
+  ],
+  "total_code_tokens_harvested": 476,
+  "total_excluded_clinvar_ids": 32,
+  "total_excluded_variant_strings": 104,
+  "total_manifest_records": 140,
+  "version": "1.0.0"
+}
