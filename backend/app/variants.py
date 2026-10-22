@@ -378,8 +378,13 @@ def detect_variants(
             flank_left = ref_mrna_pos
             ref_seq = ref_data.sequence
             # HGVS 3' rule: shift insertion as far 3' as possible in repetitive regions
-            while flank_left < len(ref_seq) and ref_seq[flank_left] == ins_seq[0]:
+            # Uses cyclic motif permutation to correctly support multi-base tandem duplications
+            cur_ins = list(ins_seq)
+            while flank_left < len(ref_seq) and ref_seq[flank_left] == cur_ins[0]:
+                matched_base = cur_ins.pop(0)
+                cur_ins.append(matched_base)
                 flank_left += 1
+            ins_seq = "".join(cur_ins)
 
             is_dup = (flank_left >= ins_len and ref_seq[flank_left - ins_len : flank_left] == ins_seq)
             c_left_str = ref_data.mrna_pos_to_c_pos(flank_left) if flank_left > 0 else "0"
@@ -601,8 +606,67 @@ def parse_hgvs_input(
         )
         return variant, None
 
+    # 2b. Match Deletion-Insertion (delins): c.19_20delinsAT or c.385_388delinsCCACA or c.25delinsT
+    delins_match = re.match(r"^c\.(\*?-?\d+)(?:_(\*?-?\d+))?delins([A-Za-z]+)$", c_part, re.IGNORECASE)
+    if delins_match:
+        c_start_str = delins_match.group(1)
+        c_end_str = delins_match.group(2) or c_start_str
+        ins_seq = delins_match.group(3).upper()
+        if any(b not in {"A", "C", "G", "T"} for b in ins_seq):
+            return None, f"Invalid nucleotide sequence '{ins_seq}' in deletion-insertion. Bases must be standard DNA nucleotides (A, C, G, T)."
+
+        try:
+            start_num = int(c_start_str)
+            end_num = int(c_end_str)
+            if start_num > end_num:
+                return None, f"Invalid coordinate range in 'c.{c_start_str}_{c_end_str}delins': start coordinate must precede end coordinate."
+        except ValueError:
+            pass
+
+        mrna_start = ref_data.c_pos_to_mrna_pos(c_start_str)
+        mrna_end = ref_data.c_pos_to_mrna_pos(c_end_str)
+
+        if mrna_start is None or mrna_end is None or mrna_start < 1 or mrna_end > ref_data.total_length:
+            return None, f"Deletion-insertion coordinates 'c.{c_start_str}_{c_end_str}' are out of bounds for reference {ref_data.accession}."
+
+        expected_seq = ref_data.sequence[mrna_start - 1 : mrna_end]
+        c_pos_display = c_start_str if c_start_str == c_end_str else f"{c_start_str}_{c_end_str}"
+
+        in_cds = (
+            ref_data.cds_start <= mrna_start <= ref_data.cds_end
+            and ref_data.cds_start <= mrna_end <= ref_data.cds_end
+        )
+        if in_cds:
+            utr3 = ref_data.sequence[ref_data.cds_end:]
+            hgvs_p, impact, _ = evaluate_indel_codon_consequence(
+                int(c_start_str), int(c_end_str), "delins", expected_seq, ins_seq, ref_data.cds_sequence, utr3
+            )
+        else:
+            impact = "Non-coding Delins"
+            hgvs_p = None
+
+        standard_hgvs = f"{ref_data.accession}:c.{c_pos_display}delins{ins_seq}"
+        eq_aliases, eq_notes = get_equivalent_nomenclature(f"{c_pos_display}delins", expected_seq, ins_seq, hgvs_p)
+
+        variant = DetectedVariant(
+            id=f"direct_delins_{mrna_start}_{len(expected_seq)}_{len(ins_seq)}",
+            variant_type="delins",
+            ref_position_mrna=mrna_start,
+            c_position=c_pos_display,
+            ref_allele=expected_seq,
+            alt_allele=ins_seq,
+            hgvs_c=standard_hgvs,
+            hgvs_p=hgvs_p,
+            codon_change=None,
+            functional_impact=impact,
+            confidence="Deterministic",
+            equivalent_nomenclature=eq_aliases,
+            nomenclature_notes=eq_notes
+        )
+        return variant, None
+
     # 3. Match Range Deletion: c.126_129del or c.126_129delCTTT
-    range_del_match = re.match(r"^c\.(\*?-?\d+)_(\*?-?\d+)del([A-Za-z]+)?$", c_part, re.IGNORECASE)
+    range_del_match = re.match(r"^c\.(\*?-?\d+)_(\*?-?\d+)del(?!(?:ins))([A-Za-z]+)?$", c_part, re.IGNORECASE)
     if range_del_match:
         c_start_str = range_del_match.group(1)
         c_end_str = range_del_match.group(2)
@@ -669,7 +733,7 @@ def parse_hgvs_input(
         return variant, None
 
     # 4. Match Single Base Deletion: c.9del or c.9delT
-    single_del_match = re.match(r"^c\.(\*?-?\d+)del([A-Za-z]+)?$", c_part, re.IGNORECASE)
+    single_del_match = re.match(r"^c\.(\*?-?\d+)del(?!(?:ins))([A-Za-z]+)?$", c_part, re.IGNORECASE)
     if single_del_match:
         c_pos_str = single_del_match.group(1)
         specified_bases = single_del_match.group(2).upper() if single_del_match.group(2) else None

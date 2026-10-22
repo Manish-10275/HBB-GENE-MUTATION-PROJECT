@@ -248,23 +248,27 @@ def evaluate_indel(
         )
 
     # 2. In-Frame Indel (net delta divisible by 3)
-    def _translate_to_protein(seq: str) -> List[str]:
+    def _translate_to_protein(seq: str) -> Tuple[List[str], bool]:
         aas = []
+        reached = False
         for i in range(0, len(seq) - 2, 3):
             codon = seq[i : i + 3]
             aa3 = translate_codon(codon)[0]
             aas.append(aa3)
             if aa3 == "Ter":
+                reached = True
                 break
-        return aas
+        return aas, reached
 
-    wt_protein = _translate_to_protein(full_seq)
-    mut_protein = _translate_to_protein(mut_seq)
+    wt_protein, _ = _translate_to_protein(full_seq)
+    mut_protein, reached_stop = _translate_to_protein(mut_seq)
 
+    wt_stop_pos = len(wt_protein)
     delta_codons = net_delta // 3
-    expected_stop = len(wt_protein) + delta_codons
+    expected_stop = wt_stop_pos + delta_codons
 
-    if mut_protein and mut_protein[-1] == "Ter" and len(mut_protein) < expected_stop:
+    # Check for premature stop codon (PTC / Nonsense)
+    if reached_stop and len(mut_protein) < expected_stop:
         codon_pos = len(mut_protein)
         wt_aa = wt_protein[codon_pos - 1] if codon_pos <= len(wt_protein) else "Ter"
         return ConsequenceResult(
@@ -273,6 +277,27 @@ def evaluate_indel(
             ptc_coordinate=codon_pos,
             confidence="Deterministic",
         )
+
+    # Check for Stop Loss (Terminal Extension into 3' UTR)
+    if (not reached_stop) or (len(mut_protein) > expected_stop):
+        if reached_stop:
+            new_stop_pos = len(mut_protein)
+            first_ext_aa = mut_protein[wt_stop_pos - 1] if len(mut_protein) >= wt_stop_pos else "Ter"
+            ext_dist = new_stop_pos - wt_stop_pos
+            if ext_dist > 0:
+                hgvs_p = f"p.Ter{wt_stop_pos}{first_ext_aa}extTer{ext_dist}"
+                return ConsequenceResult(
+                    hgvs_p=hgvs_p,
+                    molecular_impact=MolecularImpact.IN_FRAME_INDEL,
+                    confidence="Deterministic",
+                )
+        else:
+            hgvs_p = f"p.Ter{wt_stop_pos}extTer?"
+            return ConsequenceResult(
+                hgvs_p=hgvs_p,
+                molecular_impact=MolecularImpact.UNKNOWN,
+                confidence="Incomplete Sequence",
+            )
 
     # Prefix match
     pfx = 0

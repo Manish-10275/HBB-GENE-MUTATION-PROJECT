@@ -163,6 +163,11 @@ def evaluate_indel_codon_consequence(
         dup_seq = full_seq[c_start - 1 : c_end]
         mut_seq = full_seq[:c_end] + dup_seq + full_seq[c_end:]
         net_delta = dup_len
+    elif op == "delins":
+        del_len = c_end - c_start + 1
+        ins_len = len(alt_allele)
+        mut_seq = full_seq[:c_start - 1] + alt_allele + full_seq[c_end:]
+        net_delta = ins_len - del_len
     else:
         return None, "Unknown Indel", None
 
@@ -220,34 +225,187 @@ def evaluate_indel_codon_consequence(
         impact = f"Frameshift {op.capitalize()}"
         return hgvs_p, impact, hgvs_p_short
     else:
-        # In-frame change
-        if op == "deletion":
-            del_aa_start = ((c_start - 1) // 3) + 1
-            del_aa_end = ((c_end - 1) // 3) + 1
-            wt_start_aa = translate_codon(cds_sequence[(del_aa_start - 1) * 3 : del_aa_start * 3])[0]
-            if del_aa_start == del_aa_end:
-                hgvs_p = f"p.{wt_start_aa}{del_aa_start}del"
+        # In-frame change (Option 2 Candidate v3: Full mutant translation, HGVS 3'-shifting, principled stop-loss, and robust prefix/suffix alignment)
+        cds_len = len(cds_sequence)
+        if c_start < 1 or c_end < 1 or c_start > cds_len or c_end > cds_len or c_start > c_end:
+            return None, "Invalid In-frame Indel", None
+
+        if cds_len % 3 != 0:
+            return None, "Invalid Reference Sequence", None
+
+        # Build full sequence including 3' UTR for stop-loss and downstream read-through
+        full_seq = cds_sequence + (utr3_sequence or "")
+
+        def _translate_to_stop(seq: str) -> Tuple[List[str], bool]:
+            aas = []
+            reached = False
+            for i in range(0, len(seq) - 2, 3):
+                codon = seq[i : i + 3]
+                aa = translate_codon(codon)[0]
+                aas.append(aa)
+                if aa == "Ter":
+                    reached = True
+                    break
+            return aas, reached
+
+        wt_protein = [translate_codon(cds_sequence[i : i + 3])[0] for i in range(0, cds_len - 2, 3)]
+        if not wt_protein or wt_protein[-1] != "Ter":
+            return None, "Invalid Reference Sequence", None
+
+        wt_stop_pos = len(wt_protein)
+
+        try:
+            # 1. cDNA 3'-shifting and mutant sequence reconstruction
+            if op == "duplication":
+                dup_len = c_end - c_start + 1
+                pos = c_end
+                s_start, s_end = c_start, c_end
+                while pos < cds_len and cds_sequence[pos] == cds_sequence[pos - dup_len]:
+                    pos += 1
+                    s_start += 1
+                    s_end += 1
+                dup_seq_sh = cds_sequence[s_start - 1 : s_end]
+                mut_seq = full_seq[:s_end] + dup_seq_sh + full_seq[s_end:]
+            elif op == "deletion":
+                del_len = c_end - c_start + 1
+                pos = c_end
+                s_start, s_end = c_start, c_end
+                while pos < cds_len and cds_sequence[pos] == cds_sequence[s_start - 1]:
+                    pos += 1
+                    s_start += 1
+                    s_end += 1
+                mut_seq = full_seq[:s_start - 1] + full_seq[s_end:]
+            elif op == "delins":
+                mut_seq = full_seq[:c_start - 1] + alt_allele.upper() + full_seq[c_end:]
+            elif op == "insertion":
+                mut_seq = full_seq[:c_start] + alt_allele.upper() + full_seq[c_start:]
             else:
-                wt_end_aa = translate_codon(cds_sequence[(del_aa_end - 1) * 3 : del_aa_end * 3])[0]
-                hgvs_p = f"p.{wt_start_aa}{del_aa_start}_{wt_end_aa}{del_aa_end}del"
-            return hgvs_p, "In-frame Deletion", hgvs_p
-        elif op == "duplication":
-            dup_aa_start = ((c_start - 1) // 3) + 1
-            dup_aa_end = ((c_end - 1) // 3) + 1
-            wt_start_aa = translate_codon(cds_sequence[(dup_aa_start - 1) * 3 : dup_aa_start * 3])[0]
-            if dup_aa_start == dup_aa_end:
-                hgvs_p = f"p.{wt_start_aa}{dup_aa_start}dup"
-            else:
-                wt_end_aa = translate_codon(cds_sequence[(dup_aa_end - 1) * 3 : dup_aa_end * 3])[0]
-                hgvs_p = f"p.{wt_start_aa}{dup_aa_start}_{wt_end_aa}{dup_aa_end}dup"
-            return hgvs_p, "In-frame Duplication", hgvs_p
-        elif op == "insertion":
-            flank_left_aa = ((c_start - 1) // 3) + 1
-            flank_right_aa = flank_left_aa + 1
-            wt_left = translate_codon(cds_sequence[(flank_left_aa - 1) * 3 : flank_left_aa * 3])[0]
-            wt_right = translate_codon(cds_sequence[(flank_right_aa - 1) * 3 : flank_right_aa * 3])[0]
-            ins_aa_list = [translate_codon(alt_allele[k * 3 : (k + 1) * 3])[0] for k in range(len(alt_allele) // 3)]
-            ins_aa_str = "".join(ins_aa_list)
-            hgvs_p = f"p.{wt_left}{flank_left_aa}_{wt_right}{flank_right_aa}ins{ins_aa_str}"
-            return hgvs_p, "In-frame Insertion", hgvs_p
-        return None, "In-frame Variant", None
+                return None, "Unknown Indel", None
+
+            mut_protein, reached_stop = _translate_to_stop(mut_seq)
+
+            delta_codons = net_delta // 3
+            expected_stop = wt_stop_pos + delta_codons
+
+            # 2. Check for premature stop codon (PTC / Nonsense)
+            if reached_stop and len(mut_protein) < expected_stop:
+                codon_pos = len(mut_protein)
+                wt_aa = wt_protein[codon_pos - 1] if codon_pos <= len(wt_protein) else "Ter"
+                hgvs_p = f"p.{wt_aa}{codon_pos}Ter"
+                return hgvs_p, "Nonsense", hgvs_p
+
+            # 3. Check for Stop Loss (Terminal Extension into 3' UTR)
+            # Occurs when translation fails to stop at pos <= expected_stop (reads past normal stop)
+            if (not reached_stop) or (len(mut_protein) > expected_stop):
+                if reached_stop:
+                    new_stop_pos = len(mut_protein)
+                    first_ext_aa = mut_protein[wt_stop_pos - 1] if len(mut_protein) >= wt_stop_pos else "Ter"
+                    ext_dist = new_stop_pos - wt_stop_pos
+                    if ext_dist > 0:
+                        hgvs_p = f"p.Ter{wt_stop_pos}{first_ext_aa}extTer{ext_dist}"
+                        return hgvs_p, "Extension", hgvs_p
+                else:
+                    # Transcript sequence ended without reaching a stop codon (e.g. CDS-only or truncated 3' UTR)
+                    hgvs_p = f"p.Ter{wt_stop_pos}extTer?"
+                    return hgvs_p, "Incomplete Sequence", hgvs_p
+
+            # 4. Check for pure in-frame tandem duplication
+            if op == "duplication":
+                num_aa = (c_end - c_start + 1) // 3
+                best_p_end = None
+                for end_idx in range(len(mut_protein) - 1, num_aa - 1, -1):
+                    block1 = mut_protein[end_idx - 2 * num_aa + 1 : end_idx - num_aa + 1]
+                    block2 = mut_protein[end_idx - num_aa + 1 : end_idx + 1]
+                    if block1 == block2 and "Ter" not in block1:
+                        reconstructed = mut_protein[:end_idx - num_aa + 1] + mut_protein[end_idx + 1:]
+                        if reconstructed == wt_protein:
+                            best_p_end = end_idx - num_aa + 1
+                            break
+
+                if best_p_end is not None:
+                    p_start = best_p_end - num_aa + 1
+                    if num_aa == 1:
+                        hgvs_p = f"p.{wt_protein[p_start - 1]}{p_start}dup"
+                    else:
+                        hgvs_p = f"p.{wt_protein[p_start - 1]}{p_start}_{wt_protein[best_p_end - 1]}{best_p_end}dup"
+                    return hgvs_p, "In-frame Duplication", hgvs_p
+
+            # 5. Check for pure in-frame deletion
+            if op == "deletion":
+                num_aa = (c_end - c_start + 1) // 3
+                best_p_start = None
+                for start_idx in range(len(wt_protein) - num_aa, -1, -1):
+                    test_mut = wt_protein[:start_idx] + wt_protein[start_idx + num_aa:]
+                    if test_mut == mut_protein:
+                        best_p_start = start_idx + 1
+                        break
+
+                if best_p_start is not None:
+                    p_end = best_p_start + num_aa - 1
+                    if num_aa == 1:
+                        hgvs_p = f"p.{wt_protein[best_p_start - 1]}{best_p_start}del"
+                    else:
+                        hgvs_p = f"p.{wt_protein[best_p_start - 1]}{best_p_start}_{wt_protein[p_end - 1]}{p_end}del"
+                    return hgvs_p, "In-frame Deletion", hgvs_p
+
+            # 6. General prefix / suffix alignment fallback (replaces unsafe naive coordinate fallback)
+            # Handles hybrid codon events (e.g. c.5_7del -> p.Val2_His3delinsAsp, c.6_8dup -> p.Val2_His3insGln)
+            # and clean delins.
+            pfx = 0
+            while pfx < len(wt_protein) and pfx < len(mut_protein) and wt_protein[pfx] == mut_protein[pfx]:
+                pfx += 1
+
+            sfx = 0
+            while (
+                sfx < len(wt_protein) - pfx
+                and sfx < len(mut_protein) - pfx
+                and wt_protein[len(wt_protein) - 1 - sfx] == mut_protein[len(mut_protein) - 1 - sfx]
+            ):
+                sfx += 1
+
+            wt_diff = wt_protein[pfx : len(wt_protein) - sfx]
+            mut_diff = mut_protein[pfx : len(mut_protein) - sfx]
+
+            if not wt_diff and not mut_diff:
+                return "p.(=)", "Synonymous", "p.(=)"
+
+            if wt_diff and not mut_diff:
+                start_p = pfx + 1
+                end_p = pfx + len(wt_diff)
+                if len(wt_diff) == 1:
+                    hgvs_p = f"p.{wt_diff[0]}{start_p}del"
+                else:
+                    hgvs_p = f"p.{wt_diff[0]}{start_p}_{wt_diff[-1]}{end_p}del"
+                return hgvs_p, "In-frame Deletion", hgvs_p
+
+            if not wt_diff and mut_diff:
+                k = len(mut_diff)
+                if pfx >= k and wt_protein[pfx - k : pfx] == mut_diff:
+                    dup_start = pfx - k + 1
+                    dup_end = pfx
+                    hgvs_p = f"p.{mut_diff[0]}{pfx}dup" if k == 1 else f"p.{mut_diff[0]}{dup_start}_{mut_diff[-1]}{dup_end}dup"
+                    return hgvs_p, "In-frame Duplication", hgvs_p
+                left_pos = pfx
+                right_pos = pfx + 1
+                ins_str = "".join(mut_diff)
+                left_aa = wt_protein[left_pos - 1] if left_pos > 0 else "Met"
+                right_aa = wt_protein[right_pos - 1] if right_pos <= len(wt_protein) else "Ter"
+                hgvs_p = f"p.{left_aa}{left_pos}_{right_aa}{right_pos}ins{ins_str}"
+                return hgvs_p, "In-frame Insertion", hgvs_p
+
+            if wt_diff and mut_diff:
+                start_p = pfx + 1
+                end_p = pfx + len(wt_diff)
+                mut_str = "".join(mut_diff)
+                if len(wt_diff) == 1 and len(mut_diff) == 1:
+                    hgvs_p = f"p.{wt_diff[0]}{start_p}{mut_diff[0]}"
+                elif len(wt_diff) == 1:
+                    hgvs_p = f"p.{wt_diff[0]}{start_p}delins{mut_str}"
+                else:
+                    hgvs_p = f"p.{wt_diff[0]}{start_p}_{wt_diff[-1]}{end_p}delins{mut_str}"
+                return hgvs_p, "In-frame Indel", hgvs_p
+
+        except (ValueError, IndexError, KeyError):
+            return None, "Invalid In-frame Indel", None
+
+        return None, "Unsupported In-frame Indel", None
