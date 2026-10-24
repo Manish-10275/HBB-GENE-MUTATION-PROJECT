@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software in your research or educational work, please cite it using the metadata below."
+authors:
+  - family-names: "Chouhan"
+    given-names: "Manish"
+title: "HBB Gene Mutation Analyzer: Deterministic Sequence Alignment and Consequence Analysis"
+version: 1.0.0
+date-released: 2026-10-22
+url: "https://github.com/Manish-10275/HBB-GENE-MUTATION-PROJECT"
+repository-code: "https://github.com/Manish-10275/HBB-GENE-MUTATION-PROJECT"
+license: "MIT"
+keywords:
+  - "bioinformatics"
+  - "genomics"
+  - "HBB"
+  - "hemoglobin"
+  - "thalassemia"
+  - "HGVS"
+  - "variant-calling"

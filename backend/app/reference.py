@@ -69,6 +69,8 @@ class ReferenceData:
         try:
             if c_str.startswith("*"):
                 offset = int(c_str[1:])
+                if offset <= 0:
+                    return None
                 return self.cds_end + offset
             val = int(c_str)
             if val < 0:

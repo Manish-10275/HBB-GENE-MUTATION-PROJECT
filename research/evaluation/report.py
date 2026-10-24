@@ -1,12 +1,27 @@
 """
 Report generator for HBB Scientific Benchmark evaluation.
 Emits formatted Markdown tables, latency summaries, and comprehensive benchmark reports.
+Hardened against None values, zero divisions, and undefined metrics.
 """
 
 from datetime import datetime, timezone
 import json
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
+
+
+def _fmt_pct(val: Optional[float], decimals: int = 1) -> str:
+    """Safely formats a float probability as a percentage string, or 'N/A' if None."""
+    if val is None:
+        return "N/A"
+    return f"{val * 100:.{decimals}f}%"
+
+
+def _fmt_float(val: Optional[float], decimals: int = 4) -> str:
+    """Safely formats a float to specified decimals, or 'N/A' if None."""
+    if val is None:
+        return "N/A"
+    return f"{val:.{decimals}f}"
 
 
 def generate_benchmark_markdown_report(
@@ -26,7 +41,7 @@ def generate_benchmark_markdown_report(
     total_vars = eval_summary.get("total_variants", 0)
     concordant = eval_summary.get("concordant_variants", 0)
     exact_matches = eval_summary.get("exact_matches", 0)
-    acc = eval_summary.get("concordance_rate", 0.0)
+    acc = eval_summary.get("concordance_rate")
 
     # 1. Table 1: Variant Class Accuracy
     t1_lines = [
@@ -35,47 +50,73 @@ def generate_benchmark_markdown_report(
     ]
     for cls, met in class_metrics.get("per_class", {}).items():
         supp = met.get("support", 0)
-        prec = met.get("precision", 0.0)
-        rec = met.get("recall", 0.0)
-        f1 = met.get("f1_score", 0.0)
-        corr = int(rec * supp)
-        t1_lines.append(f"| **{cls}** | {supp} | {corr} | {rec * 100:.1f}% | {prec:.4f} | {rec:.4f} | {f1:.4f} |")
+        prec = met.get("precision")
+        rec = met.get("recall")
+        f1 = met.get("f1_score")
+        corr = int(rec * supp) if rec is not None else 0
+        acc_str = _fmt_pct(rec, 1)
+        prec_str = _fmt_float(prec, 4)
+        rec_str = _fmt_float(rec, 4)
+        f1_str = _fmt_float(f1, 4)
+        t1_lines.append(f"| **{cls}** | {supp} | {corr} | {acc_str} | {prec_str} | {rec_str} | {f1_str} |")
     t1_content = "\n".join(t1_lines)
     with open(tables_dir / "table1_variant_class_accuracy.md", "w", encoding="utf-8") as f:
         f.write("# Table 1: Classification Performance by Variant Category\n\n" + t1_content + "\n")
 
     # 2. Table 2: Consequence Concordance Summary
+    exact_match_pct = _fmt_pct(exact_matches / total_vars if total_vars > 0 else None, 1)
+    concordance_pct = _fmt_pct(acc, 1)
+    macro_f1_str = _fmt_float(class_metrics.get("macro_f1"), 4)
+    spec_str = _fmt_pct(eval_summary.get("specificity"), 1)
+
     t2_lines = [
         "| Metric | Evaluation Result | Target / Standard | Interpretation |",
         "| :--- | :---: | :---: | :--- |",
         f"| **Total Evaluated Variants** | `{total_vars}` | N >= 30 | Full representative panel |",
-        f"| **Biological Concordance Rate** | `{acc * 100:.1f}%` | >= 95.0% | Functional & structural agreement |",
-        f"| **Exact Protein Sequence Match** | `{exact_matches / total_vars * 100:.1f}%` | >= 90.0% | Exact HGVS p. string match |",
-        f"| **Macro-averaged F1 Score** | `{class_metrics.get('macro_f1', 0.0):.4f}` | >= 0.9000 | Balanced across all variant classes |",
-        f"| **Negative Control Rejection Specificity** | `{eval_summary.get('specificity', 1.0) * 100:.1f}%` | 100.0% | Graceful error handling of malformed inputs |",
+        f"| **Biological Concordance Rate** | `{concordance_pct}` | >= 95.0% | Functional & structural agreement |",
+        f"| **Exact Protein Sequence Match** | `{exact_match_pct}` | >= 90.0% | Exact HGVS p. string match |",
+        f"| **Macro-averaged F1 Score** | `{macro_f1_str}` | >= 0.9000 | Balanced across all variant classes |",
+        f"| **Negative Control Rejection Specificity** | `{spec_str}` | 100.0% | Graceful error handling of malformed inputs |",
     ]
     t2_content = "\n".join(t2_lines)
     with open(tables_dir / "table2_consequence_concordance.md", "w", encoding="utf-8") as f:
         f.write("# Table 2: Molecular Consequence Concordance Summary\n\n" + t2_content + "\n")
 
     # 3. Table 3: ClinVar Retrieval Performance
+    hit_1_str = _fmt_pct(retrieval_metrics.get("hit_at_1"), 1)
+    rec_5_str = _fmt_pct(retrieval_metrics.get("recall_at_5"), 1)
+    fmr_str = _fmt_pct(retrieval_metrics.get("false_match_rate"), 1)
+    mean_ret = retrieval_metrics.get("mean_retrieved_records")
+    mean_ret_str = str(mean_ret) if mean_ret is not None else "N/A"
+
     t3_lines = [
         "| Retrieval Metric | Result | Target Standard | Provenance / Clinical Utility |",
         "| :--- | :---: | :---: | :--- |",
-        f"| **ClinVar Hit@1 (Rank-1 Exact Match)** | `{retrieval_metrics.get('hit_at_1', 0.0) * 100:.1f}%` | >= 85.0% | Exact Variation ID prioritized at Rank 0 |",
-        f"| **ClinVar Recall@5 (Candidate Inclusion)** | `{retrieval_metrics.get('recall_at_5', 0.0) * 100:.1f}%` | >= 90.0% | True Variation ID in top candidate window |",
-        f"| **False Match Rate** | `{retrieval_metrics.get('false_match_rate', 0.0) * 100:.1f}%` | <= 5.0% | False positive exact-match prevention |",
-        f"| **Mean Retrieved Records** | `{retrieval_metrics.get('mean_retrieved_records', 0.0)}` | 1 - 5 | Progressive search bounding |",
+        f"| **ClinVar Hit@1 (Rank-1 Exact Match)** | `{hit_1_str}` | >= 85.0% | Exact Variation ID prioritized at Rank 0 |",
+        f"| **ClinVar Recall@5 (Candidate Inclusion)** | `{rec_5_str}` | >= 90.0% | True Variation ID in top candidate window |",
+        f"| **False Match Rate** | `{fmr_str}` | <= 5.0% | False positive exact-match prevention |",
+        f"| **Mean Retrieved Records** | `{mean_ret_str}` | 1 - 5 | Progressive search bounding |",
     ]
     t3_content = "\n".join(t3_lines)
     with open(tables_dir / "table3_clinvar_retrieval_performance.md", "w", encoding="utf-8") as f:
         f.write("# Table 3: ClinVar Evidence Retrieval Performance\n\n" + t3_content + "\n")
 
     # 4. Table 4: Latency Summary
+    mean_lat = latency_metrics.get("mean_ms")
+    med_lat = latency_metrics.get("median_ms")
+    p95_lat = latency_metrics.get("p95_ms")
+    min_lat = latency_metrics.get("min_ms")
+    max_lat = latency_metrics.get("max_ms")
+
+    mean_lat_str = f"{mean_lat} ms" if mean_lat is not None else "N/A"
+    med_lat_str = f"{med_lat} ms" if med_lat is not None else "N/A"
+    p95_lat_str = f"{p95_lat} ms" if p95_lat is not None else "N/A"
+    range_lat_str = f"{min_lat} / {max_lat} ms" if min_lat is not None and max_lat is not None else "N/A"
+
     t4_lines = [
         "| Execution Step | Mean Latency | Median (p50) | 95th Percentile (p95) | Min / Max |",
         "| :--- | :---: | :---: | :---: | :---: |",
-        f"| **Deterministic Bioinformatics Pipeline** | `{latency_metrics.get('mean_ms', 0.0)} ms` | `{latency_metrics.get('median_ms', 0.0)} ms` | `{latency_metrics.get('p95_ms', 0.0)} ms` | `{latency_metrics.get('min_ms', 0.0)} / {latency_metrics.get('max_ms', 0.0)} ms` |"
+        f"| **Deterministic Bioinformatics Pipeline** | `{mean_lat_str}` | `{med_lat_str}` | `{p95_lat_str}` | `{range_lat_str}` |"
     ]
     t4_content = "\n".join(t4_lines)
     with open(tables_dir / "table4_latency_summary.md", "w", encoding="utf-8") as f:
@@ -97,11 +138,11 @@ def generate_benchmark_markdown_report(
 This report establishes the empirical performance of the **HBB Mutation Analyzer** against independent, authoritative ground truth derived from **NCBI ClinVar**, **NCBI RefSeq**, and **IthaGenes**.
 
 - **Total Evaluated Variants:** `{total_vars}`
-- **Overall Biological Concordance:** `{concordant} / {total_vars}` (**{acc * 100:.1f}%**)
-- **Macro-Averaged F1-Score:** **{class_metrics.get('macro_f1', 0.0):.4f}**
-- **Negative Control Specificity:** **{eval_summary.get('specificity', 1.0) * 100:.1f}%**
-- **ClinVar Rank-1 Exact Match Hit Rate:** **{retrieval_metrics.get('hit_at_1', 0.0) * 100:.1f}%**
-- **Mean Computational Latency:** **{latency_metrics.get('mean_ms', 0.0)} ms** (Local-first deterministic in silico execution)
+- **Overall Biological Concordance:** `{concordant} / {total_vars}` (**{concordance_pct}**)
+- **Macro-Averaged F1-Score:** **{macro_f1_str}**
+- **Negative Control Specificity:** **{spec_str}**
+- **ClinVar Rank-1 Exact Match Hit Rate:** **{hit_1_str}**
+- **Mean Computational Latency:** **{mean_lat_str}** (Local-first deterministic in silico execution)
 
 ---
 

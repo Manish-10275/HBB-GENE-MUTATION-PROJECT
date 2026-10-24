@@ -259,16 +259,24 @@ Start both the FastAPI backend (`http://localhost:8000`) and Next.js frontend (`
 Run the core verification commands:
 
 ```bash
-# 1. Complete backend test suite (78 tests)
-pytest -q
+# 1. Complete backend regression suite (221 tests)
+# Covers core unit math, consequence translation, ClinVar/PubMed integration,
+# AI copilot authority boundaries, and defect regression suites.
+pytest backend/tests -v
 
-# 2. Automated release readiness audit (All 10 stages end-to-end)
+# 2. Focused route and biological edge-case suite (23 tests)
+# Validates in-frame duplications (c.272_295dup, c.92_94dup), deletions (c.9_83del),
+# stop-loss extension (c.442_444del ± 3' UTR), pre-terminal stop preservation,
+# and HTTP error handling via FastAPI TestClient routes.
+python research/audit/phase_6_5_audit/run_phase_6_5_tests.py
+
+# 3. Automated release readiness audit (All 10 stages end-to-end)
 python tools/release_audit.py
 
-# 3. Controlled validation benchmark (c.118C>T / p.Gln40Ter)
+# 4. Controlled validation benchmark (c.118C>T / p.Gln40Ter)
 python tools/benchmark_c118.py
 
-# 4. Frontend type safety and production build
+# 5. Frontend type safety and production build
 cd frontend
 npm run type-check
 npm run build

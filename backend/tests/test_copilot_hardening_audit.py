@@ -354,7 +354,7 @@ def test_10_api_keys_can_never_appear_in_output():
     packet = build_c118_evidence_packet()
 
     leaky_candidate = (
-        "The c.118C>T variant in HBB causes p.Gln40Ter. Note: GROQ_API_KEY=gsk_9876543210fedcba9876543210 was utilized."
+        "The c.118C>T variant in HBB causes p.Gln40Ter. Note: GROQ_API_KEY=gsk_dummytestkeyforvalidation00000000000 was utilized."
     )
     is_valid, err = validate_ai_synthesis(leaky_candidate, packet)
     assert is_valid is False

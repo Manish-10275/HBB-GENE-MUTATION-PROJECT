@@ -5,7 +5,7 @@ against authoritative ground truth assertions.
 """
 
 import re
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 
 def normalize_protein_change(p_str: Optional[str]) -> Optional[str]:
