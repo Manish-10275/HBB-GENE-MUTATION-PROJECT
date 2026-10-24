@@ -54,13 +54,14 @@ except Exception:
 
 
 class Doctor:
-    def __init__(self, full_build: bool = False):
+    def __init__(self, full_build: bool = False, require_groq: bool = False):
         self.all_passed = True
         self.total_checks = 0
         self.passed_checks = 0
         self.failed_checks = 0
         self.warning_checks = 0
         self.full_build = full_build
+        self.require_groq = require_groq or (os.environ.get("REQUIRE_GROQ", "").lower() in ("1", "true", "yes"))
 
     def record(self, passed: bool, label: str, detail: str = ""):
         self.total_checks += 1
@@ -161,9 +162,14 @@ class Doctor:
 
             # Groq Key
             if settings.GROQ_API_KEY:
-                self.record(True, "GROQ_API_KEY loaded")
+                self.record(True, "GROQ_API_KEY loaded", "Configured")
+            elif self.require_groq:
+                self.record(False, "GROQ_API_KEY loaded", "Missing in .env (Required for cloud operations)")
             else:
-                self.record(False, "GROQ_API_KEY loaded", "Missing in .env")
+                self.warn(
+                    "GROQ_API_KEY (Optional)",
+                    "Not configured in .env. Live cloud AI synthesis disabled; offline deterministic fallback will be used."
+                )
 
             # Groq Model
             if settings.GROQ_MODEL == "openai/gpt-oss-120b":
@@ -187,50 +193,61 @@ class Doctor:
             return None
 
     def check_ai_groq(self, settings):
-        if not settings or not settings.GROQ_API_KEY:
-            self.record(False, "Groq Authentication", "GROQ_API_KEY is not configured")
-            return
+        has_key = bool(settings and settings.GROQ_API_KEY)
 
-        # 1. Authentication
-        self.record(True, "Groq Authentication", "Valid configured API key loaded")
+        if not has_key:
+            if self.require_groq:
+                self.record(False, "Groq Authentication", "GROQ_API_KEY is required but not configured")
+            else:
+                self.warn(
+                    "Groq Authentication (Optional)",
+                    "Skipped: GROQ_API_KEY not configured. Cloud functionality unavailable; deterministic offline fallback active."
+                )
+                self.warn(
+                    "Groq Connectivity (Optional)",
+                    "Skipped: Live Groq API calls disabled in offline/unauthenticated mode."
+                )
+        else:
+            # 1. Authentication
+            self.record(True, "Groq Authentication", "Valid configured API key loaded")
 
-        # 2. Connectivity & Generation
-        try:
-            from groq import Groq
+            # 2. Connectivity & Generation
+            try:
+                from groq import Groq
 
-            client = Groq(api_key=settings.GROQ_API_KEY)
-            resp = client.chat.completions.create(
-                model=settings.GROQ_MODEL,
-                messages=[{"role": "user", "content": "Respond strictly with the single word: OK"}],
-                max_tokens=200,
-            )
+                client = Groq(api_key=settings.GROQ_API_KEY)
+                resp = client.chat.completions.create(
+                    model=settings.GROQ_MODEL,
+                    messages=[{"role": "user", "content": "Respond strictly with the single word: OK"}],
+                    max_tokens=200,
+                )
 
-            choice = resp.choices[0]
-            content = (choice.message.content or "").strip()
+                choice = resp.choices[0]
+                content = (choice.message.content or "").strip()
 
-            if resp.choices:
-                self.record(True, "Groq Connectivity", "Endpoint reachable and responsive")
-                if content:
-                    self.record(True, "Groq Generation", f"{settings.GROQ_MODEL} live ({len(content)} chars)")
-                else:
-                    reasoning = getattr(choice.message, "reasoning", None)
-                    if reasoning:
-                        self.record(True, "Groq Generation", f"{settings.GROQ_MODEL} reasoning output active")
+                if resp.choices:
+                    self.record(True, "Groq Connectivity", "Endpoint reachable and responsive")
+                    if content:
+                        self.record(True, "Groq Generation", f"{settings.GROQ_MODEL} live ({len(content)} chars)")
                     else:
-                        self.warn("Groq Generation", "Empty content returned")
-            else:
-                self.record(False, "Groq Connectivity", "No choices returned by Groq")
-        except Exception as e:
-            err_name = type(e).__name__
-            err_str = str(e)
-            if "RateLimitError" in err_name or "429" in err_str or "tpd" in err_str.lower() or "rate_limit" in err_str.lower():
-                self.record(True, "Groq Connectivity", "Endpoint reachable")
-                self.warn("Groq Generation", "QUOTA EXHAUSTED (429 Rate Limit / Daily TPD limit reached)")
-            elif "AuthenticationError" in err_name or "401" in err_str:
-                self.record(False, "Groq Authentication", f"Authentication failed: {err_str}")
-                return
-            else:
-                self.record(False, "Groq Connectivity", f"Connection error: {err_str}")
+                        reasoning = getattr(choice.message, "reasoning", None)
+                        if reasoning:
+                            self.record(True, "Groq Generation", f"{settings.GROQ_MODEL} reasoning output active")
+                        else:
+                            self.warn("Groq Generation", "Empty content returned")
+                else:
+                    self.record(False, "Groq Connectivity", "No choices returned by Groq")
+            except Exception as e:
+                err_name = type(e).__name__
+                err_str = str(e)
+                safe_err = err_name if err_str else "Unknown Error"
+                if "RateLimitError" in err_name or "429" in err_str or "tpd" in err_str.lower() or "rate_limit" in err_str.lower():
+                    self.record(True, "Groq Connectivity", "Endpoint reachable")
+                    self.warn("Groq Generation", "QUOTA EXHAUSTED (429 Rate Limit / Daily TPD limit reached)")
+                elif "AuthenticationError" in err_name or "401" in err_str:
+                    self.record(False, "Groq Authentication", f"Authentication failed: {safe_err}")
+                else:
+                    self.record(False, "Groq Connectivity", f"Connection error: {safe_err}")
 
         # 3. Deterministic Fallback Verification
         try:
@@ -483,5 +500,6 @@ class Doctor:
 
 if __name__ == "__main__":
     run_full_build = "--build" in sys.argv
-    doc = Doctor(full_build=run_full_build)
+    req_groq = "--require-groq" in sys.argv or "--require-ai" in sys.argv
+    doc = Doctor(full_build=run_full_build, require_groq=req_groq)
     sys.exit(doc.run_all())
