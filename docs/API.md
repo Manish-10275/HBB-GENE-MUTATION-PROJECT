@@ -110,3 +110,80 @@ Synthesizes research answers strictly grounded in the supplied `evidence_packet`
 
 ### `POST /report`
 Compiles the complete `evidence_packet` into a standardized Markdown report and a styled browser-printable HTML document.
+
+---
+
+## 5. Modular V2 API Endpoints
+
+### `POST /api/v2/analyze/variant`
+Analyzes a single sequence variant deterministically with optional ClinVar evidence retrieval. Accepts HGVS cDNA nomenclature (e.g. `c.118C>T`, `c.92_94dup`, `c.9_83del`, `c.442_444del`).
+
+**Request Body (`VariantAnalysisRequest`):**
+```json
+{
+  "query": "c.118C>T",
+  "include_evidence": false
+}
+```
+
+**Alternative GET Method (`GET /api/v2/analyze/variant`):**
+* `query` (string, required): HGVS variant string (e.g. `c.118C>T`)
+* `include_evidence` (boolean, optional, default: `false`): Whether to fetch ClinVar evidence
+
+**Response `200 OK` (`VariantAnalysisResponse`):**
+```json
+{
+  "input_query": "c.118C>T",
+  "normalized_hgvs_c": "NM_000518.5:c.118C>T",
+  "transcript_accession": "NM_000518.5",
+  "c_position": "118",
+  "variant_type": "substitution",
+  "region": "exon2",
+  "ref_allele": "C",
+  "alt_allele": "T",
+  "mrna_position": 168,
+  "genomic_accession": "NG_000007.3",
+  "genomic_coordinate": 70842,
+  "hgvs_p": "p.Gln40Ter",
+  "molecular_impact": "Nonsense",
+  "codon_change": {
+    "codon_number": 40,
+    "c_start": 118,
+    "c_end": 120,
+    "ref_codon": "CAG",
+    "sample_codon": "TAG",
+    "ref_aa": "Gln",
+    "sample_aa": "Ter",
+    "is_stop_gain": true,
+    "is_stop_loss": false,
+    "is_synonymous": false
+  },
+  "ptc_coordinate": 40,
+  "confidence": "Deterministic",
+  "equivalent_nomenclature": [
+    "c.118C>T",
+    "CD39 C>T",
+    "Q39*"
+  ],
+  "nomenclature_notes": "Codon 39 historically numbered from post-cleavage Val1.",
+  "evidence_status": null,
+  "clinvar_evidence": null,
+  "discrepancies": []
+}
+```
+
+**Validation Error Response (`400 Bad Request`):**
+Returned on syntax errors, coordinate bounds failures, or reference mismatches.
+```json
+{
+  "detail": {
+    "error_code": "REFERENCE_MISMATCH",
+    "message": "Reference base mismatch at c.118: expected 'C', query specified 'A'",
+    "details": {
+      "coordinate": "118",
+      "expected_base": "C"
+    }
+  }
+}
+```
+
