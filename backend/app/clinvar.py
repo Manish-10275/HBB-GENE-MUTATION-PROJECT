@@ -265,6 +265,7 @@ async def fetch_clinvar_records(
     transcript_accession: str = "NM_000518.5",
     variant_aliases: Optional[List[str]] = None,
     protein_change: Optional[str] = None,
+    mode: str = "live",
 ) -> List[ClinVarRecord]:
     """
     Retrieves and classifies ClinVar records for a genomic variant using NCBI E-utilities.
@@ -309,6 +310,12 @@ async def fetch_clinvar_records(
     # Detect protein query
     p_match = re.search(r"(p\.[A-Za-z0-9*]+)", clean_term)
     active_prot = protein_change or (p_match.group(1) if p_match else None)
+
+    if mode == "offline":
+        return _check_fixture_fallback(
+            clean_term, c_term, transcript_accession, variant_aliases, active_prot,
+            source_label="Development Fixture (NCBI ClinVar)"
+        )
 
     base_url = settings.NCBI_BASE_URL
     id_list: List[str] = []
@@ -527,7 +534,8 @@ async def fetch_clinvar_records(
         except Exception as exc:
             logger.warning(f"Live ClinVar summary request failed: {exc}")
             return _check_fixture_fallback(
-                clean_term, c_term, transcript_accession, variant_aliases, active_prot
+                clean_term, c_term, transcript_accession, variant_aliases, active_prot,
+                source_label="Development Fixture (NCBI ClinVar Fallback)"
             )
 
 
@@ -537,6 +545,7 @@ def _check_fixture_fallback(
     transcript_accession: str = "NM_000518.5",
     variant_aliases: Optional[List[str]] = None,
     protein_change: Optional[str] = None,
+    source_label: str = "Development Fixture (NCBI ClinVar)",
 ) -> List[ClinVarRecord]:
     """Provides verified fixture data if offline or network error."""
     fixtures = _load_fixtures()
@@ -558,7 +567,7 @@ def _check_fixture_fallback(
                     raw_record={"genes": [{"symbol": "HBB", "geneid": "3043"}]},
                 )
                 rec = ClinVarRecord(**rec_dict)
-                rec.source = "Development Fixture (NCBI ClinVar)"
+                rec.source = source_label
                 rec.is_exact_match = is_exact
                 rec.evidence_type = ev_tier
                 rec.retrieval_date = retrieval_date_str
