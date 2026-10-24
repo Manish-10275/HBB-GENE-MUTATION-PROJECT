@@ -1,6 +1,6 @@
 """Deterministic codon translation and protein consequence evaluation."""
 
-from typing import Dict, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 from app.models import CodonChange
 
 # Standard Genetic Code Table (NCBI translation table 1)
